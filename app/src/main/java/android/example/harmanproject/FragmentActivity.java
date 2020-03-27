@@ -49,14 +49,16 @@ public class FragmentActivity extends AppCompatActivity {
     public void onClicker(View v) {
 
         // Кладем в нижний контейнер фрагмент 2
-        fTrans2 = getSupportFragmentManager().beginTransaction();
-        fTrans2.replace(R.id.lower_frame, frag2);
-        fTrans2.commit();
+        // раскомментить
+//        fTrans2 = getSupportFragmentManager().beginTransaction();
+//        fTrans2.replace(R.id.lower_frame, frag2);
+//        fTrans2.commit();
 
         //Кладем в верхний контейнер фрагмент 2
-//        fTrans1 = getSupportFragmentManager().beginTransaction();
-//        fTrans1.replace(R.id.higher_frame, frag2);
-//        fTrans1.commit();
+        //закомментить
+        fTrans1 = getSupportFragmentManager().beginTransaction();
+        fTrans1.replace(R.id.higher_frame, frag2);
+        fTrans1.commit();
     }
 }
 
