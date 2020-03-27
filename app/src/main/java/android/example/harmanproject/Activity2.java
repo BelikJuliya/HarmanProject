@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class Activity2 extends AppCompatActivity {
 
     GridFragment gridFragment;
-    FragmentTransaction gridTrans1;
+    FragmentTransaction gridTrans;
 
     RecyclerFragment recyclerFragment;
     FragmentTransaction recyclerTrans;
@@ -25,16 +25,24 @@ public class Activity2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity2);
 
-        gridFragment = new GridFragment();
-        gridTrans1 = getSupportFragmentManager().beginTransaction();
-        gridTrans1.add(R.id.container, gridFragment);
-        gridTrans1.commit();
-
         recyclerFragment = new RecyclerFragment();
         pageFragment = new PageFragment();
+        gridFragment = new GridFragment();
+
+        /* Гридвью появляется в контейнере, при создании активити
+        (то есть отображается по умолчанию до выбора другого вида отображения в меню
+        (вызова метода onOptionsItemSelected))
+         */
+        gridTrans = getSupportFragmentManager().beginTransaction();
+        gridTrans.add(R.id.container, gridFragment);
+        gridTrans.commit();
+
+        // альтернативный вариант - recyclerView  по умолчанию
+//        recyclerTrans = getSupportFragmentManager().beginTransaction();
+//        recyclerTrans.add(R.id.container, recyclerFragment);
+//        recyclerTrans.commit();
 
     }
-
 
     // implementing option menu
     @Override
@@ -45,20 +53,20 @@ public class Activity2 extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.recycle){
+        if (item.getItemId() == R.id.recycle) {
             recyclerTrans = getSupportFragmentManager().beginTransaction();
             recyclerTrans.replace(R.id.container, recyclerFragment);
             recyclerTrans.commit();
         }
-        if (item.getItemId() == R.id.page){
+        if (item.getItemId() == R.id.page) {
             pageTrans = getSupportFragmentManager().beginTransaction();
             pageTrans.replace(R.id.container, pageFragment);
             pageTrans.commit();
         }
-        if (item.getItemId() == R.id.grid){
-            gridTrans1 = getSupportFragmentManager().beginTransaction();
-            gridTrans1.replace(R.id.container, gridFragment);
-            gridTrans1.commit();
+        if (item.getItemId() == R.id.grid) {
+            gridTrans = getSupportFragmentManager().beginTransaction();
+            gridTrans.replace(R.id.container, gridFragment);
+            gridTrans.commit();
         }
 
         return super.onOptionsItemSelected(item);
@@ -66,12 +74,10 @@ public class Activity2 extends AppCompatActivity {
 
     //наполняем все виды вьюшек одинаковым контентом
     public static ArrayList<String> generateValues() {
-        ArrayList <String> elements = new ArrayList<>();
-        for (int i = 0; i < 20; i++) {
+        ArrayList<String> elements = new ArrayList<>();
+        for (int i = 0; i < 50; i++) {
             elements.add(i + " element");
         }
         return elements;
     }
-
-
 }

@@ -7,34 +7,16 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
 
 public class PageFragment extends Fragment {
 
-
-    private int pageNumber;
-
-    public PageFragment() {
-    }
-
-    public static PageFragment newInstance(int page) {
-        PageFragment fragment = new PageFragment();
-        Bundle args = new Bundle();
-        args.putInt("num", page);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        pageNumber = getArguments() != null ? getArguments().getInt("num") : 1;
-    }
-
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View result = inflater.inflate(R.layout.fragment_page, container, false);
-        TextView pageHeader = (TextView) result.findViewById(R.id.displayText);
-        String header = String.format("Фрагмент %d", pageNumber + 1);
-        pageHeader.setText(header);
-        return result;
+        View view = inflater.inflate(R.layout.fragment_page, container, false);
+        PageAdapter pageAdapter = new PageAdapter(getContext(), Activity2.generateValues());
+        ViewPager viewPager = view.findViewById(R.id.viewpager);
+        viewPager.setAdapter(pageAdapter);
+        return view;
     }
 }
 

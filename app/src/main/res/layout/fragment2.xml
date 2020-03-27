@@ -3,19 +3,23 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0000ff"
     android:orientation="vertical">
+<!--    android:background="#0000ff"-->
+
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/frag1_text">
-
-    </TextView>
+        android:text="@string/frag2_text"
+        android:layout_gravity="center_horizontal"
+        android:textSize="16sp"
+        android:layout_marginTop="16dp"/>
 
     <EditText
+        android:id="@+id/edit_message"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/edit_message" />
+        android:layout_marginBottom="16dp"
+        android:autofillHints="Оставить комментарий"/>
 
 </LinearLayout>

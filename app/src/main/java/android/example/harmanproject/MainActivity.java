@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void goToActivity1(View view) {
-        Intent intent = new Intent(MainActivity.this, FragmentActivity.class);
+        Intent intent = new Intent(MainActivity.this, Activity1.class);
         startActivity(intent);
     }
 
