@@ -23,21 +23,36 @@ import androidx.fragment.app.Fragment;
 
 
 public class GridFragment extends Fragment {
-    Context context;
-    GridView gridView;
-    GridAdapter gridAdapter;
-    View view;
+
+    private GridView gridView;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savesInstanceState) {
-        context = inflater.getContext(); //what does it do?
-        view =  inflater.inflate(R.layout.grid_fragment, container, false);
-        gridView = getView().findViewById(R.id.grid_view);
-        gridAdapter = new GridAdapter(context, Activity2.generateValues());
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.activity2, container, false);
+        rootView.findViewById(R.id.grid_view);
+        GridAdapter gridAdapter = new GridAdapter(getActivity(), Activity2.generateValues());
         gridView.setAdapter(gridAdapter);
-        return view;
+
+        return rootView;
     }
+
 }
+//    Context context;
+//    GridView gridView;
+//    GridAdapter gridAdapter;
+//    View view;
+//
+//    @Override
+//    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savesInstanceState) {
+//        context = inflater.getContext(); //what does it do?
+//        view =  inflater.inflate(R.layout.grid_fragment, container, false);
+//        gridView = getView().findViewById(R.id.grid_view);
+//        gridAdapter = new GridAdapter(context, Activity2.generateValues());
+//        gridView.setAdapter(gridAdapter);
+//        return view;
+//    }
+//}
 
 
 
