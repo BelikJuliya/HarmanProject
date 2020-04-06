@@ -3,4 +3,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/viewpager"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" />
+    android:layout_height="match_parent" >
+
+    <it.xabaras.android.viewpagerindicator.widget.ViewPagerIndicator
+        android:id="@+id/viewPagerIndicator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</androidx.viewpager.widget.ViewPager>

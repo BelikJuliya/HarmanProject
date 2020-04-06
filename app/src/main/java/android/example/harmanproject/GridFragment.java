@@ -12,22 +12,20 @@ import androidx.fragment.app.Fragment;
 
 public class GridFragment extends Fragment {
 
-    Context context;
-    GridView gridView;
-    GridAdapter gridAdapter;
-    View view;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savesInstanceState) {
-        context = inflater.getContext(); //what does it do?
-        //getView() возвращает то, что в return у onCreateView - не использовать
-        //мой фрагмент будет связан с xml, ссылка на айди которого вводится
-        //на этом xml будет искаться грид вью на след шаге
-        view = inflater.inflate(R.layout.grid_fragment, container, false);
-        //ищем в переданном xml грид вью, который передаем в качестве параметра
-        gridView = view.findViewById(R.id.grid_view);
-        gridAdapter = new GridAdapter(context, Activity2.generateValues());
-        gridView.setAdapter(gridAdapter);
+        /*
+        my fragment will be associated with xml, the id link of which is entered here,
+        in this xml file the grid view will be searched in the next step
+         */
+        View view = inflater.inflate(R.layout.grid_fragment, container, false);
+
+        /* search for gridView (R.id.grid_view) in XML file
+        which link was given earlier (R.layout.grid_fragment)
+        */
+        GridView mGridView = view.findViewById(R.id.grid_view);
+        GridAdapter gridAdapter = new GridAdapter(getActivity(), Activity2.mElements);
+        mGridView.setAdapter(gridAdapter);
         return view;
     }
 }

@@ -12,35 +12,34 @@ import java.util.ArrayList;
 
 public class Activity2 extends AppCompatActivity {
 
-    GridFragment gridFragment;
-    FragmentTransaction gridTrans;
-
-    RecyclerFragment recyclerFragment;
-    FragmentTransaction recyclerTrans;
-
-    PageFragment pageFragment;
-    FragmentTransaction pageTrans;
+    private GridFragment mGridFragment;
+    private FragmentTransaction mGridTrans;
+    private RecyclerFragment mRecyclerFragment;
+    private PageFragment mPageFragment;
+    static ArrayList<String> mElements;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity2);
 
-        recyclerFragment = new RecyclerFragment();
-        pageFragment = new PageFragment();
-        gridFragment = new GridFragment();
+        mRecyclerFragment = new RecyclerFragment();
+        mPageFragment = new PageFragment();
+        mGridFragment = new GridFragment();
 
-        /* Гридвью появляется в контейнере, при создании активити
-        (то есть отображается по умолчанию до выбора другого вида отображения в меню
-        (вызова метода onOptionsItemSelected))
+        /* GridView appears in the container at the moment of activity creation
+        (i.e. it is displayed by default before choosing another type of display in the menu
+        (calling the onOptionsItemSelected method))
          */
-        gridTrans = getSupportFragmentManager().beginTransaction();
-        gridTrans.add(R.id.container, gridFragment);
-        gridTrans.commit();
+        mGridTrans = getSupportFragmentManager().beginTransaction();
+        mGridTrans.add(R.id.container, mGridFragment);
+        mGridTrans.commit();
 
-        // альтернативный вариант - recyclerView  по умолчанию
-//        recyclerTrans = getSupportFragmentManager().beginTransaction();
-//        recyclerTrans.add(R.id.container, recyclerFragment);
-//        recyclerTrans.commit();
+        mElements = new ArrayList<>();
+        for (int i = 0; i < 50; i++) {
+
+            String plural = this.getResources().getQuantityString(R.plurals.pluralsForList, i, i);
+            mElements.add(plural);
+        }
 
     }
 
@@ -53,31 +52,30 @@ public class Activity2 extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.recycle) {
-            recyclerTrans = getSupportFragmentManager().beginTransaction();
-            recyclerTrans.replace(R.id.container, recyclerFragment);
-            recyclerTrans.commit();
-        }
-        if (item.getItemId() == R.id.page) {
-            pageTrans = getSupportFragmentManager().beginTransaction();
-            pageTrans.replace(R.id.container, pageFragment);
-            pageTrans.commit();
-        }
-        if (item.getItemId() == R.id.grid) {
-            gridTrans = getSupportFragmentManager().beginTransaction();
-            gridTrans.replace(R.id.container, gridFragment);
-            gridTrans.commit();
-        }
+        switch (item.getItemId()) {
+            case R.id.recycle:
+                FragmentTransaction recyclerTrans = getSupportFragmentManager().beginTransaction();
+                recyclerTrans.replace(R.id.container, mRecyclerFragment);
+                recyclerTrans.commit();
+                break;
 
+            case R.id.page:
+                FragmentTransaction pageTrans = getSupportFragmentManager().beginTransaction();
+                pageTrans.replace(R.id.container, mPageFragment);
+                pageTrans.commit();
+                break;
+
+            case R.id.grid_view:
+                mGridTrans = getSupportFragmentManager().beginTransaction();
+                mGridTrans.replace(R.id.container, mGridFragment);
+                mGridTrans.commit();
+                break;
+
+
+        }
         return super.onOptionsItemSelected(item);
     }
-
-    //наполняем все виды вьюшек одинаковым контентом
-    public static ArrayList<String> generateValues() {
-        ArrayList<String> elements = new ArrayList<>();
-        for (int i = 0; i < 50; i++) {
-            elements.add(i + " element");
-        }
-        return elements;
-    }
 }
+
+
+

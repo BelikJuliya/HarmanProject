@@ -13,20 +13,20 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
 
     private ArrayList <String> mDataset;
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder {
-        public LinearLayout textView;
+    static class MyViewHolder extends RecyclerView.ViewHolder {
+        LinearLayout textView;
 
-        public MyViewHolder(LinearLayout textView) {
+        MyViewHolder(LinearLayout textView) {
             super(textView);
             this.textView = textView;
         }
     }
 
-    public RecyclerAdapter (ArrayList <String> myDataSet) {
+    RecyclerAdapter(ArrayList<String> myDataSet) {
         mDataset = myDataSet;
     }
-
-    // ссылки на гривью и гридайтем - не ошибка, макет одного элемента для грид айтема и ресайкл айтема одинаковый
+    /*using gridView and gridItem links is not a mistake
+    because the layout of one element for grid item and recycle item is the same */
 
     @NonNull
     @Override

@@ -1,10 +1,21 @@
 <resources>
     <string name="app_name">HarmanApp</string>
     <string name="frag1_text">Fragment 1</string>
-    <string name="frag2_text" > Fragment 2</string>
+    <string name="frag2_text"> Fragment 2</string>
     <string name="add">Add</string>
     <string name="remove">Remove</string>
     <string name="replace">Replace</string>
     <string name="stack">add to Back Stack</string>
     <string name="rotate_picture">Rotate Picture</string>
+    <string name="activity_2">Activity 2</string>
+
+    <plurals name="pluralsForList">
+        <item quantity="zero">%1$d element</item>
+        <item quantity="one">%1$dst element</item>
+        <item quantity="two">%1$dnd element</item>
+        <item quantity="few">%1$drd element</item>
+        <item quantity="many">%1$dth element</item>
+        <item quantity="other">%1$dth element</item>
+    </plurals>
+
 </resources>

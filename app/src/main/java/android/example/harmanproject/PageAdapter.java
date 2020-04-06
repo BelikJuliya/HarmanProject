@@ -14,40 +14,33 @@ import java.util.ArrayList;
 
 public class PageAdapter extends PagerAdapter {
 
-    ArrayList<String> list;
-    Context context;
+    private ArrayList<String> mList;
+    private Context mcontext;
 
     @Override
     public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
         return view == object;
     }
 
-    public PageAdapter(Context context, ArrayList<String> list) {
-//        super(manager);
-        this.context = context;
-        this.list = new ArrayList<>(list);
+    PageAdapter(Context context, ArrayList<String> list) {
+        mcontext = context;
+        mList = new ArrayList<>(list);
     }
 
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater inflater = (LayoutInflater) mcontext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.grid_view_element, container, false);
         TextView textView = view.findViewById(R.id.grid_item);
-        textView.setText(list.get(position));
+        textView.setText(mList.get(position));
         container.addView(view);
         return view;
     }
 
-//
-//    @Override
-//    public Fragment getItem(int position) {
-//        return PageFragment.newInstance(Activity2.generateValues().get(position));
-//    }
-
     @Override
     public int getCount() {
-        return list.size();
+        return mList.size();
     }
 
     @Override

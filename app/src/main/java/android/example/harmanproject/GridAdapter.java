@@ -11,21 +11,21 @@ import java.util.ArrayList;
 public class GridAdapter extends BaseAdapter {
 
     private final Context mContext;
-    private final ArrayList<String> dataList;
+    private final ArrayList<String> mDataList;
 
-    public GridAdapter (Context context, ArrayList <String> dataList){
+    GridAdapter(Context context, ArrayList<String> dataList) {
         mContext = context;
-        this.dataList = dataList;
+        mDataList = dataList;
     }
 
     @Override
     public int getCount() {
-        return dataList.size();
+        return mDataList.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return dataList.get(position);
+        return mDataList.get(position);
     }
 
     @Override
@@ -38,23 +38,12 @@ public class GridAdapter extends BaseAdapter {
 
         TextView label = (TextView) convertView;
 
-        if (convertView == null){
+        if (convertView == null) {
             convertView = new TextView(mContext);
             label = (TextView) convertView;
         }
-        label.setText(dataList.get(position));
+        label.setText(mDataList.get(position));
         return convertView;
 
-
-//        TextView textView = new TextView(mContext);
-//        textView.setText(String.valueOf(position));
-//        return textView;
-
-//        final String item = dataList.get(position);
-//        if (convertView == null){
-//            final LayoutInflater layoutInflater = LayoutInflater.from(mContext);
-//            convertView = layoutInflater.inflate(R.layout.item_view, null);
-//        }
-//        return convertView;
     }
 }
