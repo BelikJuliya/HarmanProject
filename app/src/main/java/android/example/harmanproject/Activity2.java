@@ -26,7 +26,8 @@ public class Activity2 extends AppCompatActivity {
         mPageFragment = new PageFragment();
         mGridFragment = new GridFragment();
 
-        /* GridView appears in the container at the moment of activity creation
+        /*
+         GridView appears in the container at the moment of activity creation
         (i.e. it is displayed by default before choosing another type of display in the menu
         (calling the onOptionsItemSelected method))
          */
@@ -36,11 +37,9 @@ public class Activity2 extends AppCompatActivity {
 
         mElements = new ArrayList<>();
         for (int i = 0; i < 50; i++) {
-
             String plural = this.getResources().getQuantityString(R.plurals.pluralsForList, i, i);
             mElements.add(plural);
         }
-
     }
 
     // implementing option menu
