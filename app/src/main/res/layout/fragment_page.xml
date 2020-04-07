@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -11,12 +11,16 @@
     android:layout_height="match_parent" />
 
 <it.xabaras.android.viewpagerindicator.widget.ViewPagerIndicator
-    android:background="@color/colorPrimaryDark"
-    android:id="@+id/viewPagerIndicator"
+    android:id="@+id/view_pager_indicator"
     android:layout_height="wrap_content"
-    android:layout_marginTop="8dp"
     android:layout_width="match_parent"
-    app:defaultIndicatorTheme="dark"
-    app:itemDividerWidth="8dp" />
+    app:defaultIndicatorTheme="light"
+    app:itemDividerWidth="8dp"
+    android:layout_gravity="bottom|center_horizontal"
+    android:layout_marginBottom="16dp"
+    app:itemRadius="16dp"
+    app:itemSelectedColor="@color/colorAccent"
+    app:itemUnselectedColor="@color/colorPrimaryDark"
+    />
 
-</LinearLayout>
+</FrameLayout>

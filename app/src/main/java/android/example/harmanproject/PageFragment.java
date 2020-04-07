@@ -18,7 +18,7 @@ public class PageFragment extends Fragment {
         viewPager.setAdapter(pageAdapter);
 
         // set viewPagerIndicator
-        ViewPagerIndicator viewPagerIndicator = new ViewPagerIndicator(getContext());
+        ViewPagerIndicator viewPagerIndicator = view.findViewById(R.id.view_pager_indicator);
         viewPagerIndicator.initWithViewPager(viewPager);
 
         return view;

@@ -36,7 +36,7 @@ public class Activity2 extends AppCompatActivity {
         mGridTrans.commit();
 
         mElements = new ArrayList<>();
-        for (int i = 0; i < 50; i++) {
+        for (int i = 0; i < 5; i++) {
             String plural = this.getResources().getQuantityString(R.plurals.pluralsForList, i, i);
             mElements.add(plural);
         }
