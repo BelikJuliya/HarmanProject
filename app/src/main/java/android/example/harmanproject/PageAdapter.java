@@ -31,7 +31,7 @@ public class PageAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
         LayoutInflater inflater = (LayoutInflater) mcontext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = inflater.inflate(R.layout.grid_view_element, container, false);
+        View view = inflater.inflate(R.layout.example_element, container, false);
         TextView textView = view.findViewById(R.id.grid_item);
         textView.setText(mList.get(position));
         container.addView(view);

@@ -8,6 +8,7 @@
     <string name="stack">add to Back Stack</string>
     <string name="rotate_picture">Rotate Picture</string>
     <string name="activity_2">Activity 2</string>
+    <string name="example_element">Example element</string>
 
     <plurals name="pluralsForList">
         <item quantity="zero">%1$d element</item>

@@ -11,9 +11,9 @@ import java.util.ArrayList;
 public class GridAdapter extends BaseAdapter {
 
     private final Context mContext;
-    private final ArrayList<String> mDataList;
+    private final ArrayList<ExampleElement> mDataList;
 
-    GridAdapter(Context context, ArrayList<String> dataList) {
+    GridAdapter(Context context, ArrayList<ExampleElement> dataList) {
         mContext = context;
         mDataList = dataList;
     }
@@ -37,6 +37,7 @@ public class GridAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
 
         TextView label = (TextView) convertView;
+
 
         if (convertView == null) {
             convertView = new TextView(mContext);

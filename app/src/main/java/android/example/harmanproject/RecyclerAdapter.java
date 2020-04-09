@@ -1,7 +1,9 @@
 package android.example.harmanproject;
+
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -9,40 +11,42 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyViewHolder> {
+public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ExampleViewHolder> {
+    private ArrayList<ExampleElement> mExampleElements;
 
-    private ArrayList <String> mDataset;
+    public static class ExampleViewHolder extends RecyclerView.ViewHolder {
+        private TextView mText;
+        private ImageView mImageView;
 
-    static class MyViewHolder extends RecyclerView.ViewHolder {
-        LinearLayout textView;
-
-        MyViewHolder(LinearLayout textView) {
-            super(textView);
-            this.textView = textView;
+        public ExampleViewHolder(View itemView) {
+            super(itemView);
+            mText = itemView.findViewById(R.id.grid_item);
+            mImageView = itemView.findViewById(R.id.example_image);
         }
+
     }
 
-    RecyclerAdapter(ArrayList<String> myDataSet) {
-        mDataset = myDataSet;
+    public RecyclerAdapter(ArrayList<ExampleElement> exampleElements) {
+        mExampleElements = exampleElements;
     }
-    /*using gridView and gridItem links is not a mistake
-    because the layout of one element for grid item and recycle item is the same */
 
     @NonNull
     @Override
-    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LinearLayout textView = (LinearLayout) LayoutInflater.from(parent.getContext()).inflate(R.layout.grid_view_element, parent, false);
-
-        return new MyViewHolder(textView);
+    public ExampleViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.example_element, parent, false);
+        ExampleViewHolder evh = new ExampleViewHolder(view);
+        return evh;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        ((TextView) holder.textView.findViewById(R.id.grid_item)).setText(mDataset.get(position));
+    public void onBindViewHolder(@NonNull ExampleViewHolder holder, int position) {
+        ExampleElement currentItem = mExampleElements.get(position);
+        holder.mImageView.setImageResource(currentItem.getImageResource());
+        holder.mText.setText(currentItem.getText());
     }
 
     @Override
     public int getItemCount() {
-        return mDataset.size();
+        return mExampleElements.size();
     }
 }

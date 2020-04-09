@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 public class Activity2 extends AppCompatActivity {
 
+    public static ArrayList<ExampleElement> exampleList;
     private GridFragment mGridFragment;
     private FragmentTransaction mGridTrans;
     private RecyclerFragment mRecyclerFragment;
@@ -35,11 +36,15 @@ public class Activity2 extends AppCompatActivity {
         mGridTrans.add(R.id.container, mGridFragment);
         mGridTrans.commit();
 
-        mElements = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
-            String plural = this.getResources().getQuantityString(R.plurals.pluralsForList, i, i);
-            mElements.add(plural);
-        }
+        int imageResource = 0;
+        exampleList = new ArrayList<>();
+        exampleList.add(new ExampleElement(imageResource, String.valueOf(imageResource)));
+
+//        mElements = new ArrayList<>();
+//        for (int i = 0; i < 30; i++) {
+//            String plural = this.getResources().getQuantityString(R.plurals.pluralsForList, i, i);
+//            mElements.add(plural);
+//        }
     }
 
     // implementing option menu
@@ -69,8 +74,6 @@ public class Activity2 extends AppCompatActivity {
                 mGridTrans.replace(R.id.container, mGridFragment);
                 mGridTrans.commit();
                 break;
-
-
         }
         return super.onOptionsItemSelected(item);
     }

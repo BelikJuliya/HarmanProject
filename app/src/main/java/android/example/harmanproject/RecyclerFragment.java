@@ -14,12 +14,13 @@ public class RecyclerFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         RecyclerView recyclerView;
         View view = inflater.inflate(R.layout.recycler_fragment, container, false);
         recyclerView = view.findViewById(R.id.recycle_view);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        RecyclerAdapter recyclerAdapter = new RecyclerAdapter(Activity2.mElements);
+        RecyclerAdapter recyclerAdapter = new RecyclerAdapter(Activity2.exampleList);
         recyclerView.setAdapter(recyclerAdapter);
         return view;
     }
