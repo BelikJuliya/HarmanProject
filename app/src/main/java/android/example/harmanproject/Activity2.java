@@ -6,12 +6,17 @@ import android.os.Bundle;
 import android.provider.DocumentsContract;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
+
 
 public class Activity2 extends AppCompatActivity {
 
@@ -20,6 +25,7 @@ public class Activity2 extends AppCompatActivity {
     private FragmentTransaction mGridTrans;
     private RecyclerFragment mRecyclerFragment;
     private PageFragment mPageFragment;
+    ImageView mImageView;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,35 +44,29 @@ public class Activity2 extends AppCompatActivity {
         mGridTrans.add(R.id.container, mGridFragment);
         mGridTrans.commit();
 
-
-
-
         int imageResource = 0; // = /storage/emulated/0/Pictures/Instagram;
-
-
-
+        String text = "testText";
         exampleList = new ArrayList<>();
-        exampleList.add(new ExampleElement(imageResource, String.valueOf(imageResource)));
+        exampleList.add(mImageView, text);
+        // exampleList.add(new ExampleElement(openDirectory(Uri.parse("/storage/emulated/0/Pictures/Instagram));, text));
 
-//        mElements = new ArrayList<>();
-//        for (int i = 0; i < 30; i++) {
-//            String plural = this.getResources().getQuantityString(R.plurals.pluralsForList, i, i);
-//            mElements.add(plural);
-//        }
     }
 
+    public void loadImage(View view) {
+        mImageView = findViewById(R.id.example_image);
+        Picasso.with(getApplicationContext()).load("/storage/emulated/0/Pictures/Instagram").into(mImageView);
+    }
     // Open the direction tree
 
-    public void openDirectory(Uri uriToLoad){
+    private static int REQUEST_CODE = 1;
+
+    public void openDirectory(Uri uriToLoad) {
         Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
+        intent.setAction(Intent.ACTION_GET_CONTENT);
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         intent.putExtra(DocumentsContract.EXTRA_INITIAL_URI, uriToLoad);
+        startActivityForResult(intent, REQUEST_CODE);
     }
-
-
-
-
-
 
     // implementing option menu
     @Override
