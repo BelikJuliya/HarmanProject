@@ -1,6 +1,9 @@
 package android.example.harmanproject;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.DocumentsContract;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -17,7 +20,6 @@ public class Activity2 extends AppCompatActivity {
     private FragmentTransaction mGridTrans;
     private RecyclerFragment mRecyclerFragment;
     private PageFragment mPageFragment;
-    static ArrayList<String> mElements;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +38,13 @@ public class Activity2 extends AppCompatActivity {
         mGridTrans.add(R.id.container, mGridFragment);
         mGridTrans.commit();
 
-        int imageResource = 0;
+
+
+
+        int imageResource = 0; // = /storage/emulated/0/Pictures/Instagram;
+
+
+
         exampleList = new ArrayList<>();
         exampleList.add(new ExampleElement(imageResource, String.valueOf(imageResource)));
 
@@ -46,6 +54,19 @@ public class Activity2 extends AppCompatActivity {
 //            mElements.add(plural);
 //        }
     }
+
+    // Open the direction tree
+
+    public void openDirectory(Uri uriToLoad){
+        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        intent.putExtra(DocumentsContract.EXTRA_INITIAL_URI, uriToLoad);
+    }
+
+
+
+
+
 
     // implementing option menu
     @Override

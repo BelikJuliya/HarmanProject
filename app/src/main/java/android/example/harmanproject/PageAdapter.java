@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -14,26 +15,29 @@ import java.util.ArrayList;
 
 public class PageAdapter extends PagerAdapter {
 
-    private ArrayList<String> mList;
-    private Context mcontext;
+    private ArrayList<ExampleElement> mList;
+    private Context mContext;
 
     @Override
     public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
         return view == object;
     }
 
-    PageAdapter(Context context, ArrayList<String> list) {
-        mcontext = context;
+    PageAdapter(Context context, ArrayList<ExampleElement> list) {
+        mContext = context;
         mList = new ArrayList<>(list);
     }
 
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
-        LayoutInflater inflater = (LayoutInflater) mcontext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        ExampleElement current = mList.get(position);
+        LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.example_element, container, false);
         TextView textView = view.findViewById(R.id.grid_item);
-        textView.setText(mList.get(position));
+        textView.setText(current.getText());
+        ImageView imageView = view.findViewById(R.id.example_image);
+        imageView.setImageResource(current.getImageResource());
         container.addView(view);
         return view;
     }

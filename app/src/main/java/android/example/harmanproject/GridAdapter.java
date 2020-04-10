@@ -1,10 +1,13 @@
 package android.example.harmanproject;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
+
 
 import java.util.ArrayList;
 
@@ -36,14 +39,15 @@ public class GridAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        TextView label = (TextView) convertView;
+        ExampleElement current = mDataList.get(position);
+        LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        convertView = inflater.inflate(R.layout.example_element, parent, false);
+        TextView textView = convertView.findViewById(R.id.grid_item);
+        ImageView imageView = convertView.findViewById(R.id.example_image);
 
+        textView.setText(current.getText());
+        imageView.setImageResource(current.getImageResource());
 
-        if (convertView == null) {
-            convertView = new TextView(mContext);
-            label = (TextView) convertView;
-        }
-        label.setText(mDataList.get(position));
         return convertView;
 
     }

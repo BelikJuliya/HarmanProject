@@ -13,7 +13,7 @@ public class PageFragment extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_page, container, false);
-        PageAdapter pageAdapter = new PageAdapter(getContext(), Activity2.mElements);
+        PageAdapter pageAdapter = new PageAdapter(getContext(), Activity2.exampleList);
         ViewPager viewPager = view.findViewById(R.id.viewpager);
         viewPager.setAdapter(pageAdapter);
 

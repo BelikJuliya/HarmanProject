@@ -24,7 +24,7 @@ public class GridFragment extends Fragment {
         which link was given earlier (R.layout.grid_fragment)
         */
         GridView mGridView = view.findViewById(R.id.grid_view);
-        GridAdapter gridAdapter = new GridAdapter(getActivity(), Activity2.mElements);
+        GridAdapter gridAdapter = new GridAdapter(getActivity(), Activity2.exampleList);
         mGridView.setAdapter(gridAdapter);
         return view;
     }
