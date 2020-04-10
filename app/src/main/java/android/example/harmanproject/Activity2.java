@@ -47,7 +47,8 @@ public class Activity2 extends AppCompatActivity {
         int imageResource = 0; // = /storage/emulated/0/Pictures/Instagram;
         String text = "testText";
         exampleList = new ArrayList<>();
-        exampleList.add(mImageView, text);
+        // exampleList.add(mImageView, text);
+        exampleList.add(new ExampleElement(imageResource, text));
         // exampleList.add(new ExampleElement(openDirectory(Uri.parse("/storage/emulated/0/Pictures/Instagram));, text));
 
     }
