@@ -1,6 +1,7 @@
 package android.example.harmanproject;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.DocumentsContract;
@@ -56,9 +57,13 @@ public class Activity2 extends AppCompatActivity {
         //filling out the list with content which will be shown in textViews
         File folder = new File("/storage/emulated/0/Pictures/Instagram/");
         ArrayList <String> fileNames = new ArrayList<>(Arrays.asList(Objects.requireNonNull(folder.list())));
+        ArrayList <File> imagesFromDirectory = new ArrayList<>(Arrays.asList(Objects.requireNonNull(folder.listFiles())));
 
         for (int i = 0; i < fileNames.size(); i++) {
-            exampleList.add(new ExampleElement(imageResource, fileNames.get(i)));
+            Drawable drawable = Drawable.createFromPath(imagesFromDirectory.get(i).getAbsolutePath());
+            //int id = getResources().getIdentifier(imagesFromGallery.get(i).getAbsolutePath(), null, null);
+            Picasso.with(getApplicationContext()).load(imagesFromDirectory.get(i)).into(mImageView);
+            exampleList.add(new ExampleElement(mImageView, fileNames.get(i)));
         }
     }
 

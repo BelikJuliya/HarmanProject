@@ -37,7 +37,7 @@ public class PageAdapter extends PagerAdapter {
         TextView textView = view.findViewById(R.id.grid_item);
         textView.setText(current.getText());
         ImageView imageView = view.findViewById(R.id.example_image);
-        imageView.setImageResource(current.getImageResource());
+        imageView = current.getImageResource();
         container.addView(view);
         return view;
     }
