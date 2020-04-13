@@ -15,7 +15,10 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.squareup.picasso.Picasso;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Objects;
 
 
 public class Activity2 extends AppCompatActivity {
@@ -44,30 +47,26 @@ public class Activity2 extends AppCompatActivity {
         mGridTrans.add(R.id.container, mGridFragment);
         mGridTrans.commit();
 
-        int imageResource = 0; // = /storage/emulated/0/Pictures/Instagram;
-        String text = "testText";
-        exampleList = new ArrayList<>();
-        // exampleList.add(mImageView, text);
-        exampleList.add(new ExampleElement(imageResource, text));
-        // exampleList.add(new ExampleElement(openDirectory(Uri.parse("/storage/emulated/0/Pictures/Instagram));, text));
 
+        // file directory: "/storage/emulated/0/Pictures/Instagram/"
+        int imageResource = 0;
+        exampleList = new ArrayList<>();
+        mImageView = findViewById(R.id.example_image);
+
+        //filling out the list with content which will be shown in textViews
+        File folder = new File("/storage/emulated/0/Pictures/Instagram/");
+        ArrayList <String> fileNames = new ArrayList<>(Arrays.asList(Objects.requireNonNull(folder.list())));
+
+        for (int i = 0; i < fileNames.size(); i++) {
+            exampleList.add(new ExampleElement(imageResource, fileNames.get(i)));
+        }
     }
 
     public void loadImage(View view) {
         mImageView = findViewById(R.id.example_image);
         Picasso.with(getApplicationContext()).load("/storage/emulated/0/Pictures/Instagram").into(mImageView);
     }
-    // Open the direction tree
 
-    private static int REQUEST_CODE = 1;
-
-    public void openDirectory(Uri uriToLoad) {
-        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        intent.putExtra(DocumentsContract.EXTRA_INITIAL_URI, uriToLoad);
-        startActivityForResult(intent, REQUEST_CODE);
-    }
 
     // implementing option menu
     @Override
