@@ -1,22 +1,17 @@
 package android.example.harmanproject;
 
-import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.DocumentsContract;
+
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.squareup.picasso.Picasso;
-
 import java.io.File;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
@@ -29,7 +24,6 @@ public class Activity2 extends AppCompatActivity {
     private FragmentTransaction mGridTrans;
     private RecyclerFragment mRecyclerFragment;
     private PageFragment mPageFragment;
-    ImageView mImageView;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,29 +43,20 @@ public class Activity2 extends AppCompatActivity {
         mGridTrans.commit();
 
 
-        // file directory: "/storage/emulated/0/Pictures/Instagram/"
-        int imageResource = 0;
+        String directory = "/storage/emulated/0/Pictures/Instagram/";
         exampleList = new ArrayList<>();
-        mImageView = findViewById(R.id.example_image);
+        Uri imageURI;
 
         //filling out the list with content which will be shown in textViews
-        File folder = new File("/storage/emulated/0/Pictures/Instagram/");
-        ArrayList <String> fileNames = new ArrayList<>(Arrays.asList(Objects.requireNonNull(folder.list())));
-        ArrayList <File> imagesFromDirectory = new ArrayList<>(Arrays.asList(Objects.requireNonNull(folder.listFiles())));
+        File folder = new File(directory);
+        ArrayList<String> fileNames = new ArrayList<>(Arrays.asList(Objects.requireNonNull(folder.list())));
+        ArrayList<File> imagesFromDirectory = new ArrayList<>(Arrays.asList(Objects.requireNonNull(folder.listFiles())));
 
         for (int i = 0; i < fileNames.size(); i++) {
-            Drawable drawable = Drawable.createFromPath(imagesFromDirectory.get(i).getAbsolutePath());
-            //int id = getResources().getIdentifier(imagesFromGallery.get(i).getAbsolutePath(), null, null);
-            Picasso.with(getApplicationContext()).load(imagesFromDirectory.get(i)).into(mImageView);
-            exampleList.add(new ExampleElement(mImageView, fileNames.get(i)));
+            imageURI = Uri.fromFile(imagesFromDirectory.get(i));
+            exampleList.add(new ExampleElement(imageURI, fileNames.get(i)));
         }
     }
-
-    public void loadImage(View view) {
-        mImageView = findViewById(R.id.example_image);
-        Picasso.with(getApplicationContext()).load("/storage/emulated/0/Pictures/Instagram").into(mImageView);
-    }
-
 
     // implementing option menu
     @Override
@@ -105,5 +90,5 @@ public class Activity2 extends AppCompatActivity {
     }
 }
 
-
+//current.getPath
 
