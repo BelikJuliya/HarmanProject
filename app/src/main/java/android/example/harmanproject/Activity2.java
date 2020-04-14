@@ -3,6 +3,7 @@ package android.example.harmanproject;
 import android.net.Uri;
 import android.os.Bundle;
 
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -45,18 +46,18 @@ public class Activity2 extends AppCompatActivity {
 
         String directory = "/storage/emulated/0/Pictures/Instagram/";
         exampleList = new ArrayList<>();
-        Uri imageURI;
 
-        //filling out the list with content which will be shown in textViews
         File folder = new File(directory);
-        ArrayList<String> fileNames = new ArrayList<>(Arrays.asList(Objects.requireNonNull(folder.list())));
-        ArrayList<File> imagesFromDirectory = new ArrayList<>(Arrays.asList(Objects.requireNonNull(folder.listFiles())));
-
+        ArrayList<String> fileNames = new ArrayList<>(Arrays.asList(Objects.requireNonNull(folder.list()))); //list with names to show in textView
+        ArrayList<File> imagesFromDirectory = new ArrayList<>(Arrays.asList(Objects.requireNonNull(folder.listFiles()))); //list with files to show in imageView
         for (int i = 0; i < fileNames.size(); i++) {
-            imageURI = Uri.fromFile(imagesFromDirectory.get(i));
-            exampleList.add(new ExampleElement(imageURI, fileNames.get(i)));
+            Uri imageURI = Uri.fromFile(imagesFromDirectory.get(i));
+            if (imagesFromDirectory.get(i).getName().endsWith(".jpg") || imagesFromDirectory.get(i).getName().endsWith(".png") || imagesFromDirectory.get(i).getName().endsWith(".jpeg")) {
+                exampleList.add(new ExampleElement(imageURI, fileNames.get(i)));
+            }
         }
     }
+
 
     // implementing option menu
     @Override
@@ -90,5 +91,4 @@ public class Activity2 extends AppCompatActivity {
     }
 }
 
-//current.getPath
 
