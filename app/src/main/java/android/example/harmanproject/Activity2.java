@@ -44,7 +44,7 @@ public class Activity2 extends AppCompatActivity {
         mGridTrans.commit();
 
 
-        String directory = "/storage/emulated/0/Pictures/Instagram/";
+        String directory = "/storage/emulated/0/Pictures/7Fon/";
         exampleList = new ArrayList<>();
 
         File folder = new File(directory);

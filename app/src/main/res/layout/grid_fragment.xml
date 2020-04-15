@@ -14,16 +14,28 @@
 <!--        android:background="#9283"-->
 <!--        android:textSize="36sp"/>-->
 
-    <GridView
+<!--    <GridView-->
+<!--        android:id="@+id/grid_view"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:columnWidth="90dp"-->
+<!--        android:gravity="center"-->
+<!--        android:horizontalSpacing="10dp"-->
+<!--        android:numColumns="auto_fit"-->
+<!--        android:verticalSpacing="30dp"-->
+<!--        android:stretchMode="columnWidth"/>-->
+
+    <GridView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/grid_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:columnWidth="100dp"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:columnWidth="90dp"
         android:gravity="center"
         android:horizontalSpacing="10dp"
         android:numColumns="auto_fit"
-        android:verticalSpacing="30dp" />
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="10dp" />
 
 
 </LinearLayout>
