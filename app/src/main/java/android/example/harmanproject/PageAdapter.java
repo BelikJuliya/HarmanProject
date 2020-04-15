@@ -33,10 +33,10 @@ public class PageAdapter extends PagerAdapter {
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
         ExampleElement current = mList.get(position);
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = inflater.inflate(R.layout.example_element, container, false);
-        TextView textView = view.findViewById(R.id.grid_item);
+        View view = inflater.inflate(R.layout.pager_example_element, container, false);
+        TextView textView = view.findViewById(R.id.page_example_text);
         textView.setText(current.getText());
-        ImageView imageView = view.findViewById(R.id.example_image);
+        ImageView imageView = view.findViewById(R.id.page_example_image);
         imageView.setImageURI(current.getImageResource());
         container.addView(view);
         return view;
