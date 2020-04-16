@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -44,17 +45,24 @@ public class Activity2 extends AppCompatActivity {
         mGridTrans.commit();
 
 
-        String directory = "/storage/emulated/0/Pictures/7Fon/";
         exampleList = new ArrayList<>();
-
+        String directory = "/storage/emulated/0/Pictures/7Fon/";
         File folder = new File(directory);
-        ArrayList<String> fileNames = new ArrayList<>(Arrays.asList(Objects.requireNonNull(folder.list()))); //list with names to show in textView
-        ArrayList<File> imagesFromDirectory = new ArrayList<>(Arrays.asList(Objects.requireNonNull(folder.listFiles()))); //list with files to show in imageView
-        for (int i = 0; i < fileNames.size(); i++) {
-            Uri imageURI = Uri.fromFile(imagesFromDirectory.get(i));
-            if (imagesFromDirectory.get(i).getName().endsWith(".jpg") || imagesFromDirectory.get(i).getName().endsWith(".png") || imagesFromDirectory.get(i).getName().endsWith(".jpeg")) {
-                exampleList.add(new ExampleElement(imageURI, fileNames.get(i)));
+        if (folder.isDirectory() && folder.exists()) {
+            ArrayList<String> fileNames = new ArrayList<>(Arrays.asList(Objects.requireNonNull(folder.list()))); //list with names to show in textView
+            ArrayList<File> imagesFromDirectory = new ArrayList<>(Arrays.asList(Objects.requireNonNull(folder.listFiles()))); //list with files to show in imageView
+            if (!(imagesFromDirectory.isEmpty())) {
+                for (int i = 0; i < fileNames.size(); i++) {
+                    Uri imageURI = Uri.fromFile(imagesFromDirectory.get(i));
+                    if (imagesFromDirectory.get(i).getName().endsWith(".jpg") || imagesFromDirectory.get(i).getName().endsWith(".png") || imagesFromDirectory.get(i).getName().endsWith(".jpeg")) {
+                        exampleList.add(new ExampleElement(imageURI, fileNames.get(i)));
+                    }
+                }
+            } else {
+                Toast.makeText(this, "There is no images in this folder", Toast.LENGTH_SHORT).show();
             }
+        } else {
+            Toast.makeText(this, "There is no such directory", Toast.LENGTH_SHORT).show();
         }
     }
 
