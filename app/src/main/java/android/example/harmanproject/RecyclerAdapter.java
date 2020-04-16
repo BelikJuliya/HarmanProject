@@ -13,15 +13,35 @@ import java.util.ArrayList;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ExampleViewHolder> {
     private ArrayList<ExampleElement> mExampleElements;
+    private onItemClickListener mListener;
+
+    public interface onItemClickListener{
+        void onItemClick(int position);
+    }
+
+    public void setOnClickListener(onItemClickListener listener){
+        mListener = listener;
+    }
 
     public static class ExampleViewHolder extends RecyclerView.ViewHolder {
         private TextView mText;
         private ImageView mImageView;
 
-        public ExampleViewHolder(View itemView) {
+        public ExampleViewHolder(View itemView, final onItemClickListener listener) {
             super(itemView);
             mText = itemView.findViewById(R.id.grid_item);
             mImageView = itemView.findViewById(R.id.example_image);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listener != null){
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION){
+                            listener.onItemClick(position);
+                        }
+                    }
+                }
+            });
         }
 
     }
@@ -34,7 +54,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Exampl
     @Override
     public ExampleViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.example_element, parent, false);
-        ExampleViewHolder evh = new ExampleViewHolder(view);
+        ExampleViewHolder evh = new ExampleViewHolder(view, mListener);
         return evh;
     }
 

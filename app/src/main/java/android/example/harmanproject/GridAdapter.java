@@ -52,4 +52,8 @@ public class GridAdapter extends BaseAdapter {
         return convertView;
 
     }
+//
+//    public interface omItemClickListener{
+//        void onItemClick (int position);
+//    }
 }

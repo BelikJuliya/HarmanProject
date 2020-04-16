@@ -97,6 +97,8 @@ public class Activity2 extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+
 }
 
 
