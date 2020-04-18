@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,6 +16,7 @@ public class GridAdapter extends BaseAdapter {
 
     private final Context mContext;
     private final ArrayList<ExampleElement> mDataList;
+    //private omItemClickListener mListener;
 
     GridAdapter(Context context, ArrayList<ExampleElement> dataList) {
         mContext = context;
@@ -52,8 +54,12 @@ public class GridAdapter extends BaseAdapter {
         return convertView;
 
     }
-//
+
 //    public interface omItemClickListener{
 //        void onItemClick (int position);
+//    }
+//
+//    public void setOnClickListener(omItemClickListener listener){
+//        mListener = listener;
 //    }
 }

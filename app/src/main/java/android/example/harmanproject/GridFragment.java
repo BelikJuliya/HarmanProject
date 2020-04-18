@@ -2,10 +2,12 @@ package android.example.harmanproject;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.TextView;
 
@@ -30,6 +32,15 @@ public class GridFragment extends Fragment {
         GridView mGridView = view.findViewById(R.id.grid_view);
         GridAdapter gridAdapter = new GridAdapter(getActivity(), Activity2.exampleList);
         mGridView.setAdapter(gridAdapter);
+
+        mGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getContext(), Activity3.class);
+                intent.putExtra("Example element", Activity2.exampleList.get(position));
+                startActivity(intent);
+            }
+        });
         return view;
 
     }

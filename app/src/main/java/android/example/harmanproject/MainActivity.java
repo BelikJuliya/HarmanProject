@@ -15,6 +15,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.mapbox.mapboxsdk.Mapbox;
+
 public class MainActivity extends AppCompatActivity {
 
     private int STORAGE_PERMISSION_CODE = 1;
@@ -23,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Mapbox.getInstance(getApplicationContext(), getString(R.string.MAPBOX_ACCESS_TOKEN));
     }
 
     public void goToActivity1(View view) {

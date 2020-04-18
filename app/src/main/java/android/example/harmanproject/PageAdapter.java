@@ -1,6 +1,7 @@
 package android.example.harmanproject;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,6 +40,15 @@ public class PageAdapter extends PagerAdapter {
         ImageView imageView = view.findViewById(R.id.page_example_image);
         imageView.setImageURI(current.getImageResource());
         container.addView(view);
+
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, Activity3.class);
+                intent.putExtra("Example element", Activity2.exampleList.get(position));
+                mContext.startActivity(intent);
+            }
+        });
         return view;
     }
 

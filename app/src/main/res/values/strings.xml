@@ -9,6 +9,7 @@
     <string name="rotate_picture">Rotate Picture</string>
     <string name="activity_2">Activity 2</string>
     <string name="example_element">Example element</string>
+    <string name="MAPBOX_ACCESS_TOKEN">pk.eyJ1IjoiZGFya3NpZGUxNyIsImEiOiJjazk1djFlajYwOGt4M25vbGVsb3FvNmVsIn0.42v9j9vEGclfp5oZmSAq2Q</string>
 
     <plurals name="pluralsForList">
         <item quantity="zero">%1$d element</item>
@@ -39,4 +40,5 @@
         <item quantity="other">%1$d котов</item>
     </plurals>
 
+    <string name="mapbox_access_token">pk.eyJ1IjoiZGFya3NpZGUxNyIsImEiOiJjazk1djFlajYwOGt4M25vbGVsb3FvNmVsIn0.42v9j9vEGclfp5oZmSAq2Q</string>
 </resources>
