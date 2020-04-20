@@ -16,6 +16,7 @@ import com.drew.metadata.exif.GpsDirectory;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Activity3 extends AppCompatActivity {
 
@@ -27,6 +28,7 @@ public class Activity3 extends AppCompatActivity {
         Intent intent = getIntent();
         ExampleElement exampleElement = intent.getParcelableExtra("Example element");
 
+        assert exampleElement != null;
         Uri imageRes = exampleElement.getImageResource();
         String textRes = exampleElement.getText();
 
@@ -36,11 +38,21 @@ public class Activity3 extends AppCompatActivity {
         TextView nameOfImage = findViewById(R.id.text_activity_3);
         nameOfImage.setText(textRes);
 
-        TextView metadata = findViewById(R.id.meta_data);
-        metadata.setText(exampleElement.getImageMetaData().toString());
+        ArrayList<Iterable> metaData = new ArrayList<>();
+        try {
+            File currentImage = new File(exampleElement.getPath());
+            Metadata imageMetadata = ImageMetadataReader.readMetadata(currentImage);
+            metaData.add(imageMetadata.getDirectories());
+
+            TextView metadataTextView = findViewById(R.id.meta_data);
+            metadataTextView.setText(imageMetadata.toString());
+        } catch (ImageProcessingException | IOException e) {
+            e.printStackTrace();
+        }
+        //metadata.setText(exampleElement.getImageMetaData().toString());
 
 
-        exampleElement.getImageMetaData();
+        //exampleElement.getImageMetaData();
 //
 //        try {
 //            Metadata imageMetadata = ImageMetadataReader.readMetadata(imagesFromDirectory.get(i));

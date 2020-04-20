@@ -12,14 +12,12 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.drew.imaging.ImageMetadataReader;
 import com.drew.imaging.ImageProcessingException;
-import com.drew.lang.GeoLocation;
-import com.drew.metadata.Directory;
+
 import com.drew.metadata.Metadata;
-import com.drew.metadata.exif.GpsDirectory;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Path;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
@@ -32,7 +30,6 @@ public class Activity2 extends AppCompatActivity {
     private FragmentTransaction mGridTrans;
     private RecyclerFragment mRecyclerFragment;
     private PageFragment mPageFragment;
-    private ArrayList <Iterable> mMetadata = new ArrayList();
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,20 +56,10 @@ public class Activity2 extends AppCompatActivity {
             ArrayList<String> fileNames = new ArrayList<>(Arrays.asList(Objects.requireNonNull(folder.list()))); //list with names to show in textView
             ArrayList<File> imagesFromDirectory = new ArrayList<>(Arrays.asList(Objects.requireNonNull(folder.listFiles()))); //list with files to show in imageView
             if (!(imagesFromDirectory.isEmpty())) {
-                for (int i = 0; i < fileNames.size(); i++) {
+                for (int i = 0; i < imagesFromDirectory.size(); i++) {
                     Uri imageURI = Uri.fromFile(imagesFromDirectory.get(i));
                     if (imagesFromDirectory.get(i).getName().endsWith(".jpg") || imagesFromDirectory.get(i).getName().endsWith(".png") || imagesFromDirectory.get(i).getName().endsWith(".jpeg")) {
-                        try {
-                            Metadata imageMetadata = ImageMetadataReader.readMetadata(imagesFromDirectory.get(i));
-                            mMetadata.add(imageMetadata.getDirectories());
-                            for (int j = 0; j < mMetadata.size(); j++) {
-
-                            }
-                            exampleList.add(new ExampleElement(imageURI, fileNames.get(i), imageMetadata));
-                        } catch (ImageProcessingException | IOException e) {
-                            e.printStackTrace();
-                        }
-
+                        exampleList.add(new ExampleElement(imageURI, fileNames.get(i), imagesFromDirectory.get(i).getAbsolutePath()));
                     }
                 }
             } else {
