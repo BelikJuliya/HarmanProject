@@ -46,38 +46,15 @@ public class Activity3 extends AppCompatActivity {
             Metadata imageMetadata = ImageMetadataReader.readMetadata(currentImage);
 
             ExifInterface exif = new ExifInterface(currentImage.getAbsolutePath());
-            String latitude = exif.getAttribute(ExifInterface.TAG_GPS_LATITUDE);
-            String longitude = exif.getAttribute(ExifInterface.TAG_GPS_LONGITUDE);
 
             GeoDegree geoDegree = new GeoDegree(exif);
 
             TextView metadataTextView = findViewById(R.id.meta_data);
             metadataTextView.setText(geoDegree.toString());
-           // metadataTextView.setText(latitude + ", " + longitude);
-
-
 
         } catch (ImageProcessingException | IOException e) {
             e.printStackTrace();
         }
-
-
-        //metadata.setText(exampleElement.getImageMetaData().toString());
-
-
-        //exampleElement.getImageMetaData();
-//
-//        try {
-//            Metadata imageMetadata = ImageMetadataReader.readMetadata(imagesFromDirectory.get(i));
-//            GpsDirectory gpsDirectory = (GpsDirectory) imageMetadata.getDirectories();
-//            GeoLocation exifLocation = gpsDirectory.getGeoLocation();
-//        } catch (ImageProcessingException | IOException e) {
-//            System.out.println("Oops, something goes wrong with metadata");
-//            e.printStackTrace();
-//        }
-        //extracting metadata
-//        javaxt.io.Image image = new javaxt.io.Image("D:\\codeTest\\arun.jpg");
-//        double[] gps = image.getGPSCoordinate();
     }
 
     public static class GeoDegree {
@@ -138,8 +115,6 @@ public class Activity3 extends AppCompatActivity {
 
 
         }
-
-        ;
 
         public boolean isValid() {
             return valid;
