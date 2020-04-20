@@ -42,10 +42,11 @@ public class Activity3 extends AppCompatActivity {
         try {
             File currentImage = new File(exampleElement.getPath());
             Metadata imageMetadata = ImageMetadataReader.readMetadata(currentImage);
-            metaData.add(imageMetadata.getDirectories());
+            //metaData.add(imageMetadata.getDirectories());
 
             TextView metadataTextView = findViewById(R.id.meta_data);
-            metadataTextView.setText(imageMetadata.toString());
+            metadataTextView.setText(imageMetadata.getDirectories().toString());
+            //GpsDirectory gpsDirectory = imageMetadata.get
         } catch (ImageProcessingException | IOException e) {
             e.printStackTrace();
         }

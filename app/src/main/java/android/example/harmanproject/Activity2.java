@@ -10,13 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.drew.imaging.ImageMetadataReader;
-import com.drew.imaging.ImageProcessingException;
-
-import com.drew.metadata.Metadata;
-
 import java.io.File;
-import java.io.IOException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
