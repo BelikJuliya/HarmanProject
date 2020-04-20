@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="16dp"
-        android:text="@string/activity_2"
+        android:text="@string/activity_3"
         android:textSize="32sp" />
 
     <ImageView
@@ -33,7 +33,9 @@
 
     <TextView
         android:id="@+id/meta_data"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center_horizontal"/>
 
 </LinearLayout>

@@ -1,18 +1,19 @@
 package android.example.harmanproject;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.exifinterface.media.ExifInterface;
+
 import com.drew.imaging.ImageMetadataReader;
 import com.drew.imaging.ImageProcessingException;
-import com.drew.lang.GeoLocation;
 import com.drew.metadata.Metadata;
-import com.drew.metadata.exif.GpsDirectory;
 
 import java.io.File;
 import java.io.IOException;
@@ -20,6 +21,7 @@ import java.util.ArrayList;
 
 public class Activity3 extends AppCompatActivity {
 
+    @RequiresApi(api = Build.VERSION_CODES.Q)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,14 +44,20 @@ public class Activity3 extends AppCompatActivity {
         try {
             File currentImage = new File(exampleElement.getPath());
             Metadata imageMetadata = ImageMetadataReader.readMetadata(currentImage);
-            //metaData.add(imageMetadata.getDirectories());
 
+            ExifInterface exif = new ExifInterface(currentImage.getAbsolutePath());
+            String latitude = exif.getAttribute(ExifInterface.TAG_GPS_LATITUDE);
+            String longitude = exif.getAttribute(ExifInterface.TAG_GPS_LONGITUDE);
+
+            //metaData.add(imageMetadata.getDirectories());
             TextView metadataTextView = findViewById(R.id.meta_data);
-            metadataTextView.setText(imageMetadata.getDirectories().toString());
-            //GpsDirectory gpsDirectory = imageMetadata.get
+            metadataTextView.setText(imageMetadata.toString());
+            
         } catch (ImageProcessingException | IOException e) {
             e.printStackTrace();
         }
+
+
         //metadata.setText(exampleElement.getImageMetaData().toString());
 
 
