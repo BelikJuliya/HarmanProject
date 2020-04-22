@@ -1,11 +1,9 @@
 package android.example.harmanproject;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
@@ -24,16 +22,9 @@ public class PageFragment extends Fragment {
         ViewPagerIndicator viewPagerIndicator = view.findViewById(R.id.view_pager_indicator);
         viewPagerIndicator.initWithViewPager(viewPager);
 
-
         return view;
     }
 
-//    @Override
-//    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//        Intent intent = new Intent(getContext(), Activity3.class);
-//        intent.putExtra("Example element", Activity2.exampleList.get(position));
-//        startActivity(intent);
-//    }
 }
 
 

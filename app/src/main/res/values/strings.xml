@@ -11,6 +11,8 @@
     <string name="activity_3">Activity 3</string>
     <string name="example_element">Example element</string>
     <string name="MAPBOX_ACCESS_TOKEN">pk.eyJ1IjoiZGFya3NpZGUxNyIsImEiOiJjazk1djFlajYwOGt4M25vbGVsb3FvNmVsIn0.42v9j9vEGclfp5oZmSAq2Q</string>
+    <string name="user_location_permission_explanation">EXPLANATION_HERE</string>
+    <string name="user_location_permission_not_granted">Permission wasn\'t granted</string>
 
     <plurals name="pluralsForList">
         <item quantity="zero">%1$d element</item>
@@ -43,4 +45,5 @@
 
     <string name="mapbox_access_token">pk.eyJ1IjoiZGFya3NpZGUxNyIsImEiOiJjazk1djFlajYwOGt4M25vbGVsb3FvNmVsIn0.42v9j9vEGclfp5oZmSAq2Q</string>
     <string name="OpenMap">Показать на карте</string>
+    <string name="new_location">44.29834</string>
 </resources>

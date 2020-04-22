@@ -141,6 +141,9 @@ public class Activity3 extends AppCompatActivity {
 
     public void openMap(View view){
         Intent intent = new Intent(Activity3.this, Activity4.class);
+        Intent oldIntent = getIntent();
+        ExampleElement el = oldIntent.getParcelableExtra("Example element");
+        intent.putExtra("Example element", el);
         startActivity(intent);
     }
 }
