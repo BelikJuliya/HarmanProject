@@ -28,14 +28,19 @@ android {
 }
 repositories { //MapBox
     mavenCentral()
+    maven { url 'https://mapbox.bintray.com/mapbox' }
+
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "com.android.support:exifinterface:29.0.3" //metadata
     implementation 'it.xabaras.android:viewpagerindicator:1.0' //set up viewPagerIndicator
-    implementation 'com.squareup.picasso:picasso:2.5.2' //picasso
+    implementation 'com.squareup.picasso:picasso:2.71828' //picasso
     implementation 'com.mapbox.mapboxsdk:mapbox-android-sdk:9.1.0' // MapBox
+    implementation 'com.mapbox.mapboxsdk:mapbox-android-navigation:0.42.6' //MapBox Navigation
+    implementation 'com.mapbox.mapboxsdk:mapbox-android-navigation-ui:0.42.6' // MapBox
+    implementation 'com.mapbox.mapboxsdk:mapbox-android-plugin-locationlayer:0.11.0'//MapBox
     implementation group: 'com.drewnoakes', name: 'metadata-extractor', version: '2.9.1'
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,6 +21,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class Activity3 extends AppCompatActivity {
+    public GeoDegree geoDegree;
 
     @SuppressLint("SetTextI18n")
     @RequiresApi(api = Build.VERSION_CODES.Q)
@@ -47,7 +49,7 @@ public class Activity3 extends AppCompatActivity {
 
             ExifInterface exif = new ExifInterface(currentImage.getAbsolutePath());
 
-            GeoDegree geoDegree = new GeoDegree(exif);
+            geoDegree = new GeoDegree(exif);
 
             TextView metadataTextView = findViewById(R.id.meta_data);
             metadataTextView.setText(geoDegree.toString());
@@ -135,5 +137,10 @@ public class Activity3 extends AppCompatActivity {
         public int getLongitudeE6() {
             return (int) (Longitude * 1000000);
         }
+    }
+
+    public void openMap(View view){
+        Intent intent = new Intent(Activity3.this, Activity4.class);
+        startActivity(intent);
     }
 }

@@ -42,4 +42,5 @@
     </plurals>
 
     <string name="mapbox_access_token">pk.eyJ1IjoiZGFya3NpZGUxNyIsImEiOiJjazk1djFlajYwOGt4M25vbGVsb3FvNmVsIn0.42v9j9vEGclfp5oZmSAq2Q</string>
+    <string name="OpenMap">Показать на карте</string>
 </resources>
