@@ -21,7 +21,8 @@ import java.io.File;
 import java.io.IOException;
 
 public class Activity3 extends AppCompatActivity {
-    public GeoDegree geoDegree;
+    static Double latitude;
+    static Double longitude;
 
     @SuppressLint("SetTextI18n")
     @RequiresApi(api = Build.VERSION_CODES.Q)
@@ -49,7 +50,9 @@ public class Activity3 extends AppCompatActivity {
 
             ExifInterface exif = new ExifInterface(currentImage.getAbsolutePath());
 
-            geoDegree = new GeoDegree(exif);
+            GeoDegree geoDegree = new GeoDegree(exif);
+            latitude = Double.valueOf(geoDegree.toString().split(", ")[0]);
+            longitude= Double.valueOf(geoDegree.toString().split(", ")[1]);
 
             TextView metadataTextView = findViewById(R.id.meta_data);
             metadataTextView.setText(geoDegree.toString());

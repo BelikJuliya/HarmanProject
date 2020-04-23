@@ -50,6 +50,7 @@ public class Activity5 extends AppCompatActivity implements OnMapReadyCallback, 
     private NavigationMapRoute navigationMapRoute;
     // variables needed to initialize navigation
     private Button button;
+    private NavigationMapRoute route;
 
 
     @Override
@@ -70,18 +71,17 @@ public class Activity5 extends AppCompatActivity implements OnMapReadyCallback, 
             public void onStyleLoaded(@NonNull Style style) {
                 enableLocationComponent(style);
                 addDestinationIconSymbolLayer(style);
-
             }
         });
 //        Point originPoint = Point.fromLngLat(locationComponent.getLastKnownLocation().getLongitude(),
-//                locationComponent.getLastKnownLocation().getLatitude());
-        getRoute(Point.fromLngLat(43.914954, 56.205215), Point.fromLngLat(45.718871, 51.403616));
+               // locationComponent.getLastKnownLocation().getLatitude());
+        Point pictureLocation = Point.fromLngLat(Activity3.longitude, Activity3.latitude);
+        getRoute(Point.fromLngLat(44.035855, 56.286808), pictureLocation);
     }
 
-    private NavigationMapRoute route;
+
 
     private void getRoute(Point origin, Point destination) {
-        String str = Mapbox.getAccessToken();
         NavigationRoute.builder(getApplicationContext())
                 .accessToken(Mapbox.getAccessToken())
                 .origin(origin)
@@ -165,5 +165,4 @@ public class Activity5 extends AppCompatActivity implements OnMapReadyCallback, 
         );
         loadedMapStyle.addLayer(destinationSymbolLayer);
     }
-
 }
