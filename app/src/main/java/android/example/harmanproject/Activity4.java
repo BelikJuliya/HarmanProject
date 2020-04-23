@@ -11,6 +11,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.mapbox.android.core.location.LocationEngine;
 import com.mapbox.android.core.permissions.PermissionsManager;
+import com.mapbox.geojson.Feature;
+import com.mapbox.geojson.FeatureCollection;
+import com.mapbox.geojson.LineString;
 import com.mapbox.geojson.Point;
 import com.mapbox.mapboxsdk.Mapbox;
 import com.mapbox.mapboxsdk.annotations.Marker;
@@ -20,7 +23,11 @@ import com.mapbox.mapboxsdk.maps.MapboxMap;
 import com.mapbox.mapboxsdk.maps.Style;
 import com.mapbox.mapboxsdk.style.layers.PropertyFactory;
 import com.mapbox.mapboxsdk.style.layers.SymbolLayer;
+import com.mapbox.mapboxsdk.style.sources.GeoJsonSource;
 import com.mapbox.services.android.navigation.ui.v5.route.NavigationMapRoute;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.iconOffset;
 
@@ -68,6 +75,19 @@ public class Activity4 extends AppCompatActivity  {
                         iconOffset(new Float[] {(float) -77.03613, (float) 38.90992}));
 
                 style.addLayer(symbolLayer);
+
+                List routeCoordinates = new ArrayList<Point>();
+                routeCoordinates.add(Point.fromLngLat(-118.394391, 33.397676));
+                routeCoordinates.add(Point.fromLngLat(-118.370917, 33.391142));
+
+                // Create the LineString from the list of coordinates and then make a GeoJSON FeatureCollection so that you can add the line to our map as a layer.
+
+                LineString lineString = LineString.fromLngLats(routeCoordinates);
+
+                FeatureCollection featureCollection = FeatureCollection.fromFeature(Feature.fromGeometry(lineString));
+
+                GeoJsonSource geoJsonSource = new GeoJsonSource("geojson-source", featureCollection);
+                style.addSource(geoJsonSource);
             });
 
         });
