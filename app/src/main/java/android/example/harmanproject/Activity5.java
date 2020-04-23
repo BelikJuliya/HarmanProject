@@ -71,12 +71,15 @@ public class Activity5 extends AppCompatActivity implements OnMapReadyCallback, 
             public void onStyleLoaded(@NonNull Style style) {
                 enableLocationComponent(style);
                 addDestinationIconSymbolLayer(style);
+                        Point originPoint = Point.fromLngLat(locationComponent.getLastKnownLocation().getLongitude(),
+                 locationComponent.getLastKnownLocation().getLatitude());
+                Point pictureLocation = Point.fromLngLat(Activity3.longitude, Activity3.latitude);
+                getRoute(originPoint, pictureLocation);
+
+                //getRoute(Point.fromLngLat(44.035855,56.286808 ), pictureLocation);
             }
         });
-//        Point originPoint = Point.fromLngLat(locationComponent.getLastKnownLocation().getLongitude(),
-               // locationComponent.getLastKnownLocation().getLatitude());
-        Point pictureLocation = Point.fromLngLat(Activity3.longitude, Activity3.latitude);
-        getRoute(Point.fromLngLat(44.035855, 56.286808), pictureLocation);
+
     }
 
 
