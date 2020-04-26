@@ -76,7 +76,6 @@ public class Activity3 extends AppCompatActivity {
             longitude = Double.valueOf(geoDegree.toString().split(", ")[1]);
 
             TextView metadataTextView = findViewById(R.id.meta_data);
-            //metadataTextView.setText(geoDegree.toString());
             metadataTextView.setText(ImageWidth + " " + ExposureProgram + " " + GPSLongitude + " " + GPSVersionID + " " + geoDegree.toString());
 
         } catch (ImageProcessingException | IOException e) {
