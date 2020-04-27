@@ -24,8 +24,8 @@ import java.io.File;
 import java.io.IOException;
 
 public class Activity3 extends AppCompatActivity {
-    static Double latitude;
-    static Double longitude;
+    static Double mLatitude;
+    static Double mLongitude;
 
     @SuppressLint("SetTextI18n")
     @RequiresApi(api = Build.VERSION_CODES.Q)
@@ -72,8 +72,8 @@ public class Activity3 extends AppCompatActivity {
             int orientation = exif.getRotationDegrees();
 
             GeoDegree geoDegree = new GeoDegree(exif);
-            latitude = Double.valueOf(geoDegree.toString().split(", ")[0]);
-            longitude = Double.valueOf(geoDegree.toString().split(", ")[1]);
+            mLatitude = Double.valueOf(geoDegree.toString().split(", ")[0]);
+            mLongitude = Double.valueOf(geoDegree.toString().split(", ")[1]);
 
             TextView metadataTextView = findViewById(R.id.meta_data);
             metadataTextView.setText(ImageWidth + " " + ExposureProgram + " " + GPSLongitude + " " + GPSVersionID + " " + geoDegree.toString());
