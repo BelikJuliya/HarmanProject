@@ -22,6 +22,7 @@ import com.drew.metadata.Tag;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 
 public class Activity3 extends AppCompatActivity {
     static Double mLatitude;
@@ -62,7 +63,7 @@ public class Activity3 extends AppCompatActivity {
             }
 
             ExifInterface exif = new ExifInterface(currentImage.getAbsolutePath());
-            double[] dd = exif.getLatLong();
+            double[] coordinates = exif.getLatLong();
             String ImageWidth = exif.getAttribute("ImageWidth");
             String ExposureProgram = exif.getAttribute("ExposureProgram");
             String GPSLongitude = exif.getAttribute("GPSLongitude");
@@ -76,7 +77,7 @@ public class Activity3 extends AppCompatActivity {
             mLongitude = Double.valueOf(geoDegree.toString().split(", ")[1]);
 
             TextView metadataTextView = findViewById(R.id.meta_data);
-            metadataTextView.setText("ImageWidth is: " + ImageWidth + ",\n ExposureProgram is: " + ExposureProgram + ",\n Orientation is: " + orientation + ",\n GPSVersionID is: " + GPSVersionID + ",\n geoDegree is: " + geoDegree.toString());
+            metadataTextView.setText(Arrays.toString(coordinates) + "\n ImageWidth is: " + ImageWidth + ",\n ExposureProgram is: " + ExposureProgram + ",\n Orientation is: " + orientation + ",\n GPSVersionID is: " + GPSVersionID);
            // metadataTextView.setText("ImageWidth is: " + ImageWidth);
 
         } catch (ImageProcessingException | IOException e) {

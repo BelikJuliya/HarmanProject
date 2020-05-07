@@ -1,7 +1,6 @@
 package android.example.harmanproject;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -27,12 +26,15 @@ import com.mapbox.services.android.navigation.ui.v5.NavigationLauncherOptions;
 import com.mapbox.services.android.navigation.ui.v5.route.NavigationMapRoute;
 import com.mapbox.services.android.navigation.v5.navigation.NavigationRoute;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.List;
 import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import timber.log.Timber;
 
 
 public class Activity4 extends AppCompatActivity implements OnMapReadyCallback, PermissionsListener, MapboxMap.OnMapClickListener {
@@ -68,6 +70,7 @@ public class Activity4 extends AppCompatActivity implements OnMapReadyCallback, 
             @Override
             public void onStyleLoaded(@NonNull Style style) {
                 enableLocationComponent(style);
+                assert mLocationComponent.getLastKnownLocation() != null;
                 mOriginPoint = Point.fromLngLat(mLocationComponent.getLastKnownLocation().getLongitude(),
                         mLocationComponent.getLastKnownLocation().getLatitude());
                 mDestinationPoint = Point.fromLngLat(Activity3.mLongitude, Activity3.mLatitude);
@@ -98,12 +101,13 @@ public class Activity4 extends AppCompatActivity implements OnMapReadyCallback, 
                 .build()
                 .getRoute(new Callback<DirectionsResponse>() {
                     @Override
-                    public void onResponse(Call<DirectionsResponse> call, Response<DirectionsResponse> response) {
+                    public void onResponse(@NotNull Call<DirectionsResponse> call, @NotNull Response<DirectionsResponse> response) {
                         if (response.body() == null) {
-                            Log.e(TAG, "No routes found, check right user and access token");
+                            Timber.e("No routes found, check right user and access token");
                             return;
                         } else if (response.body().routes().size() == 0) {
-                            Log.e(TAG, "No routes found");
+                            Timber.e("No routes found");
+                            Toast.makeText(Activity4.this, "There is no routes to this place", Toast.LENGTH_SHORT).show();
                         }
                         mCurrentRoad = response.body().routes().get(0);
 
@@ -116,8 +120,8 @@ public class Activity4 extends AppCompatActivity implements OnMapReadyCallback, 
                     }
 
                     @Override
-                    public void onFailure(Call<DirectionsResponse> call, Throwable t) {
-                        Log.e(TAG, "Error: " + t.getMessage());
+                    public void onFailure(@NotNull Call<DirectionsResponse> call, Throwable t) {
+                        Timber.e("Error: %s", t.getMessage());
                     }
                 });
     }
@@ -197,7 +201,7 @@ public class Activity4 extends AppCompatActivity implements OnMapReadyCallback, 
     }
 
     @Override
-    protected void onSaveInstanceState(Bundle outState) {
+    protected void onSaveInstanceState(@NotNull Bundle outState) {
         super.onSaveInstanceState(outState);
         mMapView.onSaveInstanceState(outState);
     }
