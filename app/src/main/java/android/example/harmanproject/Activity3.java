@@ -68,7 +68,7 @@ public class Activity3 extends AppCompatActivity {
             String GPSLongitude = exif.getAttribute("GPSLongitude");
             String GPSVersionID = exif.getAttribute("GPSVersionID");
 
-            String mata = exif.getAttribute(ExifInterface.TAG_DATETIME);
+            String dateTime = exif.getAttribute(ExifInterface.TAG_DATETIME);
             int orientation = exif.getRotationDegrees();
 
             GeoDegree geoDegree = new GeoDegree(exif);
@@ -76,7 +76,8 @@ public class Activity3 extends AppCompatActivity {
             mLongitude = Double.valueOf(geoDegree.toString().split(", ")[1]);
 
             TextView metadataTextView = findViewById(R.id.meta_data);
-            metadataTextView.setText(ImageWidth + " " + ExposureProgram + " " + GPSLongitude + " " + GPSVersionID + " " + geoDegree.toString());
+//            metadataTextView.setText("ImageWidth is: " + ImageWidth + ",\n ExposureProgram is: " + ExposureProgram + ",\n Orientation is: " + orientation + ",\n GPSVersionID is: " + GPSVersionID + ",\n geoDegree is: " + geoDegree.toString());
+            metadataTextView.setText("ImageWidth is: " + ImageWidth);
 
         } catch (ImageProcessingException | IOException e) {
             e.printStackTrace();
@@ -168,3 +169,5 @@ public class Activity3 extends AppCompatActivity {
         startActivity(intent);
     }
 }
+
+

@@ -34,6 +34,7 @@ repositories { //MapBox
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'gun0912.ted:tedpermission:2.2.2' // permissions
     implementation "com.android.support:exifinterface:29.0.3" //metadata
     implementation 'it.xabaras.android:viewpagerindicator:1.0' //set up viewPagerIndicator
     implementation 'com.squareup.picasso:picasso:2.71828' //picasso
