@@ -51,8 +51,9 @@ public class Activity4 extends AppCompatActivity implements OnMapReadyCallback, 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_4);
         Mapbox.getInstance(this, getString(R.string.MAPBOX_ACCESS_TOKEN));
+        setContentView(R.layout.activity_4);
+
         mMapView = findViewById(R.id.mapView);
         mStartButton = findViewById(R.id.start_btn);
         mMapView.onCreate(savedInstanceState);
@@ -157,5 +158,47 @@ public class Activity4 extends AppCompatActivity implements OnMapReadyCallback, 
     @Override
     public boolean onMapClick(@NonNull LatLng point) {
         return false;
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mMapView.onStart();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mMapView.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mMapView.onPause();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mMapView.onStop();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mMapView.onDestroy();
+    }
+
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+        mMapView.onLowMemory();
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        mMapView.onSaveInstanceState(outState);
     }
 }

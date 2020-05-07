@@ -87,8 +87,6 @@ public class Activity2 extends AppCompatActivity {
                 == PackageManager.PERMISSION_GRANTED) {
             File folder = new File(mDirectory);
             if (folder.isDirectory() && folder.exists()) {
-                boolean boo = folder.canExecute();
-                boolean boo2 = folder.canRead();
                 ArrayList<File> imagesFromDirectory = new ArrayList<>(Arrays.asList(Objects.requireNonNull(folder.listFiles()))); //list with files to show in imageView
                 ArrayList<String> fileNames = new ArrayList<>(Arrays.asList(Objects.requireNonNull(folder.list()))); //list with names to show in textView
                 if (!(imagesFromDirectory.isEmpty())) {
@@ -105,7 +103,7 @@ public class Activity2 extends AppCompatActivity {
                 Toast.makeText(Activity2.this, "There is no such directory", Toast.LENGTH_SHORT).show();
             }
         }
-
+//
 //        try {
 //            File folder = new File(directory);
 //            if (folder.isDirectory() && folder.exists()) {
@@ -174,7 +172,7 @@ public class Activity2 extends AppCompatActivity {
 //            }
 //            return FileVisitResult.CONTINUE;
 //        }
-    //}
+//    }
 }
 
 

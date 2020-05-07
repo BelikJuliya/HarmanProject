@@ -76,8 +76,8 @@ public class Activity3 extends AppCompatActivity {
             mLongitude = Double.valueOf(geoDegree.toString().split(", ")[1]);
 
             TextView metadataTextView = findViewById(R.id.meta_data);
-//            metadataTextView.setText("ImageWidth is: " + ImageWidth + ",\n ExposureProgram is: " + ExposureProgram + ",\n Orientation is: " + orientation + ",\n GPSVersionID is: " + GPSVersionID + ",\n geoDegree is: " + geoDegree.toString());
-            metadataTextView.setText("ImageWidth is: " + ImageWidth);
+            metadataTextView.setText("ImageWidth is: " + ImageWidth + ",\n ExposureProgram is: " + ExposureProgram + ",\n Orientation is: " + orientation + ",\n GPSVersionID is: " + GPSVersionID + ",\n geoDegree is: " + geoDegree.toString());
+           // metadataTextView.setText("ImageWidth is: " + ImageWidth);
 
         } catch (ImageProcessingException | IOException e) {
             e.printStackTrace();

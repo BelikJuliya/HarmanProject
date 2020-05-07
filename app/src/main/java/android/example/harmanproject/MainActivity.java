@@ -74,5 +74,3 @@ public class MainActivity extends AppCompatActivity {
 //    }
 
 }
-
-//нет доступа к картинкам? необходимо разрешение? почему не спрашивает разрешение?
