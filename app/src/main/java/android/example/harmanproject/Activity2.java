@@ -60,7 +60,7 @@ public class Activity2 extends AppCompatActivity {
             if (!(imagesFromDirectory.isEmpty())) {
                 for (int i = 0; i < imagesFromDirectory.size(); i++) {
                     Uri imageURI = Uri.fromFile(imagesFromDirectory.get(i));
-                    if (imagesFromDirectory.get(i).getName().endsWith(".jpg") || imagesFromDirectory.get(i).getName().endsWith(".png") || imagesFromDirectory.get(i).getName().endsWith(".jpeg")) {
+                    if (imagesFromDirectory.get(i).getName().toLowerCase().endsWith(".jpg") || imagesFromDirectory.get(i).getName().toLowerCase().endsWith(".png") || imagesFromDirectory.get(i).getName().toLowerCase().endsWith(".jpeg")) {
                         exampleList.add(new ExampleElement(imageURI, fileNames.get(i), imagesFromDirectory.get(i).getAbsolutePath()));
                     } else Timber.e("The file found is not an image");
                 }

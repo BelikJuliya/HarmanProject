@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -23,6 +22,8 @@ import com.drew.metadata.Tag;
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
+
+import timber.log.Timber;
 
 public class Activity3 extends AppCompatActivity {
     static Double mLatitude;
@@ -52,10 +53,10 @@ public class Activity3 extends AppCompatActivity {
             File currentImage = new File(exampleElement.getPath());
             Metadata imageMetadata = ImageMetadataReader.readMetadata(currentImage);
             for (Directory obj : imageMetadata.getDirectories()) {
-                Log.e("metadata", obj.getName());
+                Timber.e(obj.getName());
                 for (Tag tag : obj.getTags()) {
-                    Log.e("metadata", tag.getDescription());
-                    Log.e("metadata", tag.getTagName());
+                    Timber.e(tag.getDescription());
+                    Timber.e(tag.getTagName());
                     if (tag.getTagName().equals("GPS Latitude")) {
                         System.out.println("here " + tag.getDescription());
                     }
