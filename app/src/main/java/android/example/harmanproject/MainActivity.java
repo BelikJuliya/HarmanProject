@@ -43,6 +43,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void showWifiInfo(View view) {
+        Intent intent = new Intent(MainActivity.this, Activity5.class);
+        startActivity(intent);
+    }
+
 
     private void requestStoragePermission() {
         if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_EXTERNAL_STORAGE)) {

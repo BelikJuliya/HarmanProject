@@ -47,4 +47,7 @@
     <string name="OpenMap">Показать на карте</string>
     <string name="new_location">44.29834</string>
     <string name="start_navigating">Start navigating</string>
+    <string name="wi_fi">Посмотреть настройки wi-fi</string>
+    <string name="act2">Активити 2</string>
+    <string name="act1">Активити 1</string>
 </resources>

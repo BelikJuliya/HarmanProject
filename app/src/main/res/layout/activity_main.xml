@@ -15,7 +15,7 @@
         android:layout_marginTop="32dp"
         android:background="#FFB6C1"
         android:onClick="goToActivity1"
-        android:text="Активити 1"
+        android:text="@string/act1"
         />
 
     <Button
@@ -26,7 +26,17 @@
         android:layout_marginTop="32dp"
         android:onClick="goToActivity2"
         android:background="#9387"
-        android:text="Активити 2" />
+        android:text="@string/act2" />
+
+    <Button
+        android:id="@+id/wifi_button"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="32dp"
+        android:onClick="showWifiInfo"
+        android:background="#9317"
+        android:text="@string/wi_fi" />
 
 
 </LinearLayout>
