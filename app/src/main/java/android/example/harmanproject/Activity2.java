@@ -36,7 +36,7 @@ public class Activity2 extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.O)
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity2);
+        setContentView(R.layout.activity_2);
 
         mRecyclerFragment = new RecyclerFragment();
         mPageFragment = new PageFragment();

@@ -1,15 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".Activity5">
 
     <TextView
+        android:id="@+id/activity_5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:text="@string/activity_5"
+        android:textSize="32sp"
+        />
+
+    <TextView
         android:id="@+id/wifi_info"
-        android:layout_width="332dp"
-        android:layout_height="565dp"
+        android:layout_width="match_parent"
+        android:layout_height="546dp"
         android:text="TextView"
-        tools:layout_editor_absoluteX="43dp"
-        tools:layout_editor_absoluteY="132dp" />
-</RelativeLayout>
+        android:layout_marginTop="16dp"
+        android:gravity="center_horizontal"/>
+
+
+</LinearLayout>

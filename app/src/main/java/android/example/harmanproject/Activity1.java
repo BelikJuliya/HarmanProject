@@ -13,7 +13,7 @@ public class Activity1 extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity1);
+        setContentView(R.layout.activity_1);
 
         Fragment1 frag1 = new Fragment1();
 
