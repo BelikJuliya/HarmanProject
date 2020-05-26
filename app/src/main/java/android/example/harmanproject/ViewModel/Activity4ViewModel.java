@@ -8,7 +8,6 @@ import androidx.annotation.NonNull;
 
 import com.mapbox.android.core.permissions.PermissionsManager;
 import com.mapbox.api.directions.v5.models.DirectionsResponse;
-import com.mapbox.api.directions.v5.models.DirectionsRoute;
 import com.mapbox.geojson.Point;
 import com.mapbox.mapboxsdk.Mapbox;
 import com.mapbox.mapboxsdk.location.modes.CameraMode;
@@ -23,14 +22,11 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import timber.log.Timber;
 
-public class Activity4ViewModel{
-//    private MapView mMapView;
-//    private MapboxMap mMapboxMap;
-//    private PermissionsManager mPermissionsManager;
-//    private LocationComponent mLocationComponent;
+public class Activity4ViewModel {
+
     private static final String TAG = "DirectionsActivity";
     private NavigationMapRoute mRoute;
-    private DirectionsRoute mCurrentRoad;
+    //private DirectionsRoute mCurrentRoad;
     private Point mOriginPoint;
     private Point mDestinationPoint;
     private Button mStartButton;
@@ -59,14 +55,14 @@ public class Activity4ViewModel{
                             Timber.e("No routes found");
                             view.showToast(R.string.no_routes);
                         }
-                        mCurrentRoad = response.body().routes().get(0);
+                        view.mCurrentRoad = response.body().routes().get(0);
 
                         if (mRoute != null) {
                             mRoute.removeRoute();
                         } else {
                             mRoute = new NavigationMapRoute(null, view.mMapView, view.mMapboxMap);
                         }
-                        mRoute.addRoute(mCurrentRoad);
+                        mRoute.addRoute(view.mCurrentRoad);
                     }
 
                     @Override

@@ -39,7 +39,7 @@ public class Activity4 extends AppCompatActivity implements OnMapReadyCallback, 
     public LocationComponent mLocationComponent;
     private static final String TAG = "DirectionsActivity";
     private NavigationMapRoute mRoute;
-    private DirectionsRoute mCurrentRoad;
+    public DirectionsRoute mCurrentRoad;
     private Point mOriginPoint;
     private Point mDestinationPoint;
     private Button mStartButton;
