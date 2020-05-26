@@ -2,6 +2,7 @@ package android.example.harmanproject.View;
 
 import android.example.harmanproject.R;
 import android.example.harmanproject.ViewModel.Activity3ViewModel;
+import android.example.harmanproject.ViewModel.Activity4ViewModel;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,13 +13,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.mapbox.android.core.permissions.PermissionsListener;
 import com.mapbox.android.core.permissions.PermissionsManager;
-import com.mapbox.api.directions.v5.models.DirectionsResponse;
 import com.mapbox.api.directions.v5.models.DirectionsRoute;
 import com.mapbox.geojson.Point;
 import com.mapbox.mapboxsdk.Mapbox;
 import com.mapbox.mapboxsdk.geometry.LatLng;
 import com.mapbox.mapboxsdk.location.LocationComponent;
-import com.mapbox.mapboxsdk.location.modes.CameraMode;
 import com.mapbox.mapboxsdk.maps.MapView;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
@@ -26,30 +25,29 @@ import com.mapbox.mapboxsdk.maps.Style;
 import com.mapbox.services.android.navigation.ui.v5.NavigationLauncher;
 import com.mapbox.services.android.navigation.ui.v5.NavigationLauncherOptions;
 import com.mapbox.services.android.navigation.ui.v5.route.NavigationMapRoute;
-import com.mapbox.services.android.navigation.v5.navigation.NavigationRoute;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.Objects;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import timber.log.Timber;
-
 
 public class Activity4 extends AppCompatActivity implements OnMapReadyCallback, PermissionsListener, MapboxMap.OnMapClickListener {
-    private MapView mMapView;
-    private MapboxMap mMapboxMap;
-    private PermissionsManager mPermissionsManager;
-    private LocationComponent mLocationComponent;
+    public MapView mMapView;
+    public MapboxMap mMapboxMap;
+    public PermissionsManager mPermissionsManager;
+    public LocationComponent mLocationComponent;
     private static final String TAG = "DirectionsActivity";
     private NavigationMapRoute mRoute;
     private DirectionsRoute mCurrentRoad;
     private Point mOriginPoint;
     private Point mDestinationPoint;
     private Button mStartButton;
+    private Activity4ViewModel viewModel;
+
+    public Activity4 (){
+        viewModel = new Activity4ViewModel(this);
+    }
 
 
     @Override
@@ -71,12 +69,12 @@ public class Activity4 extends AppCompatActivity implements OnMapReadyCallback, 
         mapboxMap.setStyle(getString(R.string.navigation_guidance_day), new Style.OnStyleLoaded() {
             @Override
             public void onStyleLoaded(@NonNull Style style) {
-                enableLocationComponent(style);
+                viewModel.enableLocationComponent(style);
                 assert mLocationComponent.getLastKnownLocation() != null;
                 mOriginPoint = Point.fromLngLat(mLocationComponent.getLastKnownLocation().getLongitude(),
                         mLocationComponent.getLastKnownLocation().getLatitude());
                 mDestinationPoint = Point.fromLngLat(Activity3ViewModel.mLongitude, Activity3ViewModel.mLatitude);
-                getRoute(mOriginPoint, mDestinationPoint);
+                viewModel.getRoute(mOriginPoint, mDestinationPoint);
 
                 mStartButton.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -92,54 +90,55 @@ public class Activity4 extends AppCompatActivity implements OnMapReadyCallback, 
                 });
             }
         });
+
     }
 
-    private void getRoute(Point origin, Point destination) {
-        assert Mapbox.getAccessToken() != null;
-        NavigationRoute.builder(getApplicationContext())
-                .accessToken(Mapbox.getAccessToken())
-                .origin(origin)
-                .destination(destination)
-                .build()
-                .getRoute(new Callback<DirectionsResponse>() {
-                    @Override
-                    public void onResponse(@NotNull Call<DirectionsResponse> call, @NotNull Response<DirectionsResponse> response) {
-                        if (response.body() == null) {
-                            Timber.e("No routes found, check right user and access token");
-                            return;
-                        } else if (response.body().routes().size() == 0) {
-                            Timber.e("No routes found");
-                            Toast.makeText(Activity4.this, "There is no routes to this place", Toast.LENGTH_SHORT).show();
-                        }
-                        mCurrentRoad = response.body().routes().get(0);
+//    private void getRoute(Point origin, Point destination) {
+//        assert Mapbox.getAccessToken() != null;
+//        NavigationRoute.builder(getApplicationContext())
+//                .accessToken(Mapbox.getAccessToken())
+//                .origin(origin)
+//                .destination(destination)
+//                .build()
+//                .getRoute(new Callback<DirectionsResponse>() {
+//                    @Override
+//                    public void onResponse(@NotNull Call<DirectionsResponse> call, @NotNull Response<DirectionsResponse> response) {
+//                        if (response.body() == null) {
+//                            Timber.e("No routes found, check right user and access token");
+//                            return;
+//                        } else if (response.body().routes().size() == 0) {
+//                            Timber.e("No routes found");
+//                            Toast.makeText(Activity4.this, "There is no routes to this place", Toast.LENGTH_SHORT).show();
+//                        }
+//                        mCurrentRoad = response.body().routes().get(0);
+//
+//                        if (mRoute != null) {
+//                            mRoute.removeRoute();
+//                        } else {
+//                            mRoute = new NavigationMapRoute(null, mMapView, mMapboxMap);
+//                        }
+//                        mRoute.addRoute(mCurrentRoad);
+//                    }
+//
+//                    @Override
+//                    public void onFailure(@NotNull Call<DirectionsResponse> call, Throwable t) {
+//                        Timber.e("Error: %s", t.getMessage());
+//                    }
+//                });
+//    }
 
-                        if (mRoute != null) {
-                            mRoute.removeRoute();
-                        } else {
-                            mRoute = new NavigationMapRoute(null, mMapView, mMapboxMap);
-                        }
-                        mRoute.addRoute(mCurrentRoad);
-                    }
 
-                    @Override
-                    public void onFailure(@NotNull Call<DirectionsResponse> call, Throwable t) {
-                        Timber.e("Error: %s", t.getMessage());
-                    }
-                });
-    }
-
-
-    private void enableLocationComponent(@NonNull Style loadedMapStyle) {
-        if (PermissionsManager.areLocationPermissionsGranted(this)) {
-            mLocationComponent = mMapboxMap.getLocationComponent();
-            mLocationComponent.activateLocationComponent(this, loadedMapStyle);
-            mLocationComponent.setLocationComponentEnabled(true);
-            mLocationComponent.setCameraMode(CameraMode.TRACKING);
-        } else {
-            mPermissionsManager = new PermissionsManager(this);
-            mPermissionsManager.requestLocationPermissions(this);
-        }
-    }
+//    private void enableLocationComponent(@NonNull Style loadedMapStyle) {
+//        if (PermissionsManager.areLocationPermissionsGranted(this)) {
+//            mLocationComponent = mMapboxMap.getLocationComponent();
+//            mLocationComponent.activateLocationComponent(this, loadedMapStyle);
+//            mLocationComponent.setLocationComponentEnabled(true);
+//            mLocationComponent.setCameraMode(CameraMode.TRACKING);
+//        } else {
+//            mPermissionsManager = new PermissionsManager(this);
+//            mPermissionsManager.requestLocationPermissions(this);
+//        }
+//    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -154,7 +153,7 @@ public class Activity4 extends AppCompatActivity implements OnMapReadyCallback, 
     @Override
     public void onPermissionResult(boolean granted) {
         if (granted) {
-            enableLocationComponent(Objects.requireNonNull(mMapboxMap.getStyle()));
+            viewModel.enableLocationComponent(Objects.requireNonNull(mMapboxMap.getStyle()));
         } else {
             Toast.makeText(this, R.string.user_location_permission_not_granted, Toast.LENGTH_LONG).show();
             finish();
@@ -206,5 +205,10 @@ public class Activity4 extends AppCompatActivity implements OnMapReadyCallback, 
     protected void onSaveInstanceState(@NotNull Bundle outState) {
         super.onSaveInstanceState(outState);
         mMapView.onSaveInstanceState(outState);
+    }
+
+    public void showToast(int textOfToast){
+        Toast.makeText(Activity4.this, textOfToast, Toast.LENGTH_SHORT).show();
+
     }
 }

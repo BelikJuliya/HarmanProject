@@ -1,6 +1,7 @@
 package android.example.harmanproject.ViewModel;
 
 import android.annotation.SuppressLint;
+import android.example.harmanproject.R;
 import android.example.harmanproject.View.Activity2;
 import android.net.Uri;
 
@@ -15,9 +16,13 @@ public class Activity2ViewModel {
     @SuppressLint("SdCardPath")
     private static String mDirectory = "/sdcard/Download";
     public static ArrayList <ExampleElement> exampleList;
+    private Activity2 view;
 
-    public static void uploadPicturesToScreen() {
-        Activity2 activity2 = new Activity2();
+    public Activity2ViewModel (Activity2 view){
+        this.view = view;
+    }
+
+    public void uploadPicturesToScreen() {
         exampleList = new ArrayList<>();
         File folder = new File(mDirectory);
         if (folder.isDirectory() && folder.exists()) {
@@ -31,10 +36,10 @@ public class Activity2ViewModel {
                     } else Timber.e("The file found is not an image");
                 }
             } else {
-                activity2.noImagesToast();
+                view.showToast(R.string.no_images);
             }
         } else {
-            activity2.noDirectoryToast();
+            view.showToast(R.string.no_directory);
         }
     }
 }

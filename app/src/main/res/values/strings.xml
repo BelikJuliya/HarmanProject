@@ -13,6 +13,9 @@
     <string name="MAPBOX_ACCESS_TOKEN">pk.eyJ1IjoiZGFya3NpZGUxNyIsImEiOiJjazk1djFlajYwOGt4M25vbGVsb3FvNmVsIn0.42v9j9vEGclfp5oZmSAq2Q</string>
     <string name="user_location_permission_explanation">This app needs location permissions to show its functionality.</string>
     <string name="user_location_permission_not_granted">You didn\'t grant location permissions.</string>
+    <string name="no_routes">There is no routes to this place</string>
+    <string name="no_images">There is no images in this folder</string>
+    <string name="no_directory">There is no such directory</string>
 
     <plurals name="pluralsForList">
         <item quantity="zero">%1$d element</item>

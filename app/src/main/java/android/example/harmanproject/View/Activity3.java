@@ -16,9 +16,12 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class Activity3 extends AppCompatActivity {
+    public  ExampleElement exampleElement;
+    Activity3ViewModel viewModel;
 
-    public static ExampleElement exampleElement;
-
+    public Activity3 () {
+        viewModel = new Activity3ViewModel(this);
+    }
 
     @SuppressLint("SetTextI18n")
     @RequiresApi(api = Build.VERSION_CODES.Q)
@@ -41,44 +44,8 @@ public class Activity3 extends AppCompatActivity {
         nameOfImage.setText(textRes);
 
         TextView metadataTextView = findViewById(R.id.meta_data);
-        metadataTextView.setText(Activity3ViewModel.extractMetadata());
+        metadataTextView.setText(viewModel.extractMetadata());
 
-
-//        try {
-//            File currentImage = new File(exampleElement.getPath());
-//            Metadata imageMetadata = ImageMetadataReader.readMetadata(currentImage);
-//            for (Directory obj : imageMetadata.getDirectories()) {
-//                Timber.e(obj.getName());
-//                for (Tag tag : obj.getTags()) {
-//                    Timber.e(tag.getDescription());
-//                    Timber.e(tag.getTagName());
-//                    if (tag.getTagName().equals("GPS Latitude")) {
-//                        System.out.println("here " + tag.getDescription());
-//                    }
-//                }
-//            }
-//
-//            ExifInterface exif = new ExifInterface(currentImage.getAbsolutePath());
-//            double[] coordinates = exif.getLatLong();
-//            String ImageWidth = exif.getAttribute("ImageWidth");
-//            String ExposureProgram = exif.getAttribute("ExposureProgram");
-//            String GPSLongitude = exif.getAttribute("GPSLongitude");
-//            String GPSVersionID = exif.getAttribute("GPSVersionID");
-//
-//            String dateTime = exif.getAttribute(ExifInterface.TAG_DATETIME);
-//            int orientation = exif.getRotationDegrees();
-//
-//            GeoDegree geoDegree = new GeoDegree(exif);
-//            mLatitude = Double.valueOf(geoDegree.toString().split(", ")[0]);
-//            mLongitude = Double.valueOf(geoDegree.toString().split(", ")[1]);
-//
-//            TextView metadataTextView = findViewById(R.id.meta_data);
-//            metadataTextView.setText(Arrays.toString(coordinates) + "\n ImageWidth is: " + ImageWidth + ",\n ExposureProgram is: " + ExposureProgram + ",\n Orientation is: " + orientation + ",\n GPSVersionID is: " + GPSVersionID);
-//           // metadataTextView.setText("ImageWidth is: " + ImageWidth);
-//
-//        } catch (ImageProcessingException | IOException e) {
-//            e.printStackTrace();
-//        }
     }
 
 

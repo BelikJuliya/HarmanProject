@@ -20,9 +20,15 @@ public class Activity3ViewModel {
     public static Double mLatitude;
     public static Double mLongitude;
     private static String metadata;
-    public static String extractMetadata() {
+    private Activity3 view;
+
+    public Activity3ViewModel (Activity3 view){
+        this.view = view;
+    }
+
+    public String extractMetadata() {
         try {
-            File currentImage = new File(Activity3.exampleElement.getPath());
+            File currentImage = new File(view.exampleElement.getPath());
             Metadata imageMetadata = ImageMetadataReader.readMetadata(currentImage);
             for (Directory obj : imageMetadata.getDirectories()) {
                 Timber.e(obj.getName());

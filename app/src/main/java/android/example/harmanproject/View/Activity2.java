@@ -15,12 +15,15 @@ import androidx.fragment.app.FragmentTransaction;
 
 
 public class Activity2 extends AppCompatActivity {
-
-
     private GridFragment mGridFragment;
     private FragmentTransaction mGridTrans;
     private RecyclerFragment mRecyclerFragment;
     private PageFragment mPageFragment;
+    Activity2ViewModel viewModel;
+
+    public Activity2 (){
+        viewModel = new Activity2ViewModel(this);
+    }
 
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -41,17 +44,13 @@ public class Activity2 extends AppCompatActivity {
         mGridTrans.add(R.id.container, mGridFragment);
         mGridTrans.commit();
 
-        Activity2ViewModel.uploadPicturesToScreen();
+        viewModel.uploadPicturesToScreen();
     }
 
-    public void noImagesToast(){
-        Toast.makeText(Activity2.this, "There is no images in this folder", Toast.LENGTH_SHORT).show();
-    }
 
-    public void noDirectoryToast(){
-        Toast.makeText(Activity2.this, "There is no such directory", Toast.LENGTH_SHORT).show();
+    public void showToast(int text){
+        Toast.makeText(Activity2.this, text, Toast.LENGTH_SHORT).show();
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
