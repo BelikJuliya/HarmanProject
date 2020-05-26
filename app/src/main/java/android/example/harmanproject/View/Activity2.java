@@ -1,7 +1,7 @@
-package android.example.harmanproject;
+package android.example.harmanproject.View;
 
-import android.annotation.SuppressLint;
-import android.net.Uri;
+import android.example.harmanproject.R;
+import android.example.harmanproject.ViewModel.Activity2ViewModel;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
@@ -13,25 +13,15 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
-import java.io.File;
-import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Objects;
-
-import timber.log.Timber;
-
 
 public class Activity2 extends AppCompatActivity {
 
-    public static ArrayList<ExampleElement> exampleList;
+
     private GridFragment mGridFragment;
     private FragmentTransaction mGridTrans;
     private RecyclerFragment mRecyclerFragment;
     private PageFragment mPageFragment;
-    static ArrayList<Path> images = new ArrayList<>();
-    @SuppressLint("SdCardPath")
-    String mDirectory = "/sdcard/Download";
+
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,25 +41,15 @@ public class Activity2 extends AppCompatActivity {
         mGridTrans.add(R.id.container, mGridFragment);
         mGridTrans.commit();
 
+        Activity2ViewModel.uploadPicturesToScreen();
+    }
 
-        exampleList = new ArrayList<>();
-        File folder = new File(mDirectory);
-        if (folder.isDirectory() && folder.exists()) {
-            ArrayList<File> imagesFromDirectory = new ArrayList<>(Arrays.asList(Objects.requireNonNull(folder.listFiles()))); //list with files to show in imageView
-            ArrayList<String> fileNames = new ArrayList<>(Arrays.asList(Objects.requireNonNull(folder.list()))); //list with names to show in textView
-            if (!(imagesFromDirectory.isEmpty())) {
-                for (int i = 0; i < imagesFromDirectory.size(); i++) {
-                    Uri imageURI = Uri.fromFile(imagesFromDirectory.get(i));
-                    if (imagesFromDirectory.get(i).getName().toLowerCase().endsWith(".jpg") || imagesFromDirectory.get(i).getName().toLowerCase().endsWith(".png") || imagesFromDirectory.get(i).getName().toLowerCase().endsWith(".jpeg")) {
-                        exampleList.add(new ExampleElement(imageURI, fileNames.get(i), imagesFromDirectory.get(i).getAbsolutePath()));
-                    } else Timber.e("The file found is not an image");
-                }
-            } else {
-                Toast.makeText(Activity2.this, "There is no images in this folder", Toast.LENGTH_SHORT).show();
-            }
-        } else {
-            Toast.makeText(Activity2.this, "There is no such directory", Toast.LENGTH_SHORT).show();
-        }
+    public void noImagesToast(){
+        Toast.makeText(Activity2.this, "There is no images in this folder", Toast.LENGTH_SHORT).show();
+    }
+
+    public void noDirectoryToast(){
+        Toast.makeText(Activity2.this, "There is no such directory", Toast.LENGTH_SHORT).show();
     }
 
 

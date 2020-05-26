@@ -1,5 +1,7 @@
-package android.example.harmanproject;
+package android.example.harmanproject.View;
 
+import android.example.harmanproject.R;
+import android.example.harmanproject.ViewModel.Activity3ViewModel;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -73,7 +75,7 @@ public class Activity4 extends AppCompatActivity implements OnMapReadyCallback, 
                 assert mLocationComponent.getLastKnownLocation() != null;
                 mOriginPoint = Point.fromLngLat(mLocationComponent.getLastKnownLocation().getLongitude(),
                         mLocationComponent.getLastKnownLocation().getLatitude());
-                mDestinationPoint = Point.fromLngLat(Activity3.mLongitude, Activity3.mLatitude);
+                mDestinationPoint = Point.fromLngLat(Activity3ViewModel.mLongitude, Activity3ViewModel.mLatitude);
                 getRoute(mOriginPoint, mDestinationPoint);
 
                 mStartButton.setOnClickListener(new View.OnClickListener() {

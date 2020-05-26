@@ -1,4 +1,4 @@
-package android.example.harmanproject;
+package android.example.harmanproject.ViewModel;
 
 import android.net.Uri;
 import android.os.Parcel;
@@ -16,7 +16,6 @@ public class ExampleElement implements Parcelable {
     public ExampleElement(Uri uri, String text, String path) {
         mImageUri = uri;
         mText = text;
-        //mImageMetaData = metadata;
         mPath = path;
     }
 
@@ -42,15 +41,15 @@ public class ExampleElement implements Parcelable {
         return mImageMetaData;
     }
 
-    Uri getImageResource() {
+    public Uri getImageResource() {
         return mImageUri;
     }
 
-    String getText() {
+    public String getText() {
         return mText;
     }
 
-    String getPath() {
+    public String getPath() {
         return mPath;
     }
 

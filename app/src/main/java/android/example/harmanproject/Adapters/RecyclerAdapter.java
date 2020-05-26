@@ -1,5 +1,7 @@
-package android.example.harmanproject;
+package android.example.harmanproject.Adapters;
 
+import android.example.harmanproject.R;
+import android.example.harmanproject.ViewModel.ExampleElement;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

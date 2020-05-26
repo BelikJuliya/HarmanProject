@@ -1,6 +1,9 @@
-package android.example.harmanproject;
+package android.example.harmanproject.View;
 
 import android.content.Intent;
+import android.example.harmanproject.Adapters.RecyclerAdapter;
+import android.example.harmanproject.R;
+import android.example.harmanproject.ViewModel.Activity2ViewModel;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,16 +24,16 @@ public class RecyclerFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recycle_view);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        RecyclerAdapter recyclerAdapter = new RecyclerAdapter(Activity2.exampleList);
+        RecyclerAdapter recyclerAdapter = new RecyclerAdapter(Activity2ViewModel.exampleList);
         recyclerView.setAdapter(recyclerAdapter);
 
         recyclerAdapter.setOnClickListener(new RecyclerAdapter.onItemClickListener() {
             @Override
             public void onItemClick(int position) {
                 Intent intent = new Intent(getContext(), Activity3.class);
-                intent.putExtra("Example element", Activity2.exampleList.get(position));
+                intent.putExtra("Example element", Activity2ViewModel.exampleList.get(position));
                 startActivity(intent);
-                //Activity2.exampleList.get(position).
+
             }
         });
         return view;

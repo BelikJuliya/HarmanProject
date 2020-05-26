@@ -1,5 +1,6 @@
-package android.example.harmanproject;
+package android.example.harmanproject.View;
 
+import android.example.harmanproject.R;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;

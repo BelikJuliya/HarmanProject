@@ -1,6 +1,7 @@
-package android.example.harmanproject;
+package android.example.harmanproject.View;
 
 import android.annotation.SuppressLint;
+import android.example.harmanproject.R;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;

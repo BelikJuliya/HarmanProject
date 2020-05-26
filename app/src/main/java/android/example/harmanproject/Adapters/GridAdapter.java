@@ -1,11 +1,12 @@
-package android.example.harmanproject;
+package android.example.harmanproject.Adapters;
 
 import android.content.Context;
+import android.example.harmanproject.R;
+import android.example.harmanproject.ViewModel.ExampleElement;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,7 +19,7 @@ public class GridAdapter extends BaseAdapter {
     private final ArrayList<ExampleElement> mDataList;
     //private omItemClickListener mListener;
 
-    GridAdapter(Context context, ArrayList<ExampleElement> dataList) {
+    public GridAdapter(Context context, ArrayList<ExampleElement> dataList) {
         mContext = context;
         mDataList = dataList;
     }

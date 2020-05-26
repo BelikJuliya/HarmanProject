@@ -1,16 +1,7 @@
-package android.example.harmanproject;
+package android.example.harmanproject.ViewModel;
 
-import android.annotation.SuppressLint;
-import android.content.Intent;
-import android.net.Uri;
-import android.os.Build;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.example.harmanproject.View.Activity3;
 
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.exifinterface.media.ExifInterface;
 
 import com.drew.imaging.ImageMetadataReader;
@@ -25,32 +16,13 @@ import java.util.Arrays;
 
 import timber.log.Timber;
 
-public class Activity3 extends AppCompatActivity {
-    static Double mLatitude;
-    static Double mLongitude;
-
-    @SuppressLint("SetTextI18n")
-    @RequiresApi(api = Build.VERSION_CODES.Q)
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_3);
-
-        Intent intent = getIntent();
-        ExampleElement exampleElement = intent.getParcelableExtra("Example element");
-
-        assert exampleElement != null;
-        Uri imageRes = exampleElement.getImageResource();
-        String textRes = exampleElement.getText();
-
-        ImageView imageView = findViewById(R.id.image_activity_3);
-        imageView.setImageURI(imageRes);
-
-        TextView nameOfImage = findViewById(R.id.text_activity_3);
-        nameOfImage.setText(textRes);
-
+public class Activity3ViewModel {
+    public static Double mLatitude;
+    public static Double mLongitude;
+    private static String metadata;
+    public static String extractMetadata() {
         try {
-            File currentImage = new File(exampleElement.getPath());
+            File currentImage = new File(Activity3.exampleElement.getPath());
             Metadata imageMetadata = ImageMetadataReader.readMetadata(currentImage);
             for (Directory obj : imageMetadata.getDirectories()) {
                 Timber.e(obj.getName());
@@ -77,14 +49,15 @@ public class Activity3 extends AppCompatActivity {
             mLatitude = Double.valueOf(geoDegree.toString().split(", ")[0]);
             mLongitude = Double.valueOf(geoDegree.toString().split(", ")[1]);
 
-            TextView metadataTextView = findViewById(R.id.meta_data);
-            metadataTextView.setText(Arrays.toString(coordinates) + "\n ImageWidth is: " + ImageWidth + ",\n ExposureProgram is: " + ExposureProgram + ",\n Orientation is: " + orientation + ",\n GPSVersionID is: " + GPSVersionID);
-           // metadataTextView.setText("ImageWidth is: " + ImageWidth);
+            metadata = Arrays.toString(coordinates) + "\n ImageWidth is: " + ImageWidth + ",\n ExposureProgram is: " + ExposureProgram + ",\n Orientation is: " + orientation + ",\n GPSVersionID is: " + GPSVersionID;
+
 
         } catch (ImageProcessingException | IOException e) {
             e.printStackTrace();
         }
+        return metadata;
     }
+
 
     public static class GeoDegree {
         private boolean valid = false;
@@ -165,11 +138,4 @@ public class Activity3 extends AppCompatActivity {
             return (int) (Longitude * 1000000);
         }
     }
-
-    public void openMap(View view) {
-        Intent intent = new Intent(Activity3.this, Activity4.class);
-        startActivity(intent);
-    }
 }
-
-

@@ -1,7 +1,11 @@
-package android.example.harmanproject;
+package android.example.harmanproject.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.example.harmanproject.R;
+import android.example.harmanproject.View.Activity3;
+import android.example.harmanproject.ViewModel.Activity2ViewModel;
+import android.example.harmanproject.ViewModel.ExampleElement;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,7 +28,7 @@ public class PageAdapter extends PagerAdapter {
         return view == object;
     }
 
-    PageAdapter(Context context, ArrayList<ExampleElement> list) {
+    public PageAdapter(Context context, ArrayList<ExampleElement> list) {
         mContext = context;
         mList = new ArrayList<>(list);
     }
@@ -45,7 +49,7 @@ public class PageAdapter extends PagerAdapter {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, Activity3.class);
-                intent.putExtra("Example element", Activity2.exampleList.get(position));
+                intent.putExtra("Example element", Activity2ViewModel.exampleList.get(position));
                 mContext.startActivity(intent);
             }
         });
