@@ -2,7 +2,6 @@ package android.example.harmanproject.ViewModel;
 
 import android.example.harmanproject.R;
 import android.example.harmanproject.View.Activity4;
-import android.widget.Button;
 
 import androidx.annotation.NonNull;
 
@@ -23,24 +22,17 @@ import retrofit2.Response;
 import timber.log.Timber;
 
 public class Activity4ViewModel {
-
-    private static final String TAG = "DirectionsActivity";
-    private NavigationMapRoute mRoute;
-    //private DirectionsRoute mCurrentRoad;
-    private Point mOriginPoint;
-    private Point mDestinationPoint;
-    private Button mStartButton;
-    private Activity4 view;
+    private Activity4 mView;
 
 
     public Activity4ViewModel(Activity4 view) {
-        this.view = view;
+        mView = view;
     }
 
     public void getRoute(Point origin, Point destination) {
 
         assert Mapbox.getAccessToken() != null;
-        NavigationRoute.builder(view.getApplicationContext())
+        NavigationRoute.builder(mView.getApplicationContext())
                 .accessToken(Mapbox.getAccessToken())
                 .origin(origin)
                 .destination(destination)
@@ -53,16 +45,16 @@ public class Activity4ViewModel {
                             return;
                         } else if (response.body().routes().size() == 0) {
                             Timber.e("No routes found");
-                            view.showToast(R.string.no_routes);
+                            mView.showToast(R.string.no_routes);
                         }
-                        view.mCurrentRoad = response.body().routes().get(0);
+                        mView.mCurrentRoad = response.body().routes().get(0);
 
-                        if (mRoute != null) {
-                            mRoute.removeRoute();
+                        if (mView.mRoute != null) {
+                            mView.mRoute.removeRoute();
                         } else {
-                            mRoute = new NavigationMapRoute(null, view.mMapView, view.mMapboxMap);
+                            mView.mRoute = new NavigationMapRoute(null, mView.mMapView, mView.mMapboxMap);
                         }
-                        mRoute.addRoute(view.mCurrentRoad);
+                        mView.mRoute.addRoute(mView.mCurrentRoad);
                     }
 
                     @Override
@@ -74,36 +66,15 @@ public class Activity4ViewModel {
 
 
     public void enableLocationComponent(@NonNull Style loadedMapStyle) {
-        if (PermissionsManager.areLocationPermissionsGranted(view)) {
-            view.mLocationComponent = view.mMapboxMap.getLocationComponent();
-            view.mLocationComponent.activateLocationComponent(view, loadedMapStyle);
-            view.mLocationComponent.setLocationComponentEnabled(true);
-            view.mLocationComponent.setCameraMode(CameraMode.TRACKING);
+        if (PermissionsManager.areLocationPermissionsGranted(mView)) {
+            mView.mLocationComponent = mView.mMapboxMap.getLocationComponent();
+            mView.mLocationComponent.activateLocationComponent(mView, loadedMapStyle);
+            mView.mLocationComponent.setLocationComponentEnabled(true);
+            mView.mLocationComponent.setCameraMode(CameraMode.TRACKING);
         } else {
-            view.mPermissionsManager = new PermissionsManager(view);
-            view.mPermissionsManager.requestLocationPermissions(view);
+            mView.mPermissionsManager = new PermissionsManager(mView);
+            mView.mPermissionsManager.requestLocationPermissions(mView);
         }
     }
-
-//    @Override
-//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-//        mPermissionsManager.onRequestPermissionsResult(requestCode, permissions, grantResults);
-//    }
-//
-//    @Override
-//    public void onExplanationNeeded(List<String> permissionsToExplain) {
-//        view.showToast(R.string.user_location_permission_explanation);
-//    }
-//
-//    @Override
-//    public void onPermissionResult(boolean granted) {
-//        if (granted) {
-//            enableLocationComponent(Objects.requireNonNull(mMapboxMap.getStyle()));
-//        } else {
-//            view.showToast(R.string.user_location_permission_not_granted);
-//            finish();
-//        }
-//    }
-
 
 }

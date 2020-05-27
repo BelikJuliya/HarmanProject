@@ -8,10 +8,10 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class Activity5 extends AppCompatActivity {
-    Activity5ViewModel viewModel;
+    private Activity5ViewModel mViewModel;
 
     public Activity5 (){
-        viewModel = new Activity5ViewModel(this);
+        mViewModel = new Activity5ViewModel(this);
     }
 
 
@@ -21,7 +21,7 @@ public class Activity5 extends AppCompatActivity {
         setContentView(R.layout.activity_5);
 
         TextView textView = findViewById(R.id.wifi_info);
-        textView.setText(viewModel.findWifiInfo());
+        textView.setText(mViewModel.findWifiInfo());
 
 
 

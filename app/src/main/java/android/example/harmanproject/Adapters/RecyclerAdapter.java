@@ -25,11 +25,11 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Exampl
         mListener = listener;
     }
 
-    public static class ExampleViewHolder extends RecyclerView.ViewHolder {
+    static class ExampleViewHolder extends RecyclerView.ViewHolder {
         private TextView mText;
         private ImageView mImageView;
 
-        public ExampleViewHolder(View itemView, final onItemClickListener listener) {
+        ExampleViewHolder(View itemView, final onItemClickListener listener) {
             super(itemView);
             mText = itemView.findViewById(R.id.grid_item);
             mImageView = itemView.findViewById(R.id.example_image);
@@ -56,14 +56,12 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Exampl
     @Override
     public ExampleViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.example_element, parent, false);
-        ExampleViewHolder evh = new ExampleViewHolder(view, mListener);
-        return evh;
+        return new ExampleViewHolder(view, mListener);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ExampleViewHolder holder, int position) {
         ExampleElement currentItem = mExampleElements.get(position);
-        //holder.mImageView.setImageResource(currentItem.getImageResource());
         holder.mImageView.setImageURI(currentItem.getImageResource());
         holder.mText.setText(currentItem.getText());
     }

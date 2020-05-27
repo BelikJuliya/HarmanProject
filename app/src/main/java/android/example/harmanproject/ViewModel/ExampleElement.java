@@ -4,22 +4,19 @@ import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.drew.metadata.Metadata;
-
 public class ExampleElement implements Parcelable {
     private Uri mImageUri;
     private String mText;
-    private Metadata mImageMetaData;
     private String mPath;
 
 
-    public ExampleElement(Uri uri, String text, String path) {
+     ExampleElement(Uri uri, String text, String path) {
         mImageUri = uri;
         mText = text;
         mPath = path;
     }
 
-    protected ExampleElement(Parcel in) {
+     ExampleElement(Parcel in) {
         mImageUri = in.readParcelable(Uri.class.getClassLoader());
         mText = in.readString();
         mPath = in.readString();
@@ -37,9 +34,6 @@ public class ExampleElement implements Parcelable {
         }
     };
 
-    Metadata getImageMetaData() {
-        return mImageMetaData;
-    }
 
     public Uri getImageResource() {
         return mImageUri;

@@ -1,5 +1,6 @@
 package android.example.harmanproject.Adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.example.harmanproject.R;
 import android.example.harmanproject.ViewModel.ExampleElement;
@@ -17,7 +18,6 @@ public class GridAdapter extends BaseAdapter {
 
     private final Context mContext;
     private final ArrayList<ExampleElement> mDataList;
-    //private omItemClickListener mListener;
 
     public GridAdapter(Context context, ArrayList<ExampleElement> dataList) {
         mContext = context;
@@ -39,6 +39,7 @@ public class GridAdapter extends BaseAdapter {
         return position;
     }
 
+    @SuppressLint("ViewHolder")
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
@@ -56,11 +57,4 @@ public class GridAdapter extends BaseAdapter {
 
     }
 
-//    public interface omItemClickListener{
-//        void onItemClick (int position);
-//    }
-//
-//    public void setOnClickListener(omItemClickListener listener){
-//        mListener = listener;
-//    }
 }

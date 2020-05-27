@@ -1,6 +1,7 @@
 package android.example.harmanproject.View;
 
 import android.example.harmanproject.R;
+import android.example.harmanproject.ViewModel.Fragment1ViewModel;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -17,6 +18,7 @@ public class Activity1 extends FragmentActivity {
         setContentView(R.layout.activity_1);
 
         Fragment1 frag1 = new Fragment1();
+        Fragment1ViewModel frag1ViewModel = new Fragment1ViewModel(frag1);
 
         //At the moment of activity creation put fragment 1 to the upper container
         FragmentTransaction fTrans1 = getSupportFragmentManager().beginTransaction();
@@ -24,7 +26,7 @@ public class Activity1 extends FragmentActivity {
         fTrans1.commit();
 
         Button rotateButton = findViewById(R.id.rotate_btn);
-        rotateButton.setOnClickListener((v) -> frag1.rotatePicture());
+        rotateButton.setOnClickListener((v) -> frag1ViewModel.rotatePicture());
     }
 
 

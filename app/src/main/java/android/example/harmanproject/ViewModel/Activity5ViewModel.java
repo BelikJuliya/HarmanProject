@@ -10,14 +10,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Activity5ViewModel {
-    private  Activity5 view;
+    private  Activity5 mView;
 
     public Activity5ViewModel (Activity5 view) {
-        this.view = view;
+        mView = view;
     }
     public String findWifiInfo() {
 
-        WifiManager wifiManager = (WifiManager) view.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+        WifiManager wifiManager = (WifiManager) mView.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
         assert wifiManager != null;
         WifiInfo connection = wifiManager.getConnectionInfo();
 
