@@ -16,10 +16,10 @@ public class Activity2ViewModel {
     @SuppressLint("SdCardPath")
     private static String mDirectory = "/sdcard/Download";
     public static ArrayList <ExampleElement> exampleList;
-    private Activity2 view;
+    private Activity2 mView;
 
     public Activity2ViewModel (Activity2 view){
-        this.view = view;
+        this.mView = view;
     }
 
     public void uploadPicturesToScreen() {
@@ -36,10 +36,10 @@ public class Activity2ViewModel {
                     } else Timber.e("The file found is not an image");
                 }
             } else {
-                view.showToast(R.string.no_images);
+                mView.showToast(R.string.no_images);
             }
         } else {
-            view.showToast(R.string.no_directory);
+            mView.showToast(R.string.no_directory);
         }
     }
 }

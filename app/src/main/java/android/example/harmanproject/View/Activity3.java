@@ -17,10 +17,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class Activity3 extends AppCompatActivity {
     public  ExampleElement exampleElement;
-    Activity3ViewModel viewModel;
+    private Activity3ViewModel mViewModel;
 
     public Activity3 () {
-        viewModel = new Activity3ViewModel(this);
+        mViewModel = new Activity3ViewModel(this);
     }
 
     @SuppressLint("SetTextI18n")
@@ -44,7 +44,7 @@ public class Activity3 extends AppCompatActivity {
         nameOfImage.setText(textRes);
 
         TextView metadataTextView = findViewById(R.id.meta_data);
-        metadataTextView.setText(viewModel.extractMetadata());
+        metadataTextView.setText(mViewModel.extractMetadata());
 
     }
 

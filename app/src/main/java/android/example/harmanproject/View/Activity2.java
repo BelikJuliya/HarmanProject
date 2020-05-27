@@ -19,10 +19,10 @@ public class Activity2 extends AppCompatActivity {
     private FragmentTransaction mGridTrans;
     private RecyclerFragment mRecyclerFragment;
     private PageFragment mPageFragment;
-    Activity2ViewModel viewModel;
+    private Activity2ViewModel mViewModel;
 
     public Activity2 (){
-        viewModel = new Activity2ViewModel(this);
+        mViewModel = new Activity2ViewModel(this);
     }
 
 
@@ -44,7 +44,7 @@ public class Activity2 extends AppCompatActivity {
         mGridTrans.add(R.id.container, mGridFragment);
         mGridTrans.commit();
 
-        viewModel.uploadPicturesToScreen();
+        mViewModel.uploadPicturesToScreen();
     }
 
 
