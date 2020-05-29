@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 public class RecyclerView extends Fragment {
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -21,6 +22,7 @@ public class RecyclerView extends Fragment {
         androidx.recyclerview.widget.RecyclerView recyclerView;
         View view = inflater.inflate(R.layout.recycler_fragment, container, false);
         recyclerView = view.findViewById(R.id.recycle_view);
+
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         RecyclerAdapter recyclerAdapter = new RecyclerAdapter(GalleryViewModel.exampleList);
