@@ -1,6 +1,6 @@
 package android.example.harmanproject.ViewModel;
 
-import android.example.harmanproject.View.Activity3;
+import android.example.harmanproject.View.PictMetadata;
 
 import androidx.exifinterface.media.ExifInterface;
 
@@ -16,13 +16,13 @@ import java.util.Arrays;
 
 import timber.log.Timber;
 
-public class Activity3ViewModel {
+public class MetadataViewModel {
     public static Double mLatitude;
     public static Double mLongitude;
     private static String metadata;
-    private Activity3 mView;
+    private PictMetadata mView;
 
-    public Activity3ViewModel (Activity3 view){
+    public MetadataViewModel(PictMetadata view){
         mView = view;
     }
 

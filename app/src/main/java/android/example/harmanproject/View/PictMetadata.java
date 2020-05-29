@@ -3,7 +3,7 @@ package android.example.harmanproject.View;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.example.harmanproject.R;
-import android.example.harmanproject.ViewModel.Activity3ViewModel;
+import android.example.harmanproject.ViewModel.MetadataViewModel;
 import android.example.harmanproject.ViewModel.ExampleElement;
 import android.net.Uri;
 import android.os.Build;
@@ -15,12 +15,12 @@ import android.widget.TextView;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class Activity3 extends AppCompatActivity {
+public class PictMetadata extends AppCompatActivity {
     public  ExampleElement exampleElement;
-    private Activity3ViewModel mViewModel;
+    private MetadataViewModel mViewModel;
 
-    public Activity3 () {
-        mViewModel = new Activity3ViewModel(this);
+    public PictMetadata() {
+        mViewModel = new MetadataViewModel(this);
     }
 
     @SuppressLint("SetTextI18n")
@@ -28,7 +28,7 @@ public class Activity3 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_3);
+        setContentView(R.layout.pict_metadata);
 
         Intent intent = getIntent();
         exampleElement = intent.getParcelableExtra("Example element");
@@ -50,7 +50,7 @@ public class Activity3 extends AppCompatActivity {
 
 
     public void openMap(View view) {
-        Intent intent = new Intent(Activity3.this, Activity4.class);
+        Intent intent = new Intent(PictMetadata.this, MapBox.class);
         startActivity(intent);
     }
 }

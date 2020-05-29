@@ -1,7 +1,7 @@
 package android.example.harmanproject.View;
 
 import android.example.harmanproject.R;
-import android.example.harmanproject.ViewModel.Activity2ViewModel;
+import android.example.harmanproject.ViewModel.GalleryViewModel;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
@@ -14,26 +14,26 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
 
-public class Activity2 extends AppCompatActivity {
-    private GridFragment mGridFragment;
+public class Gallery extends AppCompatActivity {
+    private GridView mGridFragment;
     private FragmentTransaction mGridTrans;
-    private RecyclerFragment mRecyclerFragment;
-    private PageFragment mPageFragment;
-    private Activity2ViewModel mViewModel;
+    private RecyclerView mRecyclerFragment;
+    private PageView mPageFragment;
+    private GalleryViewModel mViewModel;
 
-    public Activity2 (){
-        mViewModel = new Activity2ViewModel(this);
+    public Gallery(){
+        mViewModel = new GalleryViewModel(this);
     }
 
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_2);
+        setContentView(R.layout.gallery);
 
-        mRecyclerFragment = new RecyclerFragment();
-        mPageFragment = new PageFragment();
-        mGridFragment = new GridFragment();
+        mRecyclerFragment = new RecyclerView();
+        mPageFragment = new PageView();
+        mGridFragment = new GridView();
 
         /*
          GridView appears in the container at the moment of activity creation
@@ -49,7 +49,7 @@ public class Activity2 extends AppCompatActivity {
 
 
     public void showToast(int text){
-        Toast.makeText(Activity2.this, text, Toast.LENGTH_SHORT).show();
+        Toast.makeText(Gallery.this, text, Toast.LENGTH_SHORT).show();
     }
 
     @Override

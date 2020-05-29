@@ -1,7 +1,7 @@
 package android.example.harmanproject.View;
 
 import android.example.harmanproject.R;
-import android.example.harmanproject.ViewModel.Fragment1ViewModel;
+import android.example.harmanproject.ViewModel.GirlGunViewModel;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -9,16 +9,16 @@ import android.widget.Button;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
 
-public class Activity1 extends FragmentActivity {
+public class RotatingPict extends FragmentActivity {
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_1);
+        setContentView(R.layout.rotating_pict);
 
-        Fragment1 frag1 = new Fragment1();
-        Fragment1ViewModel frag1ViewModel = new Fragment1ViewModel(frag1);
+        GirlGun frag1 = new GirlGun();
+        GirlGunViewModel frag1ViewModel = new GirlGunViewModel(frag1);
 
         //At the moment of activity creation put fragment 1 to the upper container
         FragmentTransaction fTrans1 = getSupportFragmentManager().beginTransaction();
@@ -32,7 +32,7 @@ public class Activity1 extends FragmentActivity {
 
     public void clickReplaceFragments(View v) {
 
-        Fragment2 frag2 = new Fragment2();
+        EnterMessage frag2 = new EnterMessage();
 
         // Put fragment 2 to the lower container
         FragmentTransaction fTrans2 = getSupportFragmentManager().beginTransaction();

@@ -3,17 +3,16 @@ package android.example.harmanproject.View;
 import android.content.Intent;
 import android.example.harmanproject.Adapters.GridAdapter;
 import android.example.harmanproject.R;
-import android.example.harmanproject.ViewModel.Activity2ViewModel;
+import android.example.harmanproject.ViewModel.GalleryViewModel;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.GridView;
 
 import androidx.fragment.app.Fragment;
 
-public class GridFragment extends Fragment {
+public class GridView extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savesInstanceState) {
@@ -28,15 +27,15 @@ public class GridFragment extends Fragment {
         /* search for gridView (R.id.grid_view) in XML file
         which link was given earlier (R.layout.grid_fragment)
         */
-        GridView mGridView = view.findViewById(R.id.grid_view);
-        GridAdapter gridAdapter = new GridAdapter(getActivity(), Activity2ViewModel.exampleList);
+        android.widget.GridView mGridView = view.findViewById(R.id.grid_view);
+        GridAdapter gridAdapter = new GridAdapter(getActivity(), GalleryViewModel.exampleList);
         mGridView.setAdapter(gridAdapter);
 
         mGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getContext(), Activity3.class);
-                intent.putExtra("Example element", Activity2ViewModel.exampleList.get(position));
+                Intent intent = new Intent(getContext(), PictMetadata.class);
+                intent.putExtra("Example element", GalleryViewModel.exampleList.get(position));
                 startActivity(intent);
             }
         });

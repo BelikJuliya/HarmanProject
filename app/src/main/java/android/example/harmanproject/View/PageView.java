@@ -2,7 +2,7 @@ package android.example.harmanproject.View;
 
 import android.example.harmanproject.Adapters.PageAdapter;
 import android.example.harmanproject.R;
-import android.example.harmanproject.ViewModel.Activity2ViewModel;
+import android.example.harmanproject.ViewModel.GalleryViewModel;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,11 +13,11 @@ import androidx.viewpager.widget.ViewPager;
 
 import it.xabaras.android.viewpagerindicator.widget.ViewPagerIndicator;
 
-public class PageFragment extends Fragment {
+public class PageView extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_page, container, false);
-        PageAdapter pageAdapter = new PageAdapter(getContext(), Activity2ViewModel.exampleList);
+        View view = inflater.inflate(R.layout.page_viewer, container, false);
+        PageAdapter pageAdapter = new PageAdapter(getContext(), GalleryViewModel.exampleList);
         ViewPager viewPager = view.findViewById(R.id.viewpager);
         viewPager.setAdapter(pageAdapter);
 

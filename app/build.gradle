@@ -3,6 +3,11 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
+    // Available in Android Gradle Plugin 3.6.0
+    viewBinding {
+        enabled = true
+    }
+
 
     defaultConfig {
         applicationId "android.example.harmanproject"

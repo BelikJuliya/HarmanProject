@@ -1,7 +1,7 @@
 package android.example.harmanproject.ViewModel;
 
 import android.example.harmanproject.R;
-import android.example.harmanproject.View.Activity4;
+import android.example.harmanproject.View.MapBox;
 
 import androidx.annotation.NonNull;
 
@@ -21,11 +21,11 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import timber.log.Timber;
 
-public class Activity4ViewModel {
-    private Activity4 mView;
+public class MapBoxViewModel {
+    private MapBox mView;
 
 
-    public Activity4ViewModel(Activity4 view) {
+    public MapBoxViewModel(MapBox view) {
         mView = view;
     }
 

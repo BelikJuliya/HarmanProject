@@ -3,8 +3,8 @@ package android.example.harmanproject.Adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.example.harmanproject.R;
-import android.example.harmanproject.View.Activity3;
-import android.example.harmanproject.ViewModel.Activity2ViewModel;
+import android.example.harmanproject.View.PictMetadata;
+import android.example.harmanproject.ViewModel.GalleryViewModel;
 import android.example.harmanproject.ViewModel.ExampleElement;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -48,8 +48,8 @@ public class PageAdapter extends PagerAdapter {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, Activity3.class);
-                intent.putExtra("Example element", Activity2ViewModel.exampleList.get(position));
+                Intent intent = new Intent(mContext, PictMetadata.class);
+                intent.putExtra("Example element", GalleryViewModel.exampleList.get(position));
                 mContext.startActivity(intent);
             }
         });

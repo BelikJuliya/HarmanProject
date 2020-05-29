@@ -1,8 +1,8 @@
 package android.example.harmanproject.View;
 
 import android.example.harmanproject.R;
-import android.example.harmanproject.ViewModel.Activity3ViewModel;
-import android.example.harmanproject.ViewModel.Activity4ViewModel;
+import android.example.harmanproject.ViewModel.MetadataViewModel;
+import android.example.harmanproject.ViewModel.MapBoxViewModel;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -32,7 +32,7 @@ import java.util.List;
 import java.util.Objects;
 
 
-public class Activity4 extends AppCompatActivity implements OnMapReadyCallback, PermissionsListener, MapboxMap.OnMapClickListener {
+public class MapBox extends AppCompatActivity implements OnMapReadyCallback, PermissionsListener, MapboxMap.OnMapClickListener {
     public MapView mMapView;
     public MapboxMap mMapboxMap;
     public PermissionsManager mPermissionsManager;
@@ -42,10 +42,10 @@ public class Activity4 extends AppCompatActivity implements OnMapReadyCallback, 
     private Point mDestinationPoint;
     private Button mStartButton;
     public NavigationMapRoute mRoute;
-    private Activity4ViewModel mViewModel;
+    private MapBoxViewModel mViewModel;
 
-    public Activity4 (){
-        mViewModel = new Activity4ViewModel(this);
+    public MapBox(){
+        mViewModel = new MapBoxViewModel(this);
     }
 
 
@@ -53,7 +53,7 @@ public class Activity4 extends AppCompatActivity implements OnMapReadyCallback, 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Mapbox.getInstance(this, getString(R.string.MAPBOX_ACCESS_TOKEN));
-        setContentView(R.layout.activity_4);
+        setContentView(R.layout.mapbox);
 
         mMapView = findViewById(R.id.mapView);
         mStartButton = findViewById(R.id.start_btn);
@@ -72,7 +72,7 @@ public class Activity4 extends AppCompatActivity implements OnMapReadyCallback, 
                 assert mLocationComponent.getLastKnownLocation() != null;
                 mOriginPoint = Point.fromLngLat(mLocationComponent.getLastKnownLocation().getLongitude(),
                         mLocationComponent.getLastKnownLocation().getLatitude());
-                mDestinationPoint = Point.fromLngLat(Activity3ViewModel.mLongitude, Activity3ViewModel.mLatitude);
+                mDestinationPoint = Point.fromLngLat(MetadataViewModel.mLongitude, MetadataViewModel.mLatitude);
                 mViewModel.getRoute(mOriginPoint, mDestinationPoint);
 
                 mStartButton.setOnClickListener(new View.OnClickListener() {
@@ -84,7 +84,7 @@ public class Activity4 extends AppCompatActivity implements OnMapReadyCallback, 
                                 .shouldSimulateRoute(true)
                                 .build();
 
-                        NavigationLauncher.startNavigation(Activity4.this, options);
+                        NavigationLauncher.startNavigation(MapBox.this, options);
                     }
                 });
             }
@@ -161,7 +161,7 @@ public class Activity4 extends AppCompatActivity implements OnMapReadyCallback, 
     }
 
     public void showToast(int textOfToast){
-        Toast.makeText(Activity4.this, textOfToast, Toast.LENGTH_SHORT).show();
+        Toast.makeText(MapBox.this, textOfToast, Toast.LENGTH_SHORT).show();
 
     }
 }

@@ -17,11 +17,11 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Exampl
     private ArrayList<ExampleElement> mExampleElements;
     private onItemClickListener mListener;
 
-    public interface onItemClickListener{
+    public interface onItemClickListener {
         void onItemClick(int position);
     }
 
-    public void setOnClickListener(onItemClickListener listener){
+    public void setOnClickListener(onItemClickListener listener) {
         mListener = listener;
     }
 
@@ -36,9 +36,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Exampl
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (listener != null){
+                    if (listener != null) {
                         int position = getAdapterPosition();
-                        if (position != RecyclerView.NO_POSITION){
+                        if (position != RecyclerView.NO_POSITION) {
                             listener.onItemClick(position);
                         }
                     }

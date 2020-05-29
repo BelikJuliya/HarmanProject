@@ -1,11 +1,11 @@
 package android.example.harmanproject.ViewModel;
 
-import android.example.harmanproject.View.Fragment1;
+import android.example.harmanproject.View.GirlGun;
 
-public class Fragment1ViewModel {
-    private Fragment1 fragment1;
+public class GirlGunViewModel {
+    private GirlGun fragment1;
 
-    public Fragment1ViewModel(Fragment1 fragment1) {
+    public GirlGunViewModel(GirlGun fragment1) {
         this.fragment1 = fragment1;
     }
 
