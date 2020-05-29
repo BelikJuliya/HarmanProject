@@ -19,9 +19,12 @@ public class RecyclerView extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        androidx.recyclerview.widget.RecyclerView recyclerView;
+
+//        RecyclerFragmentBinding binding = RecyclerFragmentBinding.inflate(inflater, container, false);
+//        androidx.recyclerview.widget.RecyclerView recyclerView = binding.recycleView;
+//        View view = binding.getRoot();
         View view = inflater.inflate(R.layout.recycler_fragment, container, false);
-        recyclerView = view.findViewById(R.id.recycle_view);
+        androidx.recyclerview.widget.RecyclerView recyclerView = view.findViewById(R.id.recycle_view);
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));

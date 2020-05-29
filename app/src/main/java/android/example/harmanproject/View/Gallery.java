@@ -2,6 +2,7 @@ package android.example.harmanproject.View;
 
 import android.example.harmanproject.R;
 import android.example.harmanproject.ViewModel.GalleryViewModel;
+import android.example.harmanproject.databinding.GalleryBinding;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
@@ -29,7 +30,8 @@ public class Gallery extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.O)
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.gallery);
+        GalleryBinding binding = GalleryBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         mRecyclerFragment = new RecyclerView();
         mPageFragment = new PageView();
@@ -41,6 +43,7 @@ public class Gallery extends AppCompatActivity {
         (calling the onOptionsItemSelected method))
          */
         mGridTrans = getSupportFragmentManager().beginTransaction();
+        //TODO replace with binding
         mGridTrans.add(R.id.container, mGridFragment);
         mGridTrans.commit();
 
@@ -52,9 +55,11 @@ public class Gallery extends AppCompatActivity {
         Toast.makeText(Gallery.this, text, Toast.LENGTH_SHORT).show();
     }
 
+    //TODO
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_activity2, menu);
+        //TODO replace with binding
+        getMenuInflater().inflate(R.menu.option_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
 

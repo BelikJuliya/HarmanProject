@@ -16,7 +16,7 @@
         android:textSize="32sp" />
 
     <ImageView
-        android:id="@+id/image_activity_3"
+        android:id="@+id/big_imege"
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:layout_gravity="center"
@@ -24,7 +24,7 @@
         android:scaleType="centerCrop" />
 
     <TextView
-        android:id="@+id/text_activity_3"
+        android:id="@+id/image_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"

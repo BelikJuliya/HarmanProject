@@ -1,8 +1,8 @@
 package android.example.harmanproject.View;
 
 import android.example.harmanproject.Adapters.PageAdapter;
-import android.example.harmanproject.R;
 import android.example.harmanproject.ViewModel.GalleryViewModel;
+import android.example.harmanproject.databinding.PageViewerBinding;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,16 +16,17 @@ import it.xabaras.android.viewpagerindicator.widget.ViewPagerIndicator;
 public class PageView extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.page_viewer, container, false);
+        PageViewerBinding binding = PageViewerBinding.inflate(inflater, container, false);
         PageAdapter pageAdapter = new PageAdapter(getContext(), GalleryViewModel.exampleList);
-        ViewPager viewPager = view.findViewById(R.id.viewpager);
+
+        ViewPager viewPager = binding.viewpager;
         viewPager.setAdapter(pageAdapter);
 
         // set viewPagerIndicator
-        ViewPagerIndicator viewPagerIndicator = view.findViewById(R.id.view_pager_indicator);
-        viewPagerIndicator.initWithViewPager(viewPager);
+        ViewPagerIndicator indicator = binding.viewPagerIndicator;
+        indicator.initWithViewPager(viewPager);
 
-        return view;
+        return binding.getRoot();
     }
 
 }

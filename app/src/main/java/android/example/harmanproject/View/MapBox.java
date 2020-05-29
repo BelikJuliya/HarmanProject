@@ -3,6 +3,7 @@ package android.example.harmanproject.View;
 import android.example.harmanproject.R;
 import android.example.harmanproject.ViewModel.MetadataViewModel;
 import android.example.harmanproject.ViewModel.MapBoxViewModel;
+import android.example.harmanproject.databinding.MapboxBinding;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -53,10 +54,14 @@ public class MapBox extends AppCompatActivity implements OnMapReadyCallback, Per
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Mapbox.getInstance(this, getString(R.string.MAPBOX_ACCESS_TOKEN));
-        setContentView(R.layout.mapbox);
+        MapboxBinding binding = MapboxBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
 
-        mMapView = findViewById(R.id.mapView);
-        mStartButton = findViewById(R.id.start_btn);
+        mMapView = binding.mapView;
+
+        mStartButton = binding.startBtn;
+
         mMapView.onCreate(savedInstanceState);
         mMapView.getMapAsync(this);
     }

@@ -2,9 +2,9 @@ package android.example.harmanproject.View;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.example.harmanproject.R;
-import android.example.harmanproject.ViewModel.MetadataViewModel;
 import android.example.harmanproject.ViewModel.ExampleElement;
+import android.example.harmanproject.ViewModel.MetadataViewModel;
+import android.example.harmanproject.databinding.PictMetadataBinding;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -28,7 +28,10 @@ public class PictMetadata extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.pict_metadata);
+
+        PictMetadataBinding binding = PictMetadataBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
 
         Intent intent = getIntent();
         exampleElement = intent.getParcelableExtra("Example element");
@@ -37,13 +40,14 @@ public class PictMetadata extends AppCompatActivity {
         Uri imageRes = exampleElement.getImageResource();
         String textRes = exampleElement.getText();
 
-        ImageView imageView = findViewById(R.id.image_activity_3);
+        ImageView imageView = binding.bigImege;
+
         imageView.setImageURI(imageRes);
 
-        TextView nameOfImage = findViewById(R.id.text_activity_3);
+        TextView nameOfImage = binding.imageDescription;
         nameOfImage.setText(textRes);
 
-        TextView metadataTextView = findViewById(R.id.meta_data);
+        TextView metadataTextView = binding.metaData;
         metadataTextView.setText(mViewModel.extractMetadata());
 
     }

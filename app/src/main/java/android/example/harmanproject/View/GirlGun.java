@@ -1,7 +1,7 @@
 package android.example.harmanproject.View;
 
-import android.example.harmanproject.R;
 import android.example.harmanproject.ViewModel.GirlGunViewModel;
+import android.example.harmanproject.databinding.GirlGunBinding;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,21 +12,18 @@ import androidx.fragment.app.Fragment;
 
 public class GirlGun extends Fragment {
     public ImageView mImageView;
-    private GirlGunViewModel mViewModel;
 
     public GirlGun() {
-        mViewModel = new GirlGunViewModel(this);
+        new GirlGunViewModel(this);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.girl_gun, container, false);
-        mImageView = view.findViewById(R.id.gun_image);
-        return view;
+        GirlGunBinding binding = GirlGunBinding.inflate(inflater, container, false);
+        mImageView = binding.gunImage;
+        return binding.getRoot();
     }
-
-
 
 
 }

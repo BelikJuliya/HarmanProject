@@ -4,9 +4,9 @@
     <string name="frag2_text"> Fragment 2</string>
     <string name="add">Add</string>
     <string name="remove">Remove</string>
-    <string name="replace">Replace</string>
+    <string name="replace">Комментировать</string>
     <string name="stack">add to Back Stack</string>
-    <string name="rotate_picture">Rotate Picture</string>
+    <string name="rotate_picture">Крутить</string>
     <string name="activity_2">Activity 2</string>
     <string name="activity_3">Activity 3</string>
     <string name="example_element">Example element</string>
@@ -51,7 +51,10 @@
     <string name="new_location">44.29834</string>
     <string name="start_navigating">Start navigating</string>
     <string name="wi_fi">Посмотреть настройки wi-fi</string>
-    <string name="act2">Активити 2</string>
-    <string name="act1">Активити 1</string>
+    <string name="act2">Галлерея</string>
+    <string name="act1">Крутящаяся картинка</string>
     <string name="activity_5">Activity 5</string>
+    <string name="page">Page</string>
+    <string name="recycle">Recycle</string>
+    <string name="grid">Grid</string>
 </resources>
