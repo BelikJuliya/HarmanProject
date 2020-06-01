@@ -2,10 +2,10 @@ package android.example.harmanproject.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
-import android.example.harmanproject.R;
 import android.example.harmanproject.View.PictMetadata;
-import android.example.harmanproject.ViewModel.GalleryViewModel;
 import android.example.harmanproject.ViewModel.ExampleElement;
+import android.example.harmanproject.ViewModel.GalleryViewModel;
+import android.example.harmanproject.databinding.PagerExampleElementBinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,10 +38,14 @@ public class PageAdapter extends PagerAdapter {
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
         ExampleElement current = mList.get(position);
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = inflater.inflate(R.layout.pager_example_element, container, false);
-        TextView textView = view.findViewById(R.id.page_example_text);
+        PagerExampleElementBinding binding = PagerExampleElementBinding.inflate(inflater, container, false);
+        View view = binding.getRoot();
+        TextView textView = binding.pageExampleText;
+//        View view = inflater.inflate(R.layout.pager_example_element, container, false);
+//        TextView textView = view.findViewById(R.id.page_example_text);
         textView.setText(current.getText());
-        ImageView imageView = view.findViewById(R.id.page_example_image);
+        ImageView imageView = binding.pageExampleImage;
+//        ImageView imageView = view.findViewById(R.id.page_example_image);
         imageView.setImageURI(current.getImageResource());
         container.addView(view);
 
