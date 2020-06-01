@@ -11,13 +11,13 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
 
 public class RotatingPict extends FragmentActivity {
-
+    RotatingPictBinding mBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        RotatingPictBinding binding = RotatingPictBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        mBinding = RotatingPictBinding.inflate(getLayoutInflater());
+        setContentView(mBinding.getRoot());
 
         GirlGun frag1 = new GirlGun();
         GirlGunViewModel frag1ViewModel = new GirlGunViewModel(frag1);
@@ -26,11 +26,12 @@ public class RotatingPict extends FragmentActivity {
         FragmentTransaction fTrans1 = getSupportFragmentManager().beginTransaction();
 
 
-        //can't do it with bunding
+        //can't do it with binding
         fTrans1.add(R.id.higher_frame, frag1);
+        //fTrans1.add(mBinding.higherFrame, frag1);
         fTrans1.commit();
 
-        Button rotateButton = binding.rotateBtn;
+        Button rotateButton = mBinding.rotateBtn;
         rotateButton.setOnClickListener((v) -> frag1ViewModel.rotatePicture());
     }
 

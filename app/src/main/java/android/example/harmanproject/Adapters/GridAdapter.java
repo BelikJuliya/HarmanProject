@@ -11,7 +11,6 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-
 import java.util.ArrayList;
 
 public class GridAdapter extends BaseAdapter {
@@ -45,7 +44,8 @@ public class GridAdapter extends BaseAdapter {
 
         ExampleElement current = mDataList.get(position);
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
+        //GridExampleElementBinding binding = GridExampleElementBinding.inflate(inflater, parent, false);
+        //convertView = binding.getRoot();
         convertView = inflater.inflate(R.layout.grid_example_element, parent, false);
         TextView textView = convertView.findViewById(R.id.grid_example_text);
         ImageView imageView = convertView.findViewById(R.id.grid_example_image);

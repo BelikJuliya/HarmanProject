@@ -2,8 +2,8 @@ package android.example.harmanproject.View;
 
 import android.content.Intent;
 import android.example.harmanproject.Adapters.RecyclerAdapter;
-import android.example.harmanproject.R;
 import android.example.harmanproject.ViewModel.GalleryViewModel;
+import android.example.harmanproject.databinding.RecyclerFragmentBinding;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,11 +20,11 @@ public class RecyclerView extends Fragment {
                              Bundle savedInstanceState) {
 
 
-//        RecyclerFragmentBinding binding = RecyclerFragmentBinding.inflate(inflater, container, false);
-//        androidx.recyclerview.widget.RecyclerView recyclerView = binding.recycleView;
-//        View view = binding.getRoot();
-        View view = inflater.inflate(R.layout.recycler_fragment, container, false);
-        androidx.recyclerview.widget.RecyclerView recyclerView = view.findViewById(R.id.recycle_view);
+        RecyclerFragmentBinding binding = RecyclerFragmentBinding.inflate(inflater, container, false);
+        androidx.recyclerview.widget.RecyclerView recyclerView = binding.recycleView;
+        View view = binding.getRoot();
+//        View view = inflater.inflate(R.layout.recycler_fragment, container, false);
+//        androidx.recyclerview.widget.RecyclerView recyclerView = view.findViewById(R.id.recycle_view);
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
