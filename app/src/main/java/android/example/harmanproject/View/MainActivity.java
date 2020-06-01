@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.example.harmanproject.R;
+import android.example.harmanproject.databinding.ActivityMainBinding;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -24,9 +25,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(R.layout.activity_main);
-        //setContentView(binding.getRoot());
+        ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
         Mapbox.getInstance(getApplicationContext(), getString(R.string.MAPBOX_ACCESS_TOKEN));
     }
 
@@ -87,5 +87,4 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-
 }
