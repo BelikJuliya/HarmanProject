@@ -2,6 +2,7 @@ package android.example.harmanproject.Adapters;
 
 import android.example.harmanproject.R;
 import android.example.harmanproject.ViewModel.ExampleElement;
+import android.example.harmanproject.databinding.ExampleElementBinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -16,6 +18,7 @@ import java.util.ArrayList;
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ExampleViewHolder> {
     private ArrayList<ExampleElement> mExampleElements;
     private onItemClickListener mListener;
+    private static ExampleElementBinding mBinding;
 
     public interface onItemClickListener {
         void onItemClick(int position);
@@ -29,23 +32,20 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Exampl
         private TextView mText;
         private ImageView mImageView;
 
-        ExampleViewHolder(View itemView, final onItemClickListener listener) {
-            super(itemView);
-            mText = itemView.findViewById(R.id.grid_item);
+        ExampleViewHolder(ExampleElementBinding binding, final onItemClickListener listener) {
+            super(binding.getRoot());
+            mBinding = binding;
+            mText = mBinding.gridItem;
             mImageView = itemView.findViewById(R.id.example_image);
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (listener != null) {
-                        int position = getAdapterPosition();
-                        if (position != RecyclerView.NO_POSITION) {
-                            listener.onItemClick(position);
-                        }
+            itemView.setOnClickListener(v -> {
+                if (listener != null) {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION) {
+                        listener.onItemClick(position);
                     }
                 }
             });
         }
-
     }
 
     public RecyclerAdapter(ArrayList<ExampleElement> exampleElements) {
@@ -55,8 +55,11 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Exampl
     @NonNull
     @Override
     public ExampleViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.example_element, parent, false);
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.example_element, parent, false);
-        return new ExampleViewHolder(view, mListener);
+        return new ExampleViewHolder(mBinding, mListener);
+
     }
 
     @Override

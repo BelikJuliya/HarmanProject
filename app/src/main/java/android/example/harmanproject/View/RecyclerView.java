@@ -23,22 +23,16 @@ public class RecyclerView extends Fragment {
         RecyclerFragmentBinding binding = RecyclerFragmentBinding.inflate(inflater, container, false);
         androidx.recyclerview.widget.RecyclerView recyclerView = binding.recycleView;
         View view = binding.getRoot();
-//        View view = inflater.inflate(R.layout.recycler_fragment, container, false);
-//        androidx.recyclerview.widget.RecyclerView recyclerView = view.findViewById(R.id.recycle_view);
-
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         RecyclerAdapter recyclerAdapter = new RecyclerAdapter(GalleryViewModel.exampleList);
         recyclerView.setAdapter(recyclerAdapter);
 
-        recyclerAdapter.setOnClickListener(new RecyclerAdapter.onItemClickListener() {
-            @Override
-            public void onItemClick(int position) {
-                Intent intent = new Intent(getContext(), PictMetadata.class);
-                intent.putExtra("Example element", GalleryViewModel.exampleList.get(position));
-                startActivity(intent);
+        recyclerAdapter.setOnClickListener(position -> {
+            Intent intent = new Intent(getContext(), PictMetadata.class);
+            intent.putExtra("Example element", GalleryViewModel.exampleList.get(position));
+            startActivity(intent);
 
-            }
         });
         return view;
     }

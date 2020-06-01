@@ -46,11 +46,8 @@ public class GridAdapter extends BaseAdapter {
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         GridExampleElementBinding binding = GridExampleElementBinding.inflate(inflater, parent, false);
         convertView = binding.getRoot();
-        //convertView = inflater.inflate(R.layout.grid_example_element, parent, false);
-//        TextView textView = convertView.findViewById(R.id.grid_example_text);
         TextView textView = binding.gridExampleText;
         ImageView imageView = binding.gridExampleImage;
-//        ImageView imageView = convertView.findViewById(R.id.grid_example_image);
 
         textView.setText(current.getText());
         imageView.setImageURI(current.getImageResource());

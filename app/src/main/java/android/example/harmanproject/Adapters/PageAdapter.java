@@ -41,21 +41,15 @@ public class PageAdapter extends PagerAdapter {
         PagerExampleElementBinding binding = PagerExampleElementBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
         TextView textView = binding.pageExampleText;
-//        View view = inflater.inflate(R.layout.pager_example_element, container, false);
-//        TextView textView = view.findViewById(R.id.page_example_text);
         textView.setText(current.getText());
         ImageView imageView = binding.pageExampleImage;
-//        ImageView imageView = view.findViewById(R.id.page_example_image);
         imageView.setImageURI(current.getImageResource());
         container.addView(view);
 
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(mContext, PictMetadata.class);
-                intent.putExtra("Example element", GalleryViewModel.exampleList.get(position));
-                mContext.startActivity(intent);
-            }
+        view.setOnClickListener(v -> {
+            Intent intent = new Intent(mContext, PictMetadata.class);
+            intent.putExtra("Example element", GalleryViewModel.exampleList.get(position));
+            mContext.startActivity(intent);
         });
         return view;
     }
