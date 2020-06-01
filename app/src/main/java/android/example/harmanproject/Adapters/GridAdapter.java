@@ -2,8 +2,8 @@ package android.example.harmanproject.Adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.example.harmanproject.R;
 import android.example.harmanproject.ViewModel.ExampleElement;
+import android.example.harmanproject.databinding.GridExampleElementBinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,11 +44,13 @@ public class GridAdapter extends BaseAdapter {
 
         ExampleElement current = mDataList.get(position);
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        //GridExampleElementBinding binding = GridExampleElementBinding.inflate(inflater, parent, false);
-        //convertView = binding.getRoot();
-        convertView = inflater.inflate(R.layout.grid_example_element, parent, false);
-        TextView textView = convertView.findViewById(R.id.grid_example_text);
-        ImageView imageView = convertView.findViewById(R.id.grid_example_image);
+        GridExampleElementBinding binding = GridExampleElementBinding.inflate(inflater, parent, false);
+        convertView = binding.getRoot();
+        //convertView = inflater.inflate(R.layout.grid_example_element, parent, false);
+//        TextView textView = convertView.findViewById(R.id.grid_example_text);
+        TextView textView = binding.gridExampleText;
+        ImageView imageView = binding.gridExampleImage;
+//        ImageView imageView = convertView.findViewById(R.id.grid_example_image);
 
         textView.setText(current.getText());
         imageView.setImageURI(current.getImageResource());
