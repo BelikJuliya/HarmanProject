@@ -29,7 +29,7 @@ public class RecyclerViewFragment extends Fragment {
         recyclerView.setAdapter(recyclerAdapter);
 
         recyclerAdapter.setOnClickListener(position -> {
-            Intent intent = new Intent(getContext(), PictMetadataActivity.class);
+            Intent intent = new Intent(getContext(), MetadataActivity.class);
             intent.putExtra("Example element", GalleryViewModel.exampleList.get(position));
             startActivity(intent);
 

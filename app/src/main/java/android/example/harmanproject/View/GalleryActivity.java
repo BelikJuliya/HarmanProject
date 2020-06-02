@@ -33,6 +33,9 @@ public class GalleryActivity extends AppCompatActivity {
         GalleryBinding binding = GalleryBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        getSupportActionBar().setTitle("Gallery");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         mRecyclerFragment = new RecyclerViewFragment();
         mPageFragment = new PageViewFragment();
         mGridFragment = new GridViewFragment();

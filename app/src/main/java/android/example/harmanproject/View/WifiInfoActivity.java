@@ -22,6 +22,9 @@ public class WifiInfoActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
+        getSupportActionBar().setTitle("Wifi info");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         binding.wifiInfoText.setText(mViewModel.findWifiInfo());
     }
 }

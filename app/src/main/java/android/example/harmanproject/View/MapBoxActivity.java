@@ -35,7 +35,7 @@ import java.util.Objects;
 
 public class MapBoxActivity extends AppCompatActivity implements OnMapReadyCallback, PermissionsListener, MapboxMap.OnMapClickListener {
     public MapView mMapView;
-    public MapboxMap mMapboxMap;
+    public MapboxMap mMapBoxMap;
     public PermissionsManager mPermissionsManager;
     public LocationComponent mLocationComponent;
     public DirectionsRoute mCurrentRoad;
@@ -59,6 +59,9 @@ public class MapBoxActivity extends AppCompatActivity implements OnMapReadyCallb
         View view = binding.getRoot();
         setContentView(view);
 
+        getSupportActionBar().setTitle("MapBox");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         mMapView = binding.mapView;
 
         mStartButton = binding.startBtn;
@@ -69,7 +72,7 @@ public class MapBoxActivity extends AppCompatActivity implements OnMapReadyCallb
 
     @Override
     public void onMapReady(@NonNull final MapboxMap mapboxMap) {
-        this.mMapboxMap = mapboxMap;
+        this.mMapBoxMap = mapboxMap;
         mapboxMap.addOnMapClickListener(this);
         mapboxMap.setStyle(getString(R.string.navigation_guidance_day), new Style.OnStyleLoaded() {
             @Override
@@ -110,7 +113,7 @@ public class MapBoxActivity extends AppCompatActivity implements OnMapReadyCallb
     @Override
     public void onPermissionResult(boolean granted) {
         if (granted) {
-            mViewModel.enableLocationComponent(Objects.requireNonNull(mMapboxMap.getStyle()));
+            mViewModel.enableLocationComponent(Objects.requireNonNull(mMapBoxMap.getStyle()));
         } else {
             Toast.makeText(this, R.string.user_location_permission_not_granted, Toast.LENGTH_LONG).show();
             finish();

@@ -29,7 +29,7 @@ public class GridViewFragment extends Fragment {
         gridView.setAdapter(gridAdapter);
 
         gridView.setOnItemClickListener((parent, view, position, id) -> {
-            Intent intent = new Intent(getContext(), PictMetadataActivity.class);
+            Intent intent = new Intent(getContext(), MetadataActivity.class);
             intent.putExtra("Example element", GalleryViewModel.exampleList.get(position));
             startActivity(intent);
         });

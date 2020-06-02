@@ -7,25 +7,26 @@
     tools:context=".View.MainActivity">
 
     <Button
-        android:id="@+id/show_activity1_button"
+        android:id="@+id/show_rotating_pict_btn"
         android:layout_width="200dp"
         android:layout_height="50dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="32dp"
         android:background="#FFB6C1"
         android:onClick="goToActivity1"
-        android:text="@string/act1"
+        android:text="@string/rotating_pict"
+
         />
 
     <Button
-        android:id="@+id/show_activity2_button"
+        android:id="@+id/open_gallery_btn"
         android:layout_width="200dp"
         android:layout_height="50dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="32dp"
         android:onClick="goToActivity2"
         android:background="#9387"
-        android:text="@string/act2" />
+      android:text="@string/open_gallery"/>
 
     <Button
         android:id="@+id/wifi_button"

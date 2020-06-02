@@ -1,6 +1,5 @@
 package android.example.harmanproject.View;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.example.harmanproject.ViewModel.ExampleElement;
 import android.example.harmanproject.ViewModel.MetadataViewModel;
@@ -15,15 +14,16 @@ import android.widget.TextView;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class PictMetadataActivity extends AppCompatActivity {
-    public  ExampleElement exampleElement;
+import timber.log.Timber;
+
+public class MetadataActivity extends AppCompatActivity {
+    public ExampleElement exampleElement;
     private MetadataViewModel mViewModel;
 
-    public PictMetadataActivity() {
+    public MetadataActivity() {
         mViewModel = new MetadataViewModel(this);
     }
 
-    @SuppressLint("SetTextI18n")
     @RequiresApi(api = Build.VERSION_CODES.Q)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,28 +33,31 @@ public class PictMetadataActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
+        getSupportActionBar().setTitle("Metadata");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         Intent intent = getIntent();
         exampleElement = intent.getParcelableExtra("Example element");
 
-        assert exampleElement != null;
-        Uri imageRes = exampleElement.getImageResource();
-        String textRes = exampleElement.getText();
+        if (exampleElement != null) {
+            Uri imageRes = exampleElement.getImageResource();
+            String textRes = exampleElement.getText();
 
-        ImageView imageView = binding.bigImege;
+            ImageView imageView = binding.bigImege;
+            imageView.setImageURI(imageRes);
 
-        imageView.setImageURI(imageRes);
+            TextView nameOfImage = binding.imageDescription;
+            nameOfImage.setText(textRes);
 
-        TextView nameOfImage = binding.imageDescription;
-        nameOfImage.setText(textRes);
+            TextView metadataTextView = binding.metaData;
+            metadataTextView.setText(mViewModel.extractMetadata());
 
-        TextView metadataTextView = binding.metaData;
-        metadataTextView.setText(mViewModel.extractMetadata());
-
+        } else Timber.i("Example element is null, can't show metadata");
     }
 
 
     public void openMap(View view) {
-        Intent intent = new Intent(PictMetadataActivity.this, MapBoxActivity.class);
+        Intent intent = new Intent(MetadataActivity.this, MapBoxActivity.class);
         startActivity(intent);
     }
 }

@@ -45,8 +45,6 @@ public class MapBoxViewModel {
 //    };
 
     public void getRoute(Point origin, Point destination) {
-
-        assert Mapbox.getAccessToken() != null;
         NavigationRoute.builder(mView.getApplicationContext())
                 .accessToken(Mapbox.getAccessToken())
                 .origin(origin)
@@ -68,7 +66,7 @@ public class MapBoxViewModel {
                         if (mView.mRoute != null) {
                             mView.mRoute.removeRoute();
                         } else {
-                            mView.mRoute = new NavigationMapRoute(null, mView.mMapView, mView.mMapboxMap);
+                            mView.mRoute = new NavigationMapRoute(null, mView.mMapView, mView.mMapBoxMap);
                         }
                         mView.mRoute.addRoute(mView.mCurrentRoad);
                     }
@@ -84,7 +82,7 @@ public class MapBoxViewModel {
     public void enableLocationComponent(@NonNull Style loadedMapStyle) {
         if (PermissionsManager.areLocationPermissionsGranted(mView)) {
             if (PermissionsManager.areLocationPermissionsGranted(mView)) {
-                mView.mLocationComponent = mView.mMapboxMap.getLocationComponent();
+                mView.mLocationComponent = mView.mMapBoxMap.getLocationComponent();
                 mView.mLocationComponent.activateLocationComponent(mView, loadedMapStyle);
                 mView.mLocationComponent.setLocationComponentEnabled(true);
                 mView.mLocationComponent.setCameraMode(CameraMode.TRACKING);

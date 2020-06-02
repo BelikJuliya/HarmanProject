@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment;
 
 import org.jetbrains.annotations.NotNull;
 
-public class EnterMessageFragment extends Fragment {
+public class EnterMessage extends Fragment {
 
     @SuppressLint("InflateParams")
     @Override

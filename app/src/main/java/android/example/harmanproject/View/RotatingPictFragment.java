@@ -25,7 +25,6 @@ public class RotatingPictFragment extends FragmentActivity {
         //At the moment of activity creation put fragment 1 to the upper container
         FragmentTransaction fTrans1 = getSupportFragmentManager().beginTransaction();
 
-
         //can't do it with binding
         fTrans1.add(R.id.higher_frame, frag1);
         //fTrans1.add(mBinding.higherFrame, frag1);
@@ -38,7 +37,7 @@ public class RotatingPictFragment extends FragmentActivity {
 
     public void clickReplaceFragments(View v) {
 
-        EnterMessageFragment frag2 = new EnterMessageFragment();
+        EnterMessage frag2 = new EnterMessage();
 
         // Put fragment 2 to the lower container
         FragmentTransaction fTrans2 = getSupportFragmentManager().beginTransaction();

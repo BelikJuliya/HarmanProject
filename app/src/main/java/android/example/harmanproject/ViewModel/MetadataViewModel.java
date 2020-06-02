@@ -1,6 +1,6 @@
 package android.example.harmanproject.ViewModel;
 
-import android.example.harmanproject.View.PictMetadataActivity;
+import android.example.harmanproject.View.MetadataActivity;
 
 import androidx.exifinterface.media.ExifInterface;
 
@@ -20,9 +20,9 @@ public class MetadataViewModel {
     public static Double mLatitude;
     public static Double mLongitude;
     private static String metadata;
-    private PictMetadataActivity mView;
+    private MetadataActivity mView;
 
-    public MetadataViewModel(PictMetadataActivity view){
+    public MetadataViewModel(MetadataActivity view){
         mView = view;
     }
 
