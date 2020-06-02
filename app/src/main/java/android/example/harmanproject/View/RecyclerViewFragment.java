@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-public class RecyclerView extends Fragment {
+public class RecyclerViewFragment extends Fragment {
 
 
     @Override
@@ -29,7 +29,7 @@ public class RecyclerView extends Fragment {
         recyclerView.setAdapter(recyclerAdapter);
 
         recyclerAdapter.setOnClickListener(position -> {
-            Intent intent = new Intent(getContext(), PictMetadata.class);
+            Intent intent = new Intent(getContext(), PictMetadataActivity.class);
             intent.putExtra("Example element", GalleryViewModel.exampleList.get(position));
             startActivity(intent);
 

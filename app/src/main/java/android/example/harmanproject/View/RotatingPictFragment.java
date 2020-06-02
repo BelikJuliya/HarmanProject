@@ -10,7 +10,7 @@ import android.widget.Button;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
 
-public class RotatingPict extends FragmentActivity {
+public class RotatingPictFragment extends FragmentActivity {
     RotatingPictBinding mBinding;
 
     @Override
@@ -19,7 +19,7 @@ public class RotatingPict extends FragmentActivity {
         mBinding = RotatingPictBinding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
 
-        GirlGun frag1 = new GirlGun();
+        GirlGunFragment frag1 = new GirlGunFragment();
         GirlGunViewModel frag1ViewModel = new GirlGunViewModel(frag1);
 
         //At the moment of activity creation put fragment 1 to the upper container
@@ -38,7 +38,7 @@ public class RotatingPict extends FragmentActivity {
 
     public void clickReplaceFragments(View v) {
 
-        EnterMessage frag2 = new EnterMessage();
+        EnterMessageFragment frag2 = new EnterMessageFragment();
 
         // Put fragment 2 to the lower container
         FragmentTransaction fTrans2 = getSupportFragmentManager().beginTransaction();

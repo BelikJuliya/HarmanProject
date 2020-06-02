@@ -1,7 +1,7 @@
 package android.example.harmanproject.ViewModel;
 
 import android.content.Context;
-import android.example.harmanproject.View.WifiInfo;
+import android.example.harmanproject.View.WifiInfoActivity;
 import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiManager;
 
@@ -9,9 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WifiViewModel {
-    private WifiInfo mView;
+    private WifiInfoActivity mView;
 
-    public WifiViewModel(WifiInfo view) {
+    public WifiViewModel(WifiInfoActivity view) {
         mView = view;
     }
     public String findWifiInfo() {

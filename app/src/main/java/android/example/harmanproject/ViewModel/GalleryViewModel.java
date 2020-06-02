@@ -2,7 +2,7 @@ package android.example.harmanproject.ViewModel;
 
 import android.annotation.SuppressLint;
 import android.example.harmanproject.R;
-import android.example.harmanproject.View.Gallery;
+import android.example.harmanproject.View.GalleryActivity;
 import android.net.Uri;
 
 import java.io.File;
@@ -16,9 +16,9 @@ public class GalleryViewModel {
     @SuppressLint("SdCardPath")
     private static String mDirectory = "/sdcard/Download";
     public static ArrayList <ExampleElement> exampleList;
-    private Gallery mView;
+    private GalleryActivity mView;
 
-    public GalleryViewModel(Gallery view){
+    public GalleryViewModel(GalleryActivity view){
         this.mView = view;
     }
 

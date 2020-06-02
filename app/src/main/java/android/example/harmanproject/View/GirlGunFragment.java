@@ -10,10 +10,10 @@ import android.widget.ImageView;
 
 import androidx.fragment.app.Fragment;
 
-public class GirlGun extends Fragment {
+public class GirlGunFragment extends Fragment {
     public ImageView mImageView;
 
-    public GirlGun() {
+    public GirlGunFragment() {
         new GirlGunViewModel(this);
     }
 

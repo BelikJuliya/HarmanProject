@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
     private int STORAGE_PERMISSION_CODE = 1;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void goToActivity1(View view) {
-        Intent intent = new Intent(MainActivity.this, RotatingPict.class);
+        Intent intent = new Intent(MainActivity.this, RotatingPictFragment.class);
         startActivity(intent);
 
     }
@@ -39,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
     public void goToActivity2(View view) {
 
         if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-            Intent intent = new Intent(MainActivity.this, Gallery.class);
+            Intent intent = new Intent(MainActivity.this, GalleryActivity.class);
             startActivity(intent);
         } else {
             requestStoragePermission();
@@ -47,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void showWifiInfo(View view) {
-        Intent intent = new Intent(MainActivity.this, WifiInfo.class);
+        Intent intent = new Intent(MainActivity.this, WifiInfoActivity.class);
         startActivity(intent);
     }
 
@@ -80,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == STORAGE_PERMISSION_CODE) {
             if (grantResults.length > 0 && grantResults[0] == (PackageManager.PERMISSION_GRANTED)) {
                 Toast.makeText(this, "Permission granted", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(MainActivity.this, Gallery.class);
+                Intent intent = new Intent(MainActivity.this, GalleryActivity.class);
                 startActivity(intent);
             } else {
                 Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show();

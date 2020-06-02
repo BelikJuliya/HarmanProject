@@ -1,8 +1,8 @@
 package android.example.harmanproject.View;
 
 import android.example.harmanproject.R;
-import android.example.harmanproject.ViewModel.MetadataViewModel;
 import android.example.harmanproject.ViewModel.MapBoxViewModel;
+import android.example.harmanproject.ViewModel.MetadataViewModel;
 import android.example.harmanproject.databinding.MapboxBinding;
 import android.os.Bundle;
 import android.view.View;
@@ -33,7 +33,7 @@ import java.util.List;
 import java.util.Objects;
 
 
-public class MapBox extends AppCompatActivity implements OnMapReadyCallback, PermissionsListener, MapboxMap.OnMapClickListener {
+public class MapBoxActivity extends AppCompatActivity implements OnMapReadyCallback, PermissionsListener, MapboxMap.OnMapClickListener {
     public MapView mMapView;
     public MapboxMap mMapboxMap;
     public PermissionsManager mPermissionsManager;
@@ -45,7 +45,8 @@ public class MapBox extends AppCompatActivity implements OnMapReadyCallback, Per
     public NavigationMapRoute mRoute;
     private MapBoxViewModel mViewModel;
 
-    public MapBox(){
+
+    public MapBoxActivity() {
         mViewModel = new MapBoxViewModel(this);
     }
 
@@ -80,17 +81,14 @@ public class MapBox extends AppCompatActivity implements OnMapReadyCallback, Per
                 mDestinationPoint = Point.fromLngLat(MetadataViewModel.mLongitude, MetadataViewModel.mLatitude);
                 mViewModel.getRoute(mOriginPoint, mDestinationPoint);
 
-                mStartButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
+                mStartButton.setOnClickListener(v -> {
 
-                        NavigationLauncherOptions options = NavigationLauncherOptions.builder()
-                                .directionsRoute(mCurrentRoad)
-                                .shouldSimulateRoute(true)
-                                .build();
+                    NavigationLauncherOptions options = NavigationLauncherOptions.builder()
+                            .directionsRoute(mCurrentRoad)
+                            .shouldSimulateRoute(true)
+                            .build();
 
-                        NavigationLauncher.startNavigation(MapBox.this, options);
-                    }
+                    NavigationLauncher.startNavigation(MapBoxActivity.this, options);
                 });
             }
         });
@@ -107,6 +105,7 @@ public class MapBox extends AppCompatActivity implements OnMapReadyCallback, Per
     public void onExplanationNeeded(List<String> permissionsToExplain) {
         Toast.makeText(this, R.string.user_location_permission_explanation, Toast.LENGTH_LONG).show();
     }
+
 
     @Override
     public void onPermissionResult(boolean granted) {
@@ -165,8 +164,8 @@ public class MapBox extends AppCompatActivity implements OnMapReadyCallback, Per
         mMapView.onSaveInstanceState(outState);
     }
 
-    public void showToast(int textOfToast){
-        Toast.makeText(MapBox.this, textOfToast, Toast.LENGTH_SHORT).show();
+    public void showToast(int textOfToast) {
+        Toast.makeText(MapBoxActivity.this, textOfToast, Toast.LENGTH_SHORT).show();
 
     }
 }

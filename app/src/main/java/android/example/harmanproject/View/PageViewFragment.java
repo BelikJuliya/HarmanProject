@@ -13,7 +13,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import it.xabaras.android.viewpagerindicator.widget.ViewPagerIndicator;
 
-public class PageView extends Fragment {
+public class PageViewFragment extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         PageViewerBinding binding = PageViewerBinding.inflate(inflater, container, false);

@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 
-public class GridView extends Fragment {
+public class GridViewFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savesInstanceState) {
@@ -29,7 +29,7 @@ public class GridView extends Fragment {
         gridView.setAdapter(gridAdapter);
 
         gridView.setOnItemClickListener((parent, view, position, id) -> {
-            Intent intent = new Intent(getContext(), PictMetadata.class);
+            Intent intent = new Intent(getContext(), PictMetadataActivity.class);
             intent.putExtra("Example element", GalleryViewModel.exampleList.get(position));
             startActivity(intent);
         });

@@ -15,14 +15,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
 
-public class Gallery extends AppCompatActivity {
-    private GridView mGridFragment;
+public class GalleryActivity extends AppCompatActivity {
+    private GridViewFragment mGridFragment;
     private FragmentTransaction mGridTrans;
-    private RecyclerView mRecyclerFragment;
-    private PageView mPageFragment;
+    private RecyclerViewFragment mRecyclerFragment;
+    private PageViewFragment mPageFragment;
     private GalleryViewModel mViewModel;
 
-    public Gallery(){
+    public GalleryActivity(){
         mViewModel = new GalleryViewModel(this);
     }
 
@@ -33,9 +33,9 @@ public class Gallery extends AppCompatActivity {
         GalleryBinding binding = GalleryBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        mRecyclerFragment = new RecyclerView();
-        mPageFragment = new PageView();
-        mGridFragment = new GridView();
+        mRecyclerFragment = new RecyclerViewFragment();
+        mPageFragment = new PageViewFragment();
+        mGridFragment = new GridViewFragment();
 
         /*
          GridView appears in the container at the moment of activity creation
@@ -52,7 +52,7 @@ public class Gallery extends AppCompatActivity {
 
 
     public void showToast(int text){
-        Toast.makeText(Gallery.this, text, Toast.LENGTH_SHORT).show();
+        Toast.makeText(GalleryActivity.this, text, Toast.LENGTH_SHORT).show();
     }
 
     //TODO

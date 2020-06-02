@@ -2,7 +2,7 @@ package android.example.harmanproject.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
-import android.example.harmanproject.View.PictMetadata;
+import android.example.harmanproject.View.PictMetadataActivity;
 import android.example.harmanproject.ViewModel.ExampleElement;
 import android.example.harmanproject.ViewModel.GalleryViewModel;
 import android.example.harmanproject.databinding.PagerExampleElementBinding;
@@ -47,7 +47,7 @@ public class PageAdapter extends PagerAdapter {
         container.addView(view);
 
         view.setOnClickListener(v -> {
-            Intent intent = new Intent(mContext, PictMetadata.class);
+            Intent intent = new Intent(mContext, PictMetadataActivity.class);
             intent.putExtra("Example element", GalleryViewModel.exampleList.get(position));
             mContext.startActivity(intent);
         });

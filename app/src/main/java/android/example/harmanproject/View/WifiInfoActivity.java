@@ -7,10 +7,10 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class WifiInfo extends AppCompatActivity {
+public class WifiInfoActivity extends AppCompatActivity {
     private WifiViewModel mViewModel;
 
-    public WifiInfo() {
+    public WifiInfoActivity() {
         mViewModel = new WifiViewModel(this);
     }
 

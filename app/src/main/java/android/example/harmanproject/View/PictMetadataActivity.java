@@ -15,11 +15,11 @@ import android.widget.TextView;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class PictMetadata extends AppCompatActivity {
+public class PictMetadataActivity extends AppCompatActivity {
     public  ExampleElement exampleElement;
     private MetadataViewModel mViewModel;
 
-    public PictMetadata() {
+    public PictMetadataActivity() {
         mViewModel = new MetadataViewModel(this);
     }
 
@@ -54,7 +54,7 @@ public class PictMetadata extends AppCompatActivity {
 
 
     public void openMap(View view) {
-        Intent intent = new Intent(PictMetadata.this, MapBox.class);
+        Intent intent = new Intent(PictMetadataActivity.this, MapBoxActivity.class);
         startActivity(intent);
     }
 }

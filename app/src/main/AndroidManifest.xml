@@ -18,11 +18,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".View.WifiInfo" />
-        <activity android:name=".View.RotatingPict" />
-        <activity android:name=".View.Gallery" />
-        <activity android:name=".View.MapBox" />
-        <activity android:name=".View.PictMetadata" />
+        <activity android:name=".View.WifiInfoActivity" />
+        <activity android:name=".View.RotatingPictFragment" />
+        <activity android:name=".View.GalleryActivity" />
+        <activity android:name=".View.MapBoxActivity" />
+        <activity android:name=".View.PictMetadataActivity" />
         <activity android:name=".View.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

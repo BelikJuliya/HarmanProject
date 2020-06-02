@@ -1,7 +1,7 @@
 package android.example.harmanproject.ViewModel;
 
 import android.example.harmanproject.R;
-import android.example.harmanproject.View.MapBox;
+import android.example.harmanproject.View.MapBoxActivity;
 
 import androidx.annotation.NonNull;
 
@@ -22,12 +22,27 @@ import retrofit2.Response;
 import timber.log.Timber;
 
 public class MapBoxViewModel {
-    private MapBox mView;
+    private MapBoxActivity mView;
 
 
-    public MapBoxViewModel(MapBox view) {
+    public MapBoxViewModel(MapBoxActivity view) {
         mView = view;
     }
+
+//    public LocationEngine mLocationEngine;
+//    private long DEFAULT_INTERVAL_IN_MILLISECONDS = 1000L;
+//    private long DEFAULT_MAX_WAIT_TIME = DEFAULT_INTERVAL_IN_MILLISECONDS * 5;
+//    private LocationEngineCallback callback = new LocationEngineCallback() {
+//        @Override
+//        public void onSuccess(Object result) {
+//
+//        }
+//
+//        @Override
+//        public void onFailure(@NonNull Exception exception) {
+//
+//        }
+//    };
 
     public void getRoute(Point origin, Point destination) {
 
@@ -46,6 +61,7 @@ public class MapBoxViewModel {
                         } else if (response.body().routes().size() == 0) {
                             Timber.e("No routes found");
                             mView.showToast(R.string.no_routes);
+
                         }
                         mView.mCurrentRoad = response.body().routes().get(0);
 
@@ -67,14 +83,50 @@ public class MapBoxViewModel {
 
     public void enableLocationComponent(@NonNull Style loadedMapStyle) {
         if (PermissionsManager.areLocationPermissionsGranted(mView)) {
-            mView.mLocationComponent = mView.mMapboxMap.getLocationComponent();
-            mView.mLocationComponent.activateLocationComponent(mView, loadedMapStyle);
-            mView.mLocationComponent.setLocationComponentEnabled(true);
-            mView.mLocationComponent.setCameraMode(CameraMode.TRACKING);
-        } else {
-            mView.mPermissionsManager = new PermissionsManager(mView);
-            mView.mPermissionsManager.requestLocationPermissions(mView);
-        }
-    }
+            if (PermissionsManager.areLocationPermissionsGranted(mView)) {
+                mView.mLocationComponent = mView.mMapboxMap.getLocationComponent();
+                mView.mLocationComponent.activateLocationComponent(mView, loadedMapStyle);
+                mView.mLocationComponent.setLocationComponentEnabled(true);
+                mView.mLocationComponent.setCameraMode(CameraMode.TRACKING);
 
+
+// Get an instance of the component
+//            LocationComponent locationComponent = mView.mMapboxMap.getLocationComponent();
+//
+//            // Activate with options
+//            locationComponent.activateLocationComponent(
+//                    LocationComponentActivationOptions.builder(mView, loadedMapStyle).build());
+//
+//            // Enable to make component visible
+//            locationComponent.setLocationComponentEnabled(true);
+//
+//            // Set the component's camera mode
+//            locationComponent.setCameraMode(CameraMode.TRACKING);
+//
+//            // Set the component's render mode
+//            locationComponent.setRenderMode(RenderMode.COMPASS);
+//            mView.mPermissionsManager = new PermissionsManager(mView);
+//            mView.mPermissionsManager.requestLocationPermissions(mView);
+            }
+        }
+
+//    private void initLocationEngine() {
+//
+//
+//
+//
+//
+//        mLocationEngine = LocationEngineProvider.getBestLocationEngine(mView);
+//        mLocationEngine.getLastLocation(callback);
+//        mLocationEngine = LocationEngineProvider.getBestLocationEngine(mView);
+//
+//        LocationEngineRequest request = new LocationEngineRequest.Builder(DEFAULT_INTERVAL_IN_MILLISECONDS)
+//                .setPriority(LocationEngineRequest.PRIORITY_HIGH_ACCURACY)
+//                .setMaxWaitTime(DEFAULT_MAX_WAIT_TIME).build();
+//
+//        mLocationEngine.requestLocationUpdates(request, callback, getMainLooper());
+//        mLocationEngine.getLastLocation(callback);
+//    }
+
+    }
 }
