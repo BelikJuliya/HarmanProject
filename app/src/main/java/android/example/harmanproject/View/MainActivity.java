@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void goToActivity1(View view) {
-        Intent intent = new Intent(MainActivity.this, RotatingPictFragment.class);
+        Intent intent = new Intent(MainActivity.this, RotatingPictActivity.class);
         startActivity(intent);
 
     }

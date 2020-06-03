@@ -7,10 +7,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import androidx.fragment.app.FragmentActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
-public class RotatingPictFragment extends FragmentActivity {
+public class RotatingPictActivity extends AppCompatActivity {
     RotatingPictBinding mBinding;
 
     @Override
@@ -18,6 +18,9 @@ public class RotatingPictFragment extends FragmentActivity {
         super.onCreate(savedInstanceState);
         mBinding = RotatingPictBinding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
+
+        getSupportActionBar().setTitle("Rotating Picture with comment");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         GirlGunFragment frag1 = new GirlGunFragment();
         GirlGunViewModel frag1ViewModel = new GirlGunViewModel(frag1);

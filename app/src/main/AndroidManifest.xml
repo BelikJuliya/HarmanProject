@@ -20,7 +20,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".View.WifiInfoActivity"
             android:parentActivityName="android.example.harmanproject.View.MainActivity"/>
-        <activity android:name=".View.RotatingPictFragment"
+        <activity android:name=".View.RotatingPictActivity"
             android:parentActivityName="android.example.harmanproject.View.MainActivity"/>
         <activity android:name=".View.GalleryActivity"
             android:parentActivityName="android.example.harmanproject.View.MainActivity"/>
