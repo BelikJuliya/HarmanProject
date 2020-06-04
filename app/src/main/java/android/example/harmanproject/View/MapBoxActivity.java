@@ -79,8 +79,9 @@ public class MapBoxActivity extends AppCompatActivity implements OnMapReadyCallb
             public void onStyleLoaded(@NonNull Style style) {
                 mViewModel.enableLocationComponent(style);
 
-                mOriginPoint = Point.fromLngLat(mLocationComponent.getLastKnownLocation().getLongitude(),
-                        mLocationComponent.getLastKnownLocation().getLatitude());
+//                mOriginPoint = Point.fromLngLat(mLocationComponent.getLastKnownLocation().getLongitude(),
+//                        mLocationComponent.getLastKnownLocation().getLatitude());
+                mOriginPoint = Point.fromLngLat(mViewModel.getCurrentLocation(getApplicationContext()).getLongitude(), mViewModel.getCurrentLocation(getApplicationContext()).getLatitude());
                 mDestinationPoint = Point.fromLngLat(MetadataViewModel.mLongitude, MetadataViewModel.mLatitude);
                 mViewModel.getRoute(mOriginPoint, mDestinationPoint);
 

@@ -1,10 +1,14 @@
 package android.example.harmanproject.ViewModel;
 
+import android.content.Context;
 import android.content.Intent;
 import android.example.harmanproject.R;
 
+import android.example.harmanproject.View.Gps;
 import android.example.harmanproject.View.MapBoxActivity;
 
+import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
 
 import android.provider.Settings;
@@ -34,7 +38,8 @@ import static android.content.Context.LOCATION_SERVICE;
 
 public class MapBoxViewModel {
     private MapBoxActivity mView;
-    private boolean isGpsOn = false;
+    private boolean isGpsOn;
+    LocationManager locationManager;
 
     public MapBoxViewModel(MapBoxActivity view) {
         mView = view;
@@ -77,9 +82,9 @@ public class MapBoxViewModel {
     public void enableLocationComponent(@NonNull Style loadedMapStyle) {
         Log.i("Repeating action", "I am enabling location");
         if (PermissionsManager.areLocationPermissionsGranted(mView)) {
-            LocationManager locationManager = (LocationManager) mView.getSystemService(LOCATION_SERVICE);
+            locationManager = (LocationManager) mView.getSystemService(LOCATION_SERVICE);
             if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-                Toast.makeText(mView.getApplicationContext(), "GPS enabled", Toast.LENGTH_LONG).show();
+                Toast.makeText(mView.getApplicationContext(), "GPS is enabled", Toast.LENGTH_LONG).show();
                 mView.mLocationComponent = mView.mMapBoxMap.getLocationComponent();
                 mView.mLocationComponent.activateLocationComponent(mView, loadedMapStyle);
                 mView.mLocationComponent.setLocationComponentEnabled(true);
@@ -87,7 +92,7 @@ public class MapBoxViewModel {
             } else {
                 Toast.makeText(mView.getApplicationContext(), "Turn on gps", Toast.LENGTH_LONG).show();
                 goToSettings();
-                if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)){
+                if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
                     isGpsOn = true;
                 }
                 if (isGpsOn) {
@@ -106,11 +111,17 @@ public class MapBoxViewModel {
         mView.startActivity(intent);
     }
 
-//    public Location getCurrentLocation(Context context) {
-//        Gps gps = new Gps(context.getApplicationContext());
-//        Location currentLocation = gps.getLocation();
-//        return currentLocation;
-//    }
+    public Location getCurrentLocation(Context context) {
+        Gps gps = new Gps(context.getApplicationContext());
+        Location currentLocation = gps.getLocation();
+        return currentLocation;
+    }
+
+    public Location getLocationWithoutExtraClassUsage(Context context) throws SecurityException {
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 6000, 10, (LocationListener) this);
+        Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        return location;
+    }
 
 
 }
