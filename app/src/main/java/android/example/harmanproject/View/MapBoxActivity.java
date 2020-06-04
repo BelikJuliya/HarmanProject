@@ -78,7 +78,7 @@ public class MapBoxActivity extends AppCompatActivity implements OnMapReadyCallb
             @Override
             public void onStyleLoaded(@NonNull Style style) {
                 mViewModel.enableLocationComponent(style);
-                assert mLocationComponent.getLastKnownLocation() != null;
+
                 mOriginPoint = Point.fromLngLat(mLocationComponent.getLastKnownLocation().getLongitude(),
                         mLocationComponent.getLastKnownLocation().getLatitude());
                 mDestinationPoint = Point.fromLngLat(MetadataViewModel.mLongitude, MetadataViewModel.mLatitude);
@@ -97,6 +97,16 @@ public class MapBoxActivity extends AppCompatActivity implements OnMapReadyCallb
         });
 
     }
+
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        if (resultCode == RESULT_OK) {
+//            if (requestCode == GpsUtils.GPS_REQUEST) {
+//                isGPS = true; // flag maintain before get location
+//            }
+//        }
+//    }
 
 
     @Override
