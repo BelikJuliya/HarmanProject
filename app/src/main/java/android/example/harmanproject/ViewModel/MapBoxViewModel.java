@@ -1,20 +1,18 @@
 package android.example.harmanproject.ViewModel;
 
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.example.harmanproject.R;
-import android.example.harmanproject.View.Gps;
+
 import android.example.harmanproject.View.MapBoxActivity;
-import android.location.Location;
+
 import android.location.LocationManager;
-import android.net.Uri;
+
 import android.provider.Settings;
 import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
+
 
 import com.mapbox.android.core.permissions.PermissionsManager;
 import com.mapbox.api.directions.v5.models.DirectionsResponse;
@@ -77,7 +75,7 @@ public class MapBoxViewModel {
 
 
     public void enableLocationComponent(@NonNull Style loadedMapStyle) {
-        Log.i("RepeatedAction", "I am enabling location");
+        Log.i("Repeating action", "I am enabling location");
         if (PermissionsManager.areLocationPermissionsGranted(mView)) {
             LocationManager locationManager = (LocationManager) mView.getSystemService(LOCATION_SERVICE);
             if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
@@ -103,11 +101,11 @@ public class MapBoxViewModel {
     }
 
     private void goToSettings() {
-        Log.i("RepeatedAction", "I am going to settings");
+        Log.i("Repeating action", "I am going to settings");
         Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
         mView.startActivity(intent);
     }
-//
+
 //    public Location getCurrentLocation(Context context) {
 //        Gps gps = new Gps(context.getApplicationContext());
 //        Location currentLocation = gps.getLocation();

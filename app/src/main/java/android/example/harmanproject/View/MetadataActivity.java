@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -50,7 +51,11 @@ public class MetadataActivity extends AppCompatActivity {
             nameOfImage.setText(textRes);
 
             TextView metadataTextView = binding.metaData;
-            metadataTextView.setText(mViewModel.extractMetadata());
+            if (mViewModel.extractMetadata() != null) {
+                metadataTextView.setText(mViewModel.extractMetadata());
+            } else {
+                Toast.makeText(this, "There is no metadata in this image", Toast.LENGTH_SHORT).show();
+            }
 
         } else Timber.i("Example element is null, can't show metadata");
     }

@@ -43,8 +43,8 @@ public class MetadataViewModel {
 
             ExifInterface exif = new ExifInterface(currentImage.getAbsolutePath());
             double[] coordinates = exif.getLatLong();
-            String ImageWidth = exif.getAttribute("ImageWidth");
-            String ExposureProgram = exif.getAttribute("ExposureProgram");
+            String imageWidth = exif.getAttribute("ImageWidth");
+            String exposureProgram = exif.getAttribute("ExposureProgram");
             String GPSLongitude = exif.getAttribute("GPSLongitude");
             String GPSVersionID = exif.getAttribute("GPSVersionID");
 
@@ -55,7 +55,11 @@ public class MetadataViewModel {
             mLatitude = Double.valueOf(geoDegree.toString().split(", ")[0]);
             mLongitude = Double.valueOf(geoDegree.toString().split(", ")[1]);
 
-            metadata = Arrays.toString(coordinates) + "\n ImageWidth is: " + ImageWidth + ",\n ExposureProgram is: " + ExposureProgram + ",\n Orientation is: " + orientation + ",\n GPSVersionID is: " + GPSVersionID;
+            if ((mLatitude == null || mLongitude == null)){
+                return null;
+            }
+
+            metadata = Arrays.toString(coordinates) + "\n ImageWidth is: " + imageWidth + ",\n ExposureProgram is: " + exposureProgram + ",\n Orientation is: " + orientation + ",\n GPSVersionID is: " + GPSVersionID;
 
 
         } catch (ImageProcessingException | IOException e) {
