@@ -67,10 +67,6 @@ public class MetadataViewModel {
                 areCoordinatesExist = false;
             }
 
-//            if ((mLatitude == null || mLongitude == null)){
-//                return null;
-//            }
-
             metadata = Arrays.toString(coordinates) + "\n ImageWidth is: " + imageWidth + ",\n ExposureProgram is: " + exposureProgram + ",\n Orientation is: " + orientation + ",\n GPSVersionID is: " + GPSVersionID;
 
         } catch (ImageProcessingException | IOException e) {

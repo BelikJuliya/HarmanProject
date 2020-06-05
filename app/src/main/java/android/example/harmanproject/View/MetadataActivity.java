@@ -25,7 +25,6 @@ public class MetadataActivity extends AppCompatActivity {
         mViewModel = new MetadataViewModel(this);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.Q)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +62,7 @@ public class MetadataActivity extends AppCompatActivity {
             startActivity(intent);
         } else {
             Toast.makeText(this, "There is no coordinates in this photo, please chose another one", Toast.LENGTH_SHORT).show();
+
         }
     }
 }
