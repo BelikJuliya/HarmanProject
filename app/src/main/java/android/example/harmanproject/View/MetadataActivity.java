@@ -51,19 +51,19 @@ public class MetadataActivity extends AppCompatActivity {
             nameOfImage.setText(textRes);
 
             TextView metadataTextView = binding.metaData;
-            if (mViewModel.extractMetadata() != null) {
-                metadataTextView.setText(mViewModel.extractMetadata());
-            } else {
-                Toast.makeText(this, "There is no metadata in this image", Toast.LENGTH_SHORT).show();
-            }
+
+            metadataTextView.setText(mViewModel.extractMetadata());
 
         } else Timber.i("Example element is null, can't show metadata");
     }
 
-
     public void openMap(View view) {
-        Intent intent = new Intent(MetadataActivity.this, MapBoxActivity.class);
-        startActivity(intent);
+        if (mViewModel.areCoordinatesExist) {
+            Intent intent = new Intent(MetadataActivity.this, MapBoxActivity.class);
+            startActivity(intent);
+        } else {
+            Toast.makeText(this, "There is no coordinates in this photo, please chose another one", Toast.LENGTH_SHORT).show();
+        }
     }
 }
 

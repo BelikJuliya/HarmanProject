@@ -1,6 +1,8 @@
 package android.example.harmanproject.ViewModel;
 
 import android.example.harmanproject.View.MetadataActivity;
+import android.util.Log;
+import android.widget.Toast;
 
 import androidx.exifinterface.media.ExifInterface;
 
@@ -13,6 +15,7 @@ import com.drew.metadata.Tag;
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Date;
 
 import timber.log.Timber;
 
@@ -21,6 +24,7 @@ public class MetadataViewModel {
     public static Double mLongitude;
     private static String metadata;
     private MetadataActivity mView;
+    public boolean areCoordinatesExist = true;
 
     public MetadataViewModel(MetadataActivity view){
         mView = view;
@@ -43,6 +47,8 @@ public class MetadataViewModel {
 
             ExifInterface exif = new ExifInterface(currentImage.getAbsolutePath());
             double[] coordinates = exif.getLatLong();
+
+            String date = exif.getAttribute(ExifInterface.TAG_DATETIME);
             String imageWidth = exif.getAttribute("ImageWidth");
             String exposureProgram = exif.getAttribute("ExposureProgram");
             String GPSLongitude = exif.getAttribute("GPSLongitude");
@@ -51,23 +57,27 @@ public class MetadataViewModel {
             String dateTime = exif.getAttribute(ExifInterface.TAG_DATETIME);
             int orientation = exif.getRotationDegrees();
 
-            GeoDegree geoDegree = new GeoDegree(exif);
-            mLatitude = Double.valueOf(geoDegree.toString().split(", ")[0]);
-            mLongitude = Double.valueOf(geoDegree.toString().split(", ")[1]);
-
-            if ((mLatitude == null || mLongitude == null)){
-                return null;
+            if (coordinates != null) {
+                GeoDegree geoDegree = new GeoDegree(exif);
+                mLatitude = Double.valueOf(geoDegree.toString().split(", ")[0]);
+                mLongitude = Double.valueOf(geoDegree.toString().split(", ")[1]);
+            } else {
+                Log.i("Metadata", "There is no gps coordinates in this image");
+                Toast.makeText(mView.getApplicationContext(), "There is no gps coordinates in this image", Toast.LENGTH_SHORT).show();
+                areCoordinatesExist = false;
             }
 
-            metadata = Arrays.toString(coordinates) + "\n ImageWidth is: " + imageWidth + ",\n ExposureProgram is: " + exposureProgram + ",\n Orientation is: " + orientation + ",\n GPSVersionID is: " + GPSVersionID;
+//            if ((mLatitude == null || mLongitude == null)){
+//                return null;
+//            }
 
+            metadata = Arrays.toString(coordinates) + "\n ImageWidth is: " + imageWidth + ",\n ExposureProgram is: " + exposureProgram + ",\n Orientation is: " + orientation + ",\n GPSVersionID is: " + GPSVersionID;
 
         } catch (ImageProcessingException | IOException e) {
             e.printStackTrace();
         }
         return metadata;
     }
-
 
     public static class GeoDegree {
         private boolean valid = false;
@@ -96,11 +106,8 @@ public class MetadataViewModel {
                 } else {
                     Longitude = 0 - convertToDegree(attrLONGITUDE);
                 }
-
             }
         }
-
-        ;
 
         private Float convertToDegree(String stringDMS) {
             Float result = null;
@@ -124,8 +131,6 @@ public class MetadataViewModel {
             result = (float) (FloatD + (FloatM / 60) + (FloatS / 3600));
 
             return result;
-
-
         }
 
         public boolean isValid() {
