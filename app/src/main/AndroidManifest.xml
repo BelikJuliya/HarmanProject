@@ -18,21 +18,25 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".View.WifiInfoActivity"
-            android:parentActivityName="android.example.harmanproject.View.MainActivity"/>
-        <activity android:name=".View.RotatingPictActivity"
-            android:parentActivityName="android.example.harmanproject.View.MainActivity"/>
-        <activity android:name=".View.GalleryActivity"
-            android:parentActivityName="android.example.harmanproject.View.MainActivity"/>
-        <activity android:name=".View.MapBoxActivity"
-            android:parentActivityName="android.example.harmanproject.View.MetadataActivity"/>
-        <activity android:name=".View.MetadataActivity"
-            android:parentActivityName="android.example.harmanproject.View.GalleryActivity"/>
+        <activity
+            android:name=".View.WifiInfoActivity"
+            android:parentActivityName="android.example.harmanproject.View.MainActivity" />
+        <activity
+            android:name=".View.RotatingPictActivity"
+            android:parentActivityName="android.example.harmanproject.View.MainActivity" />
+        <activity
+            android:name=".View.GalleryActivity"
+            android:parentActivityName="android.example.harmanproject.View.MainActivity" />
+        <activity
+            android:name=".View.MapBoxActivity"
+            android:parentActivityName="android.example.harmanproject.View.MetadataActivity" />
+        <activity
+            android:name=".View.MetadataActivity"
+            android:parentActivityName="android.example.harmanproject.View.GalleryActivity"
+            android:launchMode="singleTop"/>
         <activity android:name=".View.MainActivity">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
