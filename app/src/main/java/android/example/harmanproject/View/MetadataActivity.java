@@ -38,12 +38,6 @@ public class MetadataActivity extends AppCompatActivity {
         PictMetadataBinding binding = PictMetadataBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
-        Log.i(TAG, "I open onCreate method of metadata activity");
-
-        if (savedInstanceState != null) {
-            exampleElement = savedInstanceState.getParcelable("Example element");
-            Log.i("Parcelable", "I get the example element value from saved instance state");
-        }
 
         getSupportActionBar().setTitle("Metadata");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -70,30 +64,14 @@ public class MetadataActivity extends AppCompatActivity {
 
     public void openMap(View view) {
         if (mViewModel.areCoordinatesExist) {
-            Intent intent = new Intent(MetadataActivity.this, MapBoxActivity.class);
-            startActivity(intent);
+            //Intent intent = new Intent(MetadataActivity.this, MapBoxActivity.class);
+            Intent intentTest = new Intent(MetadataActivity.this, TestMapBox.class);
+            startActivity(intentTest);
+            //startActivity(intent);
         } else {
             Toast.makeText(this, "There is no coordinates in this photo, please chose another one", Toast.LENGTH_SHORT).show();
 
         }
-    }
-
-    @Override
-    public void onSaveInstanceState(Bundle savedInstanceState) {
-        super.onSaveInstanceState(savedInstanceState);
-        //outState.putString(GAME_STATE_KEY, gameState);
-        Log.i(TAG, "I am trying to save instance state");
-        savedInstanceState.putParcelable("Example element", exampleElement);
-        if (savedInstanceState != null){
-            Log.i(TAG, "Instance state was saved: " + savedInstanceState.getParcelable("Example element"));
-        }
-    }
-
-    @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        exampleElement = savedInstanceState.getParcelable("Example element");
-        Log.i(TAG, "Trying to restore instance state");
     }
 }
 

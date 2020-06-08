@@ -27,8 +27,11 @@
         <activity
             android:name=".View.GalleryActivity"
             android:parentActivityName="android.example.harmanproject.View.MainActivity" />
+<!--        <activity-->
+<!--            android:name=".View.MapBoxActivity"-->
+<!--            android:parentActivityName="android.example.harmanproject.View.MetadataActivity" />-->
         <activity
-            android:name=".View.MapBoxActivity"
+            android:name=".View.TestMapBox"
             android:parentActivityName="android.example.harmanproject.View.MetadataActivity" />
         <activity
             android:name=".View.MetadataActivity"
@@ -41,5 +44,4 @@
             </intent-filter>
         </activity>
     </application>
-
 </manifest>
