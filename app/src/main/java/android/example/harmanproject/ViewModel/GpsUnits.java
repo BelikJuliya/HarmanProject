@@ -20,7 +20,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 
 import static android.content.ContentValues.TAG;
 
-public class GpsTumbler {
+public class GpsUnits {
     private Context context;
     private SettingsClient mSettingsClient;
     private LocationSettingsRequest mLocationSettingsRequest;
@@ -30,7 +30,7 @@ public class GpsTumbler {
     private final String TAG = "GPS Tumbler";
 
 
-    public GpsTumbler(Context context) {
+    public GpsUnits(Context context) {
         this.context = context;
         locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
         mSettingsClient = LocationServices.getSettingsClient(context);

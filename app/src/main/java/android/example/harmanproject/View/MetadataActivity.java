@@ -64,10 +64,11 @@ public class MetadataActivity extends AppCompatActivity {
 
     public void openMap(View view) {
         if (mViewModel.areCoordinatesExist) {
-            //Intent intent = new Intent(MetadataActivity.this, MapBoxActivity.class);
-            Intent intentTest = new Intent(MetadataActivity.this, TestMapBox.class);
-            startActivity(intentTest);
-            //startActivity(intent);
+            Intent intent = new Intent(MetadataActivity.this, MapBoxActivity.class);
+            startActivity(intent);
+            //Intent intentTest = new Intent(MetadataActivity.this, TestMapBox.class);
+            //startActivity(intentTest);
+
         } else {
             Toast.makeText(this, "There is no coordinates in this photo, please chose another one", Toast.LENGTH_SHORT).show();
 

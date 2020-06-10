@@ -1,4 +1,4 @@
-package android.example.harmanproject.View;
+package android.example.harmanproject.ViewModel;
 
 import android.Manifest;
 import android.content.Context;
@@ -11,10 +11,10 @@ import android.widget.Toast;
 
 import androidx.core.content.ContextCompat;
 
-public class Gps implements LocationListener{
+public class GpsCurrentLocation implements LocationListener{
     private Context mContext;
 
-    public Gps(Context context) {
+    public GpsCurrentLocation(Context context) {
         mContext = context;
     }
 

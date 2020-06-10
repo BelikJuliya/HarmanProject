@@ -16,6 +16,7 @@
     <string name="no_routes">There is no routes to this place</string>
     <string name="no_images">There is no images in this folder</string>
     <string name="no_directory">There is no such directory</string>
+    <string name="new_location">New lat: %1$s New longitude: %2$s</string>
 
     <plurals name="pluralsForList">
         <item quantity="zero">%1$d element</item>
@@ -48,7 +49,7 @@
 
     <string name="mapbox_access_token">pk.eyJ1IjoiZGFya3NpZGUxNyIsImEiOiJjazk1djFlajYwOGt4M25vbGVsb3FvNmVsIn0.42v9j9vEGclfp5oZmSAq2Q</string>
     <string name="OpenMap">Показать на карте</string>
-    <string name="new_location">44.29834</string>
+<!--    <string name="new_location">44.29834</string>-->
     <string name="start_navigating">Start navigating</string>
     <string name="wi_fi">Посмотреть настройки wi-fi</string>
     <string name="rotating_pict">Крутящаяся картинка</string>
