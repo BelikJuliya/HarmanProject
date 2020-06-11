@@ -11,6 +11,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 
 public class GridAdapter extends BaseAdapter {
@@ -50,7 +52,8 @@ public class GridAdapter extends BaseAdapter {
         ImageView imageView = binding.gridExampleImage;
 
         textView.setText(current.getText());
-        imageView.setImageURI(current.getImageResource());
+        //imageView.setImageURI(current.getImageResource());
+        Glide.with(mContext).load(current.getImageUri()).into(imageView);
 
         return convertView;
 

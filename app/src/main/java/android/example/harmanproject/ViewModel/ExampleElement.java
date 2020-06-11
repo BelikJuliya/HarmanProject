@@ -35,7 +35,7 @@ public class ExampleElement implements Parcelable {
     };
 
 
-    public Uri getImageResource() {
+    public Uri getImageUri() {
         return mImageUri;
     }
 

@@ -13,6 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ExampleViewHolder> {
@@ -36,7 +38,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Exampl
             super(binding.getRoot());
             mBinding = binding;
             mText = mBinding.gridItem;
-            mImageView = itemView.findViewById(R.id.example_image);
+            //mImageView = itemView.findViewById(R.id.example_image);
+            mImageView = mBinding.exampleImage;
             itemView.setOnClickListener(v -> {
                 if (listener != null) {
                     int position = getAdapterPosition();
@@ -57,7 +60,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Exampl
     public ExampleViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         mBinding = DataBindingUtil.inflate(inflater, R.layout.example_element, parent, false);
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.example_element, parent, false);
+        //View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.example_element, parent, false);
         return new ExampleViewHolder(mBinding, mListener);
 
     }
@@ -65,7 +68,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Exampl
     @Override
     public void onBindViewHolder(@NonNull ExampleViewHolder holder, int position) {
         ExampleElement currentItem = mExampleElements.get(position);
-        holder.mImageView.setImageURI(currentItem.getImageResource());
+        holder.mImageView.setImageURI(currentItem.getImageUri());
+        //Glide.with(mContext).load(current.getImageUri()).into(imageView);
         holder.mText.setText(currentItem.getText());
     }
 

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.example.harmanproject.ViewModel.ExampleElement;
 import android.example.harmanproject.ViewModel.MetadataViewModel;
 import android.example.harmanproject.databinding.PictMetadataBinding;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.nfc.Tag;
 import android.os.Build;
@@ -24,8 +25,10 @@ import timber.log.Timber;
 public class MetadataActivity extends AppCompatActivity {
     public ExampleElement exampleElement;
     private MetadataViewModel mViewModel;
-    Uri imageRes;
+    Uri mImageRes;
     private final String TAG = "ImageLoading";
+    private LocationManager mLocationManager;
+    private boolean isGpsOn;
 
     public MetadataActivity() {
         mViewModel = new MetadataViewModel(this);
@@ -46,11 +49,11 @@ public class MetadataActivity extends AppCompatActivity {
         exampleElement = intent.getParcelableExtra("Example element");
 
         if (exampleElement != null) {
-            imageRes = exampleElement.getImageResource();
+            mImageRes = exampleElement.getImageUri();
             String textRes = exampleElement.getText();
 
             ImageView imageView = binding.bigImege;
-            imageView.setImageURI(imageRes);
+            imageView.setImageURI(mImageRes);
 
             TextView nameOfImage = binding.imageDescription;
             nameOfImage.setText(textRes);
@@ -62,16 +65,31 @@ public class MetadataActivity extends AppCompatActivity {
         } else Timber.i("Example element is null, can't show metadata");
     }
 
-    public void openMap(View view) {
+    public void checkForCoordinatesExistence(View view) {
         if (mViewModel.areCoordinatesExist) {
+            openMap(view);
+        } else
+            Toast.makeText(this, "There is no coordinates in this photo, please chose another one", Toast.LENGTH_SHORT).show();
+    }
+
+    public void openMap(View view) {
+        mLocationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+        if (mLocationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
             Intent intent = new Intent(MetadataActivity.this, MapBoxActivity.class);
             startActivity(intent);
-            //Intent intentTest = new Intent(MetadataActivity.this, TestMapBox.class);
-            //startActivity(intentTest);
-
         } else {
-            Toast.makeText(this, "There is no coordinates in this photo, please chose another one", Toast.LENGTH_SHORT).show();
 
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                mViewModel.enableGPS();
+            } else {
+                mViewModel.goToSettingsToTurnOnGps();
+            }
+            if (mLocationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+                isGpsOn = true;
+            }
+            if (isGpsOn) {
+                openMap(view);
+            }
         }
     }
 }

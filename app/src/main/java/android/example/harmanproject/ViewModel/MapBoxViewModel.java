@@ -1,27 +1,11 @@
 package android.example.harmanproject.ViewModel;
 
-import android.content.Context;
-import android.content.Intent;
 import android.example.harmanproject.R;
-
 import android.example.harmanproject.View.MapBoxActivity;
-
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
-
-import android.provider.Settings;
 import android.util.Log;
-
-import androidx.annotation.NonNull;
-
-
-import com.mapbox.android.core.permissions.PermissionsManager;
 import com.mapbox.api.directions.v5.models.DirectionsResponse;
 import com.mapbox.geojson.Point;
 import com.mapbox.mapboxsdk.Mapbox;
-import com.mapbox.mapboxsdk.location.modes.CameraMode;
-import com.mapbox.mapboxsdk.maps.Style;
 import com.mapbox.services.android.navigation.ui.v5.route.NavigationMapRoute;
 import com.mapbox.services.android.navigation.v5.navigation.NavigationRoute;
 
@@ -34,8 +18,6 @@ import timber.log.Timber;
 
 public class MapBoxViewModel {
     private MapBoxActivity mView;
-    private boolean isGpsOn;
-    private LocationManager locationManager;
     private final String TAG = "GPS Tumbler";
 
     public MapBoxViewModel(MapBoxActivity view) {
@@ -76,65 +58,6 @@ public class MapBoxViewModel {
                 });
     }
 
-
-//    public void enableLocationComponent(@NonNull Style loadedMapStyle) {
-//        Log.i("Repeating action", "I am enabling location");
-//        if (PermissionsManager.areLocationPermissionsGranted(mView)) {
-//            //locationManager = (LocationManager) mView.getSystemService(LOCATION_SERVICE);
-//            //if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-//                //Toast.makeText(mView.getApplicationContext(), "GPS is enabled", Toast.LENGTH_LONG).show();
-//                mView.mLocationComponent = mView.mMapBoxMap.getLocationComponent();
-//                mView.mLocationComponent.activateLocationComponent(mView, loadedMapStyle);
-//                mView.mLocationComponent.setLocationComponentEnabled(true);
-//                mView.mLocationComponent.setCameraMode(CameraMode.TRACKING);
-//            mView.turnOnGpsTumbler();
-//
-////            } else {
-////                Log.i(TAG, "I found out that GPS is turned off");
-////                Toast.makeText(mView.getApplicationContext(), "Turn on gps", Toast.LENGTH_LONG).show();
-////                mView.turnOnGpsTumbler();
-////                //goToSettings();
-////                if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-////                    isGpsOn = true;
-////                }
-////                if (isGpsOn) {
-////                    enableLocationComponent(loadedMapStyle);
-////                }
-////            }
-//        } else {
-//            mView.mPermissionsManager = new PermissionsManager(mView);
-//            mView.mPermissionsManager.requestLocationPermissions(mView);
-//        }
-//    }
-
-    private void goToSettings() {
-        Log.i("Repeating action", "I am going to settings");
-        Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-        mView.startActivity(intent);
-    }
-
-    public Location getCurrentLocation(Context context) {
-        GpsCurrentLocation gps = new GpsCurrentLocation(context.getApplicationContext());
-        Location currentLocation = gps.getLocation();
-        return currentLocation;
-    }
-
-    public Location getLocationWithoutExtraClassUsage(Context context) throws SecurityException {
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 6000, 10, (LocationListener) this);
-        Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-        return location;
-    }
-
-//    private void turnOnGpsTumbler(){
-//        Log.i(TAG, "I opened turnOnGpsTumbler method");
-//        new GpsTumbler(mView).turnGPSOn(new GpsTumbler.onGpsListener() {
-//            @Override
-//            public void gpsStatus(boolean isGPSEnable) {
-//                // turn on GPS
-//                mView.isGPS = isGPSEnable;
-//            }
-//        });
-//    }
 }
 
 

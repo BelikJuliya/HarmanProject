@@ -3,12 +3,13 @@ package android.example.harmanproject.View;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.IntentSender;
 import android.example.harmanproject.R;
-import android.example.harmanproject.ViewModel.GpsUnits;
 import android.example.harmanproject.ViewModel.MapBoxViewModel;
 import android.example.harmanproject.ViewModel.MetadataViewModel;
 import android.example.harmanproject.databinding.MapboxBinding;
 import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -18,6 +19,16 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.ResolvableApiException;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.LocationSettingsRequest;
+import com.google.android.gms.location.LocationSettingsResponse;
+import com.google.android.gms.location.LocationSettingsStatusCodes;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.mapbox.android.core.location.LocationEngine;
 import com.mapbox.android.core.location.LocationEngineCallback;
 import com.mapbox.android.core.location.LocationEngineProvider;
@@ -45,31 +56,28 @@ import org.jetbrains.annotations.NotNull;
 
 import java.lang.ref.WeakReference;
 import java.util.List;
-import java.util.Objects;
 
 
 public class MapBoxActivity extends AppCompatActivity implements OnMapReadyCallback, PermissionsListener, MapboxMap.OnMapClickListener {
+
     public MapView mMapView;
     public MapboxMap mMapBoxMap;
     public PermissionsManager mPermissionsManager;
-    public LocationComponent mLocationComponent;
     public DirectionsRoute mCurrentRoad;
     private Point mOriginPoint;
     private Point mDestinationPoint;
     private Button mStartButton;
     public NavigationMapRoute mRoute;
     private MapBoxViewModel mViewModel;
-    private LocationEngine locationEngine;
+    private LocationEngine mLocationEngine;
     private static final long DEFAULT_INTERVAL_IN_MILLISECONDS = 1000L;
     private static final long DEFAULT_MAX_WAIT_TIME = DEFAULT_INTERVAL_IN_MILLISECONDS * 5;
     private LocationChangeListeningActivityLocationCallback callback =
             new LocationChangeListeningActivityLocationCallback(this);
-    public boolean isGPS;
 
     public MapBoxActivity() {
         mViewModel = new MapBoxViewModel(this);
     }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,9 +91,7 @@ public class MapBoxActivity extends AppCompatActivity implements OnMapReadyCallb
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mMapView = binding.mapView;
-
         mStartButton = binding.startBtn;
-
         mMapView.onCreate(savedInstanceState);
         mMapView.getMapAsync(this);
     }
@@ -97,7 +103,6 @@ public class MapBoxActivity extends AppCompatActivity implements OnMapReadyCallb
         mapboxMap.setStyle(getString(R.string.navigation_guidance_day), new Style.OnStyleLoaded() {
             @Override
             public void onStyleLoaded(@NonNull Style style) {
-                //mViewModel.enableLocationComponent(style);
                 enableLocationComponent(style);
             }
         });
@@ -155,25 +160,22 @@ public class MapBoxActivity extends AppCompatActivity implements OnMapReadyCallb
      */
     @SuppressLint("MissingPermission")
     private void initLocationEngine() {
-        locationEngine = LocationEngineProvider.getBestLocationEngine(this);
+        mLocationEngine = LocationEngineProvider.getBestLocationEngine(this);
 
         LocationEngineRequest request = new LocationEngineRequest.Builder(DEFAULT_INTERVAL_IN_MILLISECONDS)
                 .setPriority(LocationEngineRequest.PRIORITY_HIGH_ACCURACY)
                 .setMaxWaitTime(DEFAULT_MAX_WAIT_TIME).build();
 
-        locationEngine.requestLocationUpdates(request, callback, getMainLooper());
-        locationEngine.getLastLocation(callback);
+        mLocationEngine.requestLocationUpdates(request, callback, getMainLooper());
+        mLocationEngine.getLastLocation(callback);
 
 
     }
 
-    private static class LocationChangeListeningActivityLocationCallback
+    public static class LocationChangeListeningActivityLocationCallback
             implements LocationEngineCallback<LocationEngineResult> {
-        public double originLatitude;
-        public double originLongitude;
 
         private final WeakReference<MapBoxActivity> activityWeakReference;
-
 
         LocationChangeListeningActivityLocationCallback(MapBoxActivity activity) {
             this.activityWeakReference = new WeakReference<>(activity);
@@ -201,8 +203,8 @@ public class MapBoxActivity extends AppCompatActivity implements OnMapReadyCallb
                         String.valueOf(result.getLastLocation().getLongitude())),
                         Toast.LENGTH_SHORT).show();
 
-                originLongitude = result.getLastLocation().getLongitude();
-                originLatitude = result.getLastLocation().getLatitude();
+                double originLongitude = result.getLastLocation().getLongitude();
+                double originLatitude = result.getLastLocation().getLatitude();
 
                 // Pass the new location to the Maps SDK's LocationComponent
                 if (activity.mMapBoxMap != null && result.getLastLocation() != null) {
@@ -229,27 +231,6 @@ public class MapBoxActivity extends AppCompatActivity implements OnMapReadyCallb
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == Activity.RESULT_OK) {
-            if (requestCode == GpsUnits.GPS_REQUEST) {
-                isGPS = true; // flag maintain before get location
-            }
-        }
-    }
-
-    public void turnOnGpsTumbler() {
-        Log.i("1234", "I opened turnOnGpsTumbler method");
-        new GpsUnits(this).turnGPSOn(new GpsUnits.onGpsListener() {
-            @Override
-            public void gpsStatus(boolean isGPSEnable) {
-                // turn on GPS
-                isGPS = isGPSEnable;
-            }
-        });
-    }
-
-    @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         mPermissionsManager.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
@@ -272,16 +253,6 @@ public class MapBoxActivity extends AppCompatActivity implements OnMapReadyCallb
             Toast.makeText(this, R.string.user_location_permission_not_granted, Toast.LENGTH_LONG).show();
         }
     }
-
-//    @Override
-//    public void onPermissionResult(boolean granted) {
-//        if (granted) {
-//            mViewModel.enableLocationComponent(Objects.requireNonNull(mMapBoxMap.getStyle()));
-//        } else {
-//            Toast.makeText(this, R.string.user_location_permission_not_granted, Toast.LENGTH_LONG).show();
-//            finish();
-//        }
-//    }
 
     @Override
     public boolean onMapClick(@NonNull LatLng point) {
@@ -334,6 +305,9 @@ public class MapBoxActivity extends AppCompatActivity implements OnMapReadyCallb
         Toast.makeText(MapBoxActivity.this, textOfToast, Toast.LENGTH_SHORT).show();
 
     }
+
+
 }
+
 
 

@@ -1,9 +1,13 @@
 package android.example.harmanproject.ViewModel;
 
+import android.content.Intent;
+import android.content.IntentSender;
 import android.example.harmanproject.View.MetadataActivity;
+import android.provider.Settings;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.exifinterface.media.ExifInterface;
 
 import com.drew.imaging.ImageMetadataReader;
@@ -11,6 +15,15 @@ import com.drew.imaging.ImageProcessingException;
 import com.drew.metadata.Directory;
 import com.drew.metadata.Metadata;
 import com.drew.metadata.Tag;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.common.api.ResolvableApiException;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.LocationSettingsRequest;
+import com.google.android.gms.location.LocationSettingsResponse;
+import com.google.android.gms.location.LocationSettingsStatusCodes;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 
 import java.io.File;
 import java.io.IOException;
@@ -25,6 +38,8 @@ public class MetadataViewModel {
     private static String metadata;
     private MetadataActivity mView;
     public boolean areCoordinatesExist = true;
+    private LocationSettingsRequest.Builder builder;
+    private final int REQUEST_CHECK_CODE = 94;
 
     public MetadataViewModel(MetadataActivity view){
         mView = view;
@@ -73,6 +88,50 @@ public class MetadataViewModel {
             e.printStackTrace();
         }
         return metadata;
+    }
+
+    public void enableGPS() {
+        LocationRequest request = new LocationRequest()
+                .setFastestInterval(1500)
+                .setInterval(3000)
+                .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+
+        builder = new LocationSettingsRequest.Builder()
+                .addLocationRequest(request);
+
+        Task<LocationSettingsResponse> result =
+                LocationServices.getSettingsClient(mView).checkLocationSettings(builder.build());
+
+        result.addOnCompleteListener(new OnCompleteListener<LocationSettingsResponse>() {
+            @Override
+            public void onComplete(@NonNull Task<LocationSettingsResponse> task) {
+                try {
+                    task.getResult(ApiException.class);
+                } catch (ApiException e) {
+                    switch (e.getStatusCode()) {
+                        case LocationSettingsStatusCodes
+                                .RESOLUTION_REQUIRED:
+                            try {
+                                ResolvableApiException resolvableApiException = (ResolvableApiException) e;
+                                resolvableApiException.startResolutionForResult(mView, REQUEST_CHECK_CODE);
+                            } catch (IntentSender.SendIntentException ex) {
+                                ex.printStackTrace();
+                            } catch (ClassCastException ex) {}
+                            break;
+                        case LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE:
+                        {
+                            break;
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    public void goToSettingsToTurnOnGps() {
+        Log.i("Repeating action", "I am going to settings");
+        Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+        mView.startActivity(intent);
     }
 
     public static class GeoDegree {
