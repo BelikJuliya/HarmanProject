@@ -1,29 +1,24 @@
 package android.example.harmanproject.View;
 
 import android.content.Intent;
-import android.example.harmanproject.ViewModel.ExampleElement;
+import android.example.harmanproject.ViewModel.DemoItemForAdapters;
 import android.example.harmanproject.ViewModel.MetadataViewModel;
 import android.example.harmanproject.databinding.PictMetadataBinding;
 import android.location.LocationManager;
 import android.net.Uri;
-import android.nfc.Tag;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-
-import java.net.URI;
 
 import timber.log.Timber;
 
 public class MetadataActivity extends AppCompatActivity {
-    public ExampleElement exampleElement;
+    public DemoItemForAdapters demoItemForAdapters;
     private MetadataViewModel mViewModel;
     Uri mImageRes;
     private final String TAG = "ImageLoading";
@@ -46,11 +41,11 @@ public class MetadataActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Intent intent = getIntent();
-        exampleElement = intent.getParcelableExtra("Example element");
+        demoItemForAdapters = intent.getParcelableExtra("Example element");
 
-        if (exampleElement != null) {
-            mImageRes = exampleElement.getImageUri();
-            String textRes = exampleElement.getText();
+        if (demoItemForAdapters != null) {
+            mImageRes = demoItemForAdapters.getImageUri();
+            String textRes = demoItemForAdapters.getText();
 
             ImageView imageView = binding.bigImege;
             imageView.setImageURI(mImageRes);

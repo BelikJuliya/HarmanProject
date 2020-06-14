@@ -26,11 +26,10 @@ import com.mapbox.mapboxsdk.Mapbox;
 public class MainActivity extends AppCompatActivity {
 
     private int STORAGE_PERMISSION_CODE = 1;
-    Switch themeSwitcher;
-    public static final String MyPREFERENCES = "NightModePreferences";
-    public static final String KEY_ISNIGHTMODE = "isNightMode";
-    SharedPreferences sharedPreferences;
-
+    private Switch mThemeSwitcher;
+    private static final String MyPREFERENCES = "NightModePreferences";
+    private static final String KEY_ISNIGHTMODE = "isNightMode";
+    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,19 +40,17 @@ public class MainActivity extends AppCompatActivity {
 
         sharedPreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
-        themeSwitcher = findViewById(R.id.switcher);
+
+        mThemeSwitcher = binding.switcher;
         checkNightModeActivated();
-        themeSwitcher.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        mThemeSwitcher.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked){
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
                     saveNightModeState(true);
                     recreate();
-                    //setTheme(R.style.NightTheme);
-                    //getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
                 } else {
-                    //getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
                     saveNightModeState(false);
                     recreate();
@@ -70,10 +67,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void checkNightModeActivated(){
         if (sharedPreferences.getBoolean(KEY_ISNIGHTMODE, false)){
-            themeSwitcher.setChecked(true);
+            mThemeSwitcher.setChecked(true);
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
         } else {
-            themeSwitcher.setChecked(false);
+            mThemeSwitcher.setChecked(false);
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
     }

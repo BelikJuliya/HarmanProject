@@ -3,7 +3,7 @@ package android.example.harmanproject.Adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.example.harmanproject.View.MetadataActivity;
-import android.example.harmanproject.ViewModel.ExampleElement;
+import android.example.harmanproject.ViewModel.DemoItemForAdapters;
 import android.example.harmanproject.ViewModel.GalleryViewModel;
 import android.example.harmanproject.databinding.PagerExampleElementBinding;
 import android.view.LayoutInflater;
@@ -22,7 +22,7 @@ import java.util.ArrayList;
 
 public class PageAdapter extends PagerAdapter {
 
-    private ArrayList<ExampleElement> mList;
+    private ArrayList<DemoItemForAdapters> mList;
     private Context mContext;
 
     @Override
@@ -30,7 +30,7 @@ public class PageAdapter extends PagerAdapter {
         return view == object;
     }
 
-    public PageAdapter(Context context, ArrayList<ExampleElement> list) {
+    public PageAdapter(Context context, ArrayList<DemoItemForAdapters> list) {
         mContext = context;
         mList = new ArrayList<>(list);
     }
@@ -38,7 +38,7 @@ public class PageAdapter extends PagerAdapter {
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
-        ExampleElement current = mList.get(position);
+        DemoItemForAdapters current = mList.get(position);
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         PagerExampleElementBinding binding = PagerExampleElementBinding.inflate(inflater, container, false);
         View view = binding.getRoot();

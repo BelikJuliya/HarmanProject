@@ -1,10 +1,9 @@
 package android.example.harmanproject.Adapters;
 
 import android.example.harmanproject.R;
-import android.example.harmanproject.ViewModel.ExampleElement;
+import android.example.harmanproject.ViewModel.DemoItemForAdapters;
 import android.example.harmanproject.databinding.ExampleElementBinding;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -13,12 +12,10 @@ import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
-
 import java.util.ArrayList;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ExampleViewHolder> {
-    private ArrayList<ExampleElement> mExampleElements;
+    private ArrayList<DemoItemForAdapters> mDemoItemForAdapters;
     private onItemClickListener mListener;
     private static ExampleElementBinding mBinding;
 
@@ -51,8 +48,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Exampl
         }
     }
 
-    public RecyclerAdapter(ArrayList<ExampleElement> exampleElements) {
-        mExampleElements = exampleElements;
+    public RecyclerAdapter(ArrayList<DemoItemForAdapters> demoItemForAdapters) {
+        mDemoItemForAdapters = demoItemForAdapters;
     }
 
     @NonNull
@@ -67,7 +64,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Exampl
 
     @Override
     public void onBindViewHolder(@NonNull ExampleViewHolder holder, int position) {
-        ExampleElement currentItem = mExampleElements.get(position);
+        DemoItemForAdapters currentItem = mDemoItemForAdapters.get(position);
         holder.mImageView.setImageURI(currentItem.getImageUri());
         //Glide.with(mContext).load(current.getImageUri()).into(imageView);
         holder.mText.setText(currentItem.getText());
@@ -75,6 +72,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Exampl
 
     @Override
     public int getItemCount() {
-        return mExampleElements.size();
+        return mDemoItemForAdapters.size();
     }
 }

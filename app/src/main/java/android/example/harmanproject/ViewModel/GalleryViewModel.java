@@ -15,7 +15,7 @@ import timber.log.Timber;
 public class GalleryViewModel {
     @SuppressLint("SdCardPath")
     private static String mDirectory = "/sdcard/Download";
-    public static ArrayList <ExampleElement> exampleList;
+    public static ArrayList <DemoItemForAdapters> exampleList;
     private GalleryActivity mView;
 
     public GalleryViewModel(GalleryActivity view){
@@ -32,7 +32,7 @@ public class GalleryViewModel {
                 for (int i = 0; i < imagesFromDirectory.size(); i++) {
                     Uri imageURI = Uri.fromFile(imagesFromDirectory.get(i));
                     if (imagesFromDirectory.get(i).getName().toLowerCase().endsWith(".jpg") || imagesFromDirectory.get(i).getName().toLowerCase().endsWith(".png") || imagesFromDirectory.get(i).getName().toLowerCase().endsWith(".jpeg")) {
-                        exampleList.add(new ExampleElement(imageURI, fileNames.get(i), imagesFromDirectory.get(i).getAbsolutePath()));
+                        exampleList.add(new DemoItemForAdapters(imageURI, fileNames.get(i), imagesFromDirectory.get(i).getAbsolutePath()));
                     } else Timber.e("The file found is not an image");
                 }
             } else {

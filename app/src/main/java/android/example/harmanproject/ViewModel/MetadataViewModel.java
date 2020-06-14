@@ -28,7 +28,6 @@ import com.google.android.gms.tasks.Task;
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.Date;
 
 import timber.log.Timber;
 
@@ -47,7 +46,7 @@ public class MetadataViewModel {
 
     public String extractMetadata() {
         try {
-            File currentImage = new File(mView.exampleElement.getPath());
+            File currentImage = new File(mView.demoItemForAdapters.getPath());
             Metadata imageMetadata = ImageMetadataReader.readMetadata(currentImage);
             for (Directory obj : imageMetadata.getDirectories()) {
                 Timber.e(obj.getName());

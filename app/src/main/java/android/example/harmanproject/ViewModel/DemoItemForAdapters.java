@@ -4,33 +4,33 @@ import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class ExampleElement implements Parcelable {
+public class DemoItemForAdapters implements Parcelable {
     private Uri mImageUri;
     private String mText;
     private String mPath;
 
 
-     ExampleElement(Uri uri, String text, String path) {
+     DemoItemForAdapters(Uri uri, String text, String path) {
         mImageUri = uri;
         mText = text;
         mPath = path;
     }
 
-     ExampleElement(Parcel in) {
+     DemoItemForAdapters(Parcel in) {
         mImageUri = in.readParcelable(Uri.class.getClassLoader());
         mText = in.readString();
         mPath = in.readString();
     }
 
-    public static final Creator<ExampleElement> CREATOR = new Creator<ExampleElement>() {
+    public static final Creator<DemoItemForAdapters> CREATOR = new Creator<DemoItemForAdapters>() {
         @Override
-        public ExampleElement createFromParcel(Parcel in) {
-            return new ExampleElement(in);
+        public DemoItemForAdapters createFromParcel(Parcel in) {
+            return new DemoItemForAdapters(in);
         }
 
         @Override
-        public ExampleElement[] newArray(int size) {
-            return new ExampleElement[size];
+        public DemoItemForAdapters[] newArray(int size) {
+            return new DemoItemForAdapters[size];
         }
     };
 

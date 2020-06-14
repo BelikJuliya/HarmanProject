@@ -2,7 +2,7 @@ package android.example.harmanproject.Adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.example.harmanproject.ViewModel.ExampleElement;
+import android.example.harmanproject.ViewModel.DemoItemForAdapters;
 import android.example.harmanproject.databinding.GridExampleElementBinding;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,9 +18,9 @@ import java.util.ArrayList;
 public class GridAdapter extends BaseAdapter {
 
     private final Context mContext;
-    private final ArrayList<ExampleElement> mDataList;
+    private final ArrayList<DemoItemForAdapters> mDataList;
 
-    public GridAdapter(Context context, ArrayList<ExampleElement> dataList) {
+    public GridAdapter(Context context, ArrayList<DemoItemForAdapters> dataList) {
         mContext = context;
         mDataList = dataList;
     }
@@ -44,7 +44,7 @@ public class GridAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        ExampleElement current = mDataList.get(position);
+        DemoItemForAdapters current = mDataList.get(position);
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         GridExampleElementBinding binding = GridExampleElementBinding.inflate(inflater, parent, false);
         convertView = binding.getRoot();
