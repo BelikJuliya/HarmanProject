@@ -2,7 +2,7 @@ package android.example.harmanproject.Adapters;
 
 import android.example.harmanproject.R;
 import android.example.harmanproject.ViewModel.DemoItemForAdapters;
-import android.example.harmanproject.databinding.ExampleElementBinding;
+import android.example.harmanproject.databinding.DemoItemForAdaptersBinding;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ExampleViewHolder> {
     private ArrayList<DemoItemForAdapters> mDemoItemForAdapters;
     private onItemClickListener mListener;
-    private static ExampleElementBinding mBinding;
+    private static DemoItemForAdaptersBinding mBinding;
 
     public interface onItemClickListener {
         void onItemClick(int position);
@@ -31,7 +31,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Exampl
         private TextView mText;
         private ImageView mImageView;
 
-        ExampleViewHolder(ExampleElementBinding binding, final onItemClickListener listener) {
+        ExampleViewHolder(DemoItemForAdaptersBinding binding, final onItemClickListener listener) {
             super(binding.getRoot());
             mBinding = binding;
             mText = mBinding.gridItem;
@@ -56,8 +56,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Exampl
     @Override
     public ExampleViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        mBinding = DataBindingUtil.inflate(inflater, R.layout.example_element, parent, false);
-        //View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.example_element, parent, false);
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.demo_item_for_adapters, parent, false);
+        //View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.demo_item_for_adapters, parent, false);
         return new ExampleViewHolder(mBinding, mListener);
 
     }
