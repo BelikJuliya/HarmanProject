@@ -1,18 +1,23 @@
 package android.example.harmanproject.View;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.example.harmanproject.R;
 import android.example.harmanproject.databinding.ActivityMainBinding;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
@@ -21,6 +26,10 @@ import com.mapbox.mapboxsdk.Mapbox;
 public class MainActivity extends AppCompatActivity {
 
     private int STORAGE_PERMISSION_CODE = 1;
+    Switch themeSwitcher;
+    public static final String MyPREFERENCES = "NightModePreferences";
+    public static final String KEY_ISNIGHTMODE = "isNightMode";
+    SharedPreferences sharedPreferences;
 
 
     @Override
@@ -29,6 +38,44 @@ public class MainActivity extends AppCompatActivity {
         ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         Mapbox.getInstance(getApplicationContext(), getString(R.string.MAPBOX_ACCESS_TOKEN));
+
+        sharedPreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+
+        themeSwitcher = findViewById(R.id.switcher);
+        checkNightModeActivated();
+        themeSwitcher.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked){
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                    saveNightModeState(true);
+                    recreate();
+                    //setTheme(R.style.NightTheme);
+                    //getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                } else {
+                    //getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                    saveNightModeState(false);
+                    recreate();
+                }
+            }
+        });
+    }
+
+    private void saveNightModeState(boolean nightMode) {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean(KEY_ISNIGHTMODE, nightMode);
+        editor.apply();
+    }
+
+    public void checkNightModeActivated(){
+        if (sharedPreferences.getBoolean(KEY_ISNIGHTMODE, false)){
+            themeSwitcher.setChecked(true);
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        } else {
+            themeSwitcher.setChecked(false);
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
     }
 
     public void goToActivity1(View view) {
