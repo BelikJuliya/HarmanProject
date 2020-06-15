@@ -1,0 +1,61 @@
+<resources>
+    <string name="app_name">HarmanApp</string>
+    <string name="frag1_text">Fragment 1</string>
+    <string name="frag2_text"> Fragment 2</string>
+    <string name="add">Add</string>
+    <string name="remove">Remove</string>
+    <string name="replace">Комментировать</string>
+    <string name="stack">add to Back Stack</string>
+    <string name="rotate_picture">Крутить</string>
+    <string name="gallery_act">Галлерея</string>
+    <string name="metadata_heading">Метаданные</string>
+    <string name="example_element">Example element</string>
+    <string name="MAPBOX_ACCESS_TOKEN">pk.eyJ1IjoiZGFya3NpZGUxNyIsImEiOiJjazk1djFlajYwOGt4M25vbGVsb3FvNmVsIn0.42v9j9vEGclfp5oZmSAq2Q</string>
+    <string name="user_location_permission_explanation">This app needs location permissions to show its functionality.</string>
+    <string name="user_location_permission_not_granted">You didn\'t grant location permissions.</string>
+    <string name="no_routes">There is no routes to this place</string>
+    <string name="no_images">There is no images in this folder</string>
+    <string name="no_directory">There is no such directory</string>
+    <string name="new_location">New lat: %1$s New longitude: %2$s</string>
+
+    <plurals name="pluralsForList">
+        <item quantity="zero">%1$d element</item>
+        <item quantity="one">%1$dst element</item>
+        <item quantity="two">%1$dnd element</item>
+        <item quantity="few">%1$drd element</item>
+        <item quantity="many">%1$dth element</item>
+        <item quantity="other">%1$dth element_test</item>
+    </plurals>
+
+    <!-- Этот код мы используем для отладки: когда какой item выбирается системой -->
+    <plurals name="plurals_1">
+        <item quantity="zero">%1$d = zero</item>
+        <item quantity="one">%1$d = one</item>
+        <item quantity="two">%1$d = two</item>
+        <item quantity="few">%1$d = few</item>
+        <item quantity="many">%1$d = many</item>
+        <item quantity="other">%1$d = other</item>
+    </plurals>
+
+    <!-- А этот код мы используем для проверки того, как выглядит реальное склонение -->
+    <plurals name="plurals_2">
+        <item quantity="zero">нет котов</item>
+        <item quantity="one">%1$d кот</item>
+        <item quantity="two">%1$d кота</item>
+        <item quantity="few">%1$d кота</item>
+        <item quantity="many">%1$d котов</item>
+        <item quantity="other">%1$d котов</item>
+    </plurals>
+
+    <string name="mapbox_access_token">pk.eyJ1IjoiZGFya3NpZGUxNyIsImEiOiJjazk1djFlajYwOGt4M25vbGVsb3FvNmVsIn0.42v9j9vEGclfp5oZmSAq2Q</string>
+    <string name="OpenMap">Показать на карте</string>
+<!--    <string name="new_location">44.29834</string>-->
+    <string name="start_navigating">Start navigating</string>
+    <string name="wi_fi">Посмотреть настройки wi-fi</string>
+    <string name="rotating_pict">Крутящаяся картинка</string>
+    <string name="wifi_heading">Информация о сети вайфай</string>
+    <string name="page">Page</string>
+    <string name="recycle">Recycle</string>
+    <string name="grid">Grid</string>
+    <string name="open_gallery">Галлерея</string>
+</resources>
