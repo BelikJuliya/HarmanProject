@@ -7,20 +7,18 @@
 
     <Button
         android:id="@+id/replace_btn"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:text="@string/replace"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="16dp"
         android:onClick="clickReplaceFragments"/>
 
-
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:text="@string/rotate_picture"
         android:id="@+id/rotate_btn"
-        android:background="#948"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"/>
