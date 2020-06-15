@@ -13,7 +13,13 @@
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:gravity="left"
-        android:text="@string/night_mode" />
+        android:textOn="Night"
+        android:textOff="Day"
+        android:showText="true"
+        android:text="@string/night_mode"
+        android:thumb="@drawable/thumb"
+        android:track="@drawable/track"/>
+
 
     <Button
         android:id="@+id/show_rotating_pict_btn"
