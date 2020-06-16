@@ -14,4 +14,8 @@
         android:title="Lazy tremble tail fatty"
         app:showAsAction="never"/>
 
+    <item android:id="@+id/lazy_tremble_body_fatty"
+        android:title="Lazy tremble body fatty"
+        app:showAsAction="never"/>
+
 </menu>

@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.example.harmanproject.R;
 import android.example.harmanproject.databinding.ActivityMainBinding;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -46,20 +47,21 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         Mapbox.getInstance(getApplicationContext(), getString(R.string.MAPBOX_ACCESS_TOKEN));
 
-//        Toolbar toolbar = binding.toolbar;
-//        setSupportActionBar(toolbar);
         jtb = binding.jellyToggleBtn;
+        jtb.setJelly(Jelly.RANDOM);
+        jtb.setThumbColorRes(R.color.colorPrimaryDark);
+        jtb.setLeftBackgroundColorRes(R.color.colorPrimary);
+        jtb.setRightBackgroundColorRes(R.color.colorPrimary);
+
         jtb.setOnStateChangeListener((process, state, jtb) -> {
             if (state.equals(State.LEFT)) {
-                Toast.makeText(this, "State left", Toast.LENGTH_SHORT).show();
+                //do smth
             } else if (state.equals(State.RIGHT)) {
-                Toast.makeText(this, "State right", Toast.LENGTH_SHORT).show();
+                //do smth
             }
         });
 
         sharedPreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-
-
         mThemeSwitcher = binding.switcher;
         checkNightModeActivated();
         mThemeSwitcher.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -76,10 +78,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
-        //jtb.setJelly(Jelly.LAZY_STIFF_SLIM_JIM);
-
-
     }
 
     @Override
@@ -94,10 +92,14 @@ public class MainActivity extends AppCompatActivity {
             case R.id.itself:
                 jtb.setJelly(Jelly.ITSELF);
                 break;
+            case R.id.lazy_tremble_body_fatty:
+                jtb.setJelly(Jelly.LAZY_TREMBLE_BODY_FATTY);
+                break;
             case R.id.lazy_tremble_head_slim_jim:
                 jtb.setJelly(Jelly.ACTIVE_TREMBLE_HEAD_SLIM_JIM);
                 break;
             case R.id.lazy_tremble_tail_fatty:
+                jtb.setJelly(Jelly.LAZY_TREMBLE_TAIL_FATTY);
                 break;
         }
         return true;
@@ -113,6 +115,9 @@ public class MainActivity extends AppCompatActivity {
         if (sharedPreferences.getBoolean(KEY_ISNIGHTMODE, false)) {
             mThemeSwitcher.setChecked(true);
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            jtb.setThumbColorRes(R.color.colorPrimaryNight);
+            jtb.setRightBackgroundColorRes(R.color.colorAccentNight);
+            jtb.setLeftBackgroundColorRes(R.color.colorAccentNight);
         } else {
             mThemeSwitcher.setChecked(false);
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
