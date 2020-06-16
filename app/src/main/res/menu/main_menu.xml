@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/itself"
+        android:title="Itself"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/lazy_tremble_head_slim_jim"
+        android:title="Lazy tremble head slim jim"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/lazy_tremble_tail_fatty"
+        android:title="Lazy tremble tail fatty"
+        app:showAsAction="never"/>
+
+</menu>

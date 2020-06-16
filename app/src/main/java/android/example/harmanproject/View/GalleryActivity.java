@@ -58,7 +58,7 @@ public class GalleryActivity extends AppCompatActivity {
         Toast.makeText(GalleryActivity.this, text, Toast.LENGTH_SHORT).show();
     }
 
-    //TODO
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         //TODO replace with binding

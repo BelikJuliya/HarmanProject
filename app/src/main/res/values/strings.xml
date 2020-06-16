@@ -59,4 +59,6 @@
     <string name="grid">Grid</string>
     <string name="open_gallery">Галлерея</string>
     <string name="night_mode">Switch mode</string>
+    <string name="night">Night</string>
+    <string name="day">Day</string>
 </resources>
