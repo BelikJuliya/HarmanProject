@@ -64,4 +64,5 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     implementation 'com.nightonke:jellytogglebutton:1.0.2'
     implementation 'com.nightonke:jellytogglebutton:1.0.2'
+    implementation 'com.google.android.gms:play-services-maps:16.0.0'
 }

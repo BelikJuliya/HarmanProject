@@ -101,26 +101,23 @@ public class MetadataViewModel {
         Task<LocationSettingsResponse> result =
                 LocationServices.getSettingsClient(mView).checkLocationSettings(builder.build());
 
-        result.addOnCompleteListener(new OnCompleteListener<LocationSettingsResponse>() {
-            @Override
-            public void onComplete(@NonNull Task<LocationSettingsResponse> task) {
-                try {
-                    task.getResult(ApiException.class);
-                } catch (ApiException e) {
-                    switch (e.getStatusCode()) {
-                        case LocationSettingsStatusCodes
-                                .RESOLUTION_REQUIRED:
-                            try {
-                                ResolvableApiException resolvableApiException = (ResolvableApiException) e;
-                                resolvableApiException.startResolutionForResult(mView, REQUEST_CHECK_CODE);
-                            } catch (IntentSender.SendIntentException ex) {
-                                ex.printStackTrace();
-                            } catch (ClassCastException ex) {}
-                            break;
-                        case LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE:
-                        {
-                            break;
-                        }
+        result.addOnCompleteListener(task -> {
+            try {
+                task.getResult(ApiException.class);
+            } catch (ApiException e) {
+                switch (e.getStatusCode()) {
+                    case LocationSettingsStatusCodes
+                            .RESOLUTION_REQUIRED:
+                        try {
+                            ResolvableApiException resolvableApiException = (ResolvableApiException) e;
+                            resolvableApiException.startResolutionForResult(mView, REQUEST_CHECK_CODE);
+                        } catch (IntentSender.SendIntentException ex) {
+                            ex.printStackTrace();
+                        } catch (ClassCastException ex) {}
+                        break;
+                    case LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE:
+                    {
+                        break;
                     }
                 }
             }
